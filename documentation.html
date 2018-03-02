@@ -1,0 +1,338 @@
+﻿
+<head>
+<meta content="de" http-equiv="Content-Language">
+<style type="text/css">
+.auto-style1 {
+	text-align: center;
+}
+.auto-style2 {
+	font-weight: normal;
+	text-decoration: underline;
+}
+</style>
+</head>
+
+<h1>Minecraft Script Dokumentation</h1>
+<p>Minecraft Script ist eine Programmiersprache für Entwickler der mcfunctions, 
+sowie Minecraft Map und Package Erschaffer. Die .mcjs Dateien werden dabei zu 
+mcfunction compiled und generiert. Dies bietet dem Entwickler erweiterte 
+Möglichkeiten, wie zum Beispiel Modals, Loops, Variablen, Konstanten und 
+Command-Wrapping.</p>
+<p>Wer das ausprobieren möchte oder Beispiele anschauen möchte, kann meinen 
+playground <a href="http://www.stevertus.ga/tools/mcscript">
+stevertus.ga/tools/mcscript</a> besuchen und etwas herumspielen.</p>
+<h2>1) Installation</h2>
+<p>Der Compiler wird auch als Node.js Package angeboten, das lokal auf dem PC 
+installiert wird und viele Features mehr als die Online-Version hat.<br>z.B: Alle 
+Dateien in einem Ordner gleichzeitig compilen, direkter Output in neuen Dateien, 
+auf Dateiänderungen "watchen", uvm.</p>
+<h3>1.1 Installation von Node.js</h3>
+<p>Für die Installation wird die Node.js Umgebung und der Node Package Manager 
+benötigt.</p>
+<p>Diese installiert man am besten über den Installer:
+<a href="https://nodejs.org/en/download/">nodejs.org/en/download/</a><br>Den 
+einfach ausführen und installieren lassen.</p>
+<h3>1.2 Installation von Minecraft Script</h3>
+<p>Öffne nun die Konsole deines PCs. (Am besten über Suche unter CMD zu 
+erreichen)</p>
+<p>Hier muss nun dieser Command eingegeben werden: <code>npm install -g mcscript</code><br>
+Bei einer erfolgreichen Antwort hast du alles richtig gemacht und kannst 
+durchstarten.</p>
+<h2>2) CLI Commands</h2>
+<p>Das Tool kannst du nun anwenden indem du die Command Line in deinen Datapacks 
+Ordner startest<br>(über Shift + Rechtsklick auf Ordner -&gt; Eingabeaufforderung 
+hier öffnen)<br>Nun kannst du die Kommandos benutzen:</p>
+<h3>2.1 mcscript-compile</h3>
+<p>Dieser Command wandelt alle .mcscript Dateien in .mcfunction Format um. Was 
+du in den mcscript Dateien möglich ist, kannst du hier nachlesen.<br>In der 
+Konsole werden alle generierten Dateien angezeigt oder ein Fehler ausgeworfen, 
+falls etwas nicht korrekt war.</p>
+<p>Alternativ kannst mit <code>mcscript-compile *filepath*</code> einen 
+speziellen Pfad oder spezielle Datei angeben.</p>
+<h3>2.2 mcscript-watch</h3>
+<p>Hiermit wird dein Code automatisch compiled, wenn du irgendwelche Änderungen 
+machst(speicherst). So musst du nicht bei jeder Änderung den obigen Command 
+eingeben.</p>
+<p>Auch hier kann ein Pfad angegeben werden.</p>
+<h3>2.3 Dev: mcscript-modals</h3>
+<p>!!Dieser Command ist nur für Entwicker gedacht, die ihre Modals in den 
+Compiler einbauen wollen.<br>Es muss eine Datei angegeben werden und die Modals 
+aus dieser Datei werden dann in eine Konfigurationsdatei geschrieben.</p>
+<h2>3) Minecraft Script Syntax</h2>
+<p>Der Code wird in Dateien mit der Endung .mcscript geschrieben. Es wird ein 
+Code-Editor(IDE) empfohlen um die Dateien zu managen und den Syntax farbig zu 
+markieren. mehr hier:</p>
+<p>Anders als bei mcfunction wird jeder Command mit einem "/" oder "run: " 
+injektiert.</p>
+<p>Kommentare werden mit "//" angekündigt, falls Kommentare auch in der neuen 
+Datei auftauchen sollen mit "#"</p>
+<p>Leerzeilen und Zeilensprünge werden nicht beachtet. <br>Falls eine Leerzeile 
+aus Struktur in der mcfunction gewünscht ist, dies mit einem # ohne Kommentar 
+ausdrücken.<br>Zwei Leerzeilen können mit "##" erreicht werden.</p>
+<h3>3.1 File setup</h3>
+<p>Es werden immer Dateien mit gleichen Namen, wie ihr Root generiert.</p>
+<p>Ein benutzerdefinierter Name kann mit <code>#file: *name*</code> erreicht werden.<br>
+Bitte ohne .mcfunction!!</p>
+<p>Statt des Namen kann auch gleich ein ganzer Pfad, an dem die neue Datei sein 
+soll, angegeben werden:</p>
+<ul>
+	<li><code>#file: C:/test/neu</code></li>
+	<li><code>#file: ./neu </code> (Im gleichen Ordner)</li>
+	<li><code>#file: ./unterordner/neu </code></li>
+	<li><code>#file: ../neu </code> (Ein Ordner dadrüber)</li>
+	<li><code>#file: ../unterordner/neu </code></li>
+
+</ul>
+
+
+
+<p>Es können auch mehrere Dateien spezifiziert werden:</p>
+<pre>
+<code>#file: neu
+//commands hier
+#file: zwei
+//Commands für zwei hier</code></pre>
+
+
+
+
+<p>Auch sehr gut mit for-Loops kombinierbar:</p>
+<pre>
+<code>#file: neu
+//commands hier
+for(1,5){
+	#file: test$(i)
+	//Commands für jede Datei hier
+}
+</code></pre>
+
+
+
+
+
+<h3>3.2 Command Gruppen / Wrapping</h3>
+<p>"As, At, Positioned" können zusammengefasst werden:</p>
+<pre>
+<code>
+as('@a'){	 
+	/commands 	=> /execute positioned ~ ~ ~ run command
+}		 
+</code>
+<code>
+positioned('~ ~1 ~'){
+	/commands 	=> /execute as @a run command
+}		 
+</code></pre>
+
+
+
+
+
+
+
+<p>In den Klammern muss das jeweilige Argument als String, sprich "" oder '' 
+stehen!</p>
+<h3>3.3 If/Else Statements</h3>
+<p>If funktioniert ähnlich wie das Command Wrapping:</p>
+<pre>
+<code>
+if('statement'){
+	/commands 	=> /execute if statement run command
+}		 
+</code></pre>
+
+<p>Mit einigen extra Features:</p>
+<ul>
+	<li>Vor dem Argument kann ein "!" eingefügt werden um dies umzukehren:
+		<pre>
+<code>
+if(!'statement'){
+	/commands 	=> /execute unless statement run command
+}		 
+</code></pre>
+
+	</li>
+	<li>Nach dem Schluss kann ein "else" angehängt werden:
+		<pre>
+			<code>
+if('statement'){
+	/commands 	=> /execute if statement run command
+} else {		   /execute unless statement run command2
+	/commands2
+}		 
+</code></pre>
+	Hier darauf achten das Argument nicht zu verändern!
+	<pre>
+			<code>
+if('entity @s[tag=test]'){	
+	/tag @s remove test 	
+	} else {		  		
+	/tag @s remove test		
+}		 					
+</code>
+</pre>
+Hier werden beide ausgeführt!! Verbessert:
+<pre>
+
+<code>
+if('entity @s[tag=test]'){
+	/tag @s add testIf
+}
+if('entity @s[tag=testIf]'){	
+	/tag @s remove test 	
+	} else {		  		
+	/tag @s remove test		
+}		 					
+</code></pre>
+
+	</li>
+	<li>auch "else if() is möglich:"
+		<pre>
+			<code>
+if('statement'){
+	/commands 				=> /execute if statement run command
+} else if('statement2') {	   /execute unless statement if statement2 run command2
+	/commands2
+}		 
+</code></pre>
+	Hier darauf achten das Argument nicht zu verändern!
+	<pre>
+			<code>
+if('entity @s[tag=test]'){	
+	/tag @s remove test 	
+	} else {		  		
+	/tag @s remove test		
+}		 					
+</code>
+</pre>
+	</li>
+
+
+</ul>
+
+
+
+
+
+
+
+
+
+<h3>3.4 For-Loops</h3>
+<p>Einer der hilfreichsten Features ist der For-Loop. Als Argumente werden ganze 
+Zahlen angenommen.</p>
+<p>Von <code>erstes Argument</code> bis <code>zweites Argument</code> wird optional ausgegeben als <code>drittes Argument</code></p>
+<pre>
+
+<code>
+for(1,5){
+	/commands
+	# es wird 5x command ausgegeben
+}	 					
+</code>
+<code>
+for(1,5){
+	/say $(i)
+	# es wird 5x say mit 1 - 5 ausgegeben
+}	 					
+</code>
+</pre>
+
+<p>mit $(var_name) kann auf den Loopwert zugegriffen werden</p>
+<p>var_name ist normalerweise als "i" definiert, kann aber im 3.Argument 
+geändert werden:</p>
+<pre>
+<code>
+for(1,5,X){
+	/say $(X)
+	# es wird 5x say mit 1 - 5 ausgegeben
+}	 					
+</code>
+</pre>
+Das ist bei 2 dimensionalen Loops sinnvoll:
+
+<pre>
+<code>
+for(1,5,i){
+	for(1,2,j){
+		/say $(i).$(j)
+	}
+	# es wird 10x say mit 1.1 - 5.2 ausgegeben
+}	 					
+</code>
+</pre>
+<h3>3.5 Modals</h3>
+<p>Modals kann man wie functions oder Methoden verstehen, dass heißt man kann 
+sie definieren:</p>
+<pre>
+<code>
+modal newModal(argument){
+	/say $(argument)
+}	 					
+</code>
+</pre>
+<p>
+Ein Modal wird immer mit dem Keyword eingeleitet gefolgt von dem Namen und in 
+Klammern alle benötigten Argumente.</p>
+<p>
+Auf diese Argumente kann dann inerhalb mit $(argument_name) Referenz genommen 
+werden.</p>
+<pre>
+<code>
+modal newModal(argument){
+	/say $(argument)
+}
+
+newModal('test')
+
+# => say test	 					
+</code>
+</pre>
+<p>Wenn man das Modal so benutzt, dann werden die Werte eingesetzt und alles 
+ausgegeben.</p>
+<pre>
+<code>
+modal createCommand(command,argument1,argument2){
+	/$(command) $(argument1) $(argument2)
+}
+
+createCommand('say', 'hallo', 'du')
+
+# => say hallo du 					
+</code>
+</pre>
+<p>Es können so auch mehrere Argumente benutzt werden.</p>
+<p>Auch sind optionale und vordefinierte Argumente verfügbar:</p>
+<pre>
+<code>
+modal say(argument = "hallo"){
+	/say $(argument)
+}
+
+say()
+# => say hallo	
+	
+say('test')
+# => say test				
+</code>
+</pre>
+<h3>3.6 System Modals</h3>
+<p>Es gibt schon einige vordefinierte Modals, die hilfreich sein könnten. Bitte 
+schaue dir dafür die spezifischen Dokumentationen an: hier</p>
+<p>Du hast Ideen welche Modals umbedingt als Standart-Modal aufgegriffen werden 
+müssen? Sende mir einfach die Konfigurationsdatei zur Überprüfung.</p>
+<h2>4) IDEs und Syntax Hightlighting</h2>
+<ul>
+	<li>GitHubs Atom Editor: link here (credit:
+	<a href="https://atom.io/users/MrYurihi">MrYurihi</a>)</li>
+	<li>Notepad++: link here</li>
+</ul>
+<h2 class="auto-style1">Jetzt bleibt nichts mehr übrig als:
+<span class="auto-style2"><strong>Happy Developing</strong></span></h2>
+<p class="auto-style1">Vielen Dank an alle die Minecraft Script benutzen und 
+diese Dokumentation gelesen haben. Bei Vorschlägen, Problemen oder Fehlern bitte 
+mich kontaktieren.</p>
+
+
+
+

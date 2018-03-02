@@ -1,0 +1,104 @@
+[
+  {
+    "type": "call",
+    "func": "log",
+    "args": [
+      {
+        "type": "var",
+        "value": "text"
+      },
+      {
+        "type": "assign",
+        "operator": "=",
+        "left": {
+          "type": "var",
+          "value": "sel"
+        },
+        "right": {
+          "type": "str",
+          "value": "@a"
+        }
+      }
+    ],
+    "after": "tellraw $(sel) [{\"text\":\"console => \",\"color\":\"aqua\"},{\"text\":\"$(text)\",\"color\":\"white\"}]"
+  },
+  {
+    "type": "call",
+    "func": "newStand",
+    "args": [
+      {
+        "type": "assign",
+        "operator": "=",
+        "left": {
+          "type": "var",
+          "value": "name"
+        },
+        "right": {
+          "type": "str",
+          "value": ""
+        }
+      },
+      {
+        "type": "assign",
+        "operator": "=",
+        "left": {
+          "type": "var",
+          "value": "position"
+        },
+        "right": {
+          "type": "str",
+          "value": "~ ~ ~"
+        }
+      },
+      {
+        "type": "assign",
+        "operator": "=",
+        "left": {
+          "type": "var",
+          "value": "tags"
+        },
+        "right": {
+          "type": "str",
+          "value": "[]"
+        }
+      },
+      {
+        "type": "assign",
+        "operator": "=",
+        "left": {
+          "type": "var",
+          "value": "marker"
+        },
+        "right": {
+          "type": "num",
+          "value": 1
+        }
+      },
+      {
+        "type": "assign",
+        "operator": "=",
+        "left": {
+          "type": "var",
+          "value": "invisible"
+        },
+        "right": {
+          "type": "num",
+          "value": 1
+        }
+      },
+      {
+        "type": "assign",
+        "operator": "=",
+        "left": {
+          "type": "var",
+          "value": "noGravity"
+        },
+        "right": {
+          "type": "num",
+          "value": 1
+        }
+      }
+    ],
+    "after": "summon armor_stand $(position) {CustomName:\"{\\\"text\\\":\\\"$(name)\\\"}\", Tags: $(tags),Invisible:$(invisible),Marker:$(marker),NoGravity:$(noGravity)}"
+  }
+]
