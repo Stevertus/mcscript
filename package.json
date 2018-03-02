@@ -1,19 +1,18 @@
 {
   "name": "mcscript",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "Minecraft Script to mcfunction compiler",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Stevertus",
   "license": "ISC",
-  "version": "0.0.1",
   "bin": {
     "mcscript-compile": "bin/test-module.js",
     "mcscript-watch": "bin/watch.js",
     "mcscript-modals": "bin/modal.js"
   },
-  "main" : "./lib/index.js",
+  "main": "./lib/index.js",
   "preferGlobal": "true",
   "dependencies": {
     "fs-finder": "^1.8.1"
