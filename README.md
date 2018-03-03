@@ -5,8 +5,7 @@ Minecraft Script ist eine Programmiersprache für Entwickler der mcfunctions, so
 
 Wer das ausprobieren möchte oder Beispiele anschauen möchte, kann meinen playground [stevertus.ga/tools/mcscript](http://www.stevertus.ga/tools/mcscript) besuchen und etwas herumspielen.
 
-1) Installation
----------------
+##1) Installation
 
 Der Compiler wird auch als Node.js Package angeboten, das lokal auf dem PC installiert wird und viele Features mehr als die Online-Version hat.  
 z.B: Alle Dateien in einem Ordner gleichzeitig compilen, direkter Output in neuen Dateien, auf Dateiänderungen "watchen", uvm.
@@ -25,8 +24,7 @@ Den einfach ausführen und installieren lassen.
 Hier muss nun dieser Command eingegeben werden: `npm install -g mcscript`  
 Bei einer erfolgreichen Antwort hast du alles richtig gemacht und kannst durchstarten.
 
-2) CLI Commands
----------------
+##2) CLI Commands
 
 Das Tool kannst du nun anwenden indem du die Command Line in deinen Datapacks Ordner startest  
 (über Shift + Rechtsklick auf Ordner -> Eingabeaufforderung hier öffnen)  
@@ -50,8 +48,7 @@ Auch hier kann ein Pfad angegeben werden.
 !!Dieser Command ist nur für Entwicker gedacht, die ihre Modals in den Compiler einbauen wollen.  
 Es muss eine Datei angegeben werden und die Modals aus dieser Datei werden dann in eine Konfigurationsdatei geschrieben.
 
-3) Minecraft Script Syntax
---------------------------
+##3) Minecraft Script Syntax
 
 Der Code wird in Dateien mit der Endung .mcscript geschrieben. Es wird ein Code-Editor(IDE) empfohlen um die Dateien zu managen und den Syntax farbig zu markieren. mehr hier:
 
@@ -275,8 +272,7 @@ Es gibt schon einige vordefinierte Modals, die hilfreich sein könnten. Bitte sc
 
 Du hast Ideen welche Modals umbedingt als Standart-Modal aufgegriffen werden müssen? Sende mir einfach die Konfigurationsdatei zur Überprüfung.
 
-4) IDEs und Syntax Hightlighting
---------------------------------
+## 4) IDEs und Syntax Hightlighting
 
 *   GitHubs Atom Editor: link here (credit: [MrYurihi](https://atom.io/users/MrYurihi))
 *   Notepad++: link here
