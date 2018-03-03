@@ -1,6 +1,6 @@
 {
   "name": "mcscript",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Minecraft Script to mcfunction compiler",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -8,7 +8,7 @@
   "author": "Stevertus",
   "license": "ISC",
   "bin": {
-    "mcscript-compile": "bin/test-module.js",
+    "mcscript": "bin/test-module.js",
     "mcscript-watch": "bin/watch.js",
     "mcscript-modals": "bin/modal.js"
   },

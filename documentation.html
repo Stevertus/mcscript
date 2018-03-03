@@ -9,7 +9,7 @@ Command-Wrapping.</p>
 playground <a href="http://www.stevertus.ga/tools/mcscript">
 stevertus.ga/tools/mcscript</a> besuchen und etwas herumspielen.</p>
 <h2>1) Installation</h2>
-<p>Der Compiler wird auch als Node.js Package angeboten, das lokal auf dem PC 
+<p>Der Compiler wird auch als <a href="https://nodejs.org/en/download/">Node.js/</a> Package angeboten, das lokal auf dem PC 
 installiert wird und viele Features mehr als die Online-Version hat.<br>z.B: Alle 
 Dateien in einem Ordner gleichzeitig compilen, direkter Output in neuen Dateien, 
 auf Dateiänderungen "watchen", uvm.</p>
@@ -29,19 +29,22 @@ durchstarten.</p>
 <p>Das Tool kannst du nun anwenden indem du die Command Line in deinen Datapacks 
 Ordner startest<br>(über Shift + Rechtsklick auf Ordner -&gt; Eingabeaufforderung 
 hier öffnen)<br>Nun kannst du die Kommandos benutzen:</p>
-<h3>2.1 mcscript-compile</h3>
+<h3>2.1 mcscript new</h3>
+<p>Dieser Command generiert dir ein vorgefertigtes Datapack mit allen basic 
+Dateien. Als Argument muss die Id des Packs angegeben werden!</p>
+<h3>2.2 mcscript compile</h3>
 <p>Dieser Command wandelt alle .mcscript Dateien in .mcfunction Format um. Was 
 du in den mcscript Dateien möglich ist, kannst du hier nachlesen.<br>In der 
 Konsole werden alle generierten Dateien angezeigt oder ein Fehler ausgeworfen, 
 falls etwas nicht korrekt war.</p>
 <p>Alternativ kannst mit <code>mcscript-compile *filepath*</code> einen 
 speziellen Pfad oder spezielle Datei angeben.</p>
-<h3>2.2 mcscript-watch</h3>
+<h3>2.3 mcscript watch</h3>
 <p>Hiermit wird dein Code automatisch compiled, wenn du irgendwelche Änderungen 
 machst(speicherst). So musst du nicht bei jeder Änderung den obigen Command 
 eingeben.</p>
 <p>Auch hier kann ein Pfad angegeben werden.</p>
-<h3>2.3 Dev: mcscript-modals</h3>
+<h3 id="ownmodal">2.4 Dev: mcscript-modals</h3>
 <p>!!Dieser Command ist nur für Entwicker gedacht, die ihre Modals in den 
 Compiler einbauen wollen.<br>Es muss eine Datei angegeben werden und die Modals 
 aus dieser Datei werden dann in eine Konfigurationsdatei geschrieben.</p>
@@ -58,7 +61,7 @@ aus Struktur in der mcfunction gewünscht ist, dies mit einem # ohne Kommentar
 ausdrücken.<br>Zwei Leerzeilen können mit "##" erreicht werden.</p>
 <h3>3.1 File setup</h3>
 <p>Es werden immer Dateien mit gleichen Namen, wie ihr Root generiert.</p>
-<p>Ein benutzerdefinierter Name kann mit <code>#file: *name*</code> erreicht werden.<br>
+<p>Ein benutzerdefinierter Name kann mit <code>#file: *name*</code> gesetzt werden.<br>
 Bitte ohne .mcfunction!!</p>
 <p>Statt des Namen kann auch gleich ein ganzer Pfad, an dem die neue Datei sein 
 soll, angegeben werden:</p>
@@ -83,7 +86,7 @@ soll, angegeben werden:</p>
 
 
 
-<p>Auch sehr gut mit for-Loops kombinierbar:</p>
+<p>Auch sehr gut mit <a href="#loops">for-loops</a> kombinierbar:</p>
 <pre>
 <code>#file: neu
 //commands hier
@@ -91,14 +94,16 @@ for(1,5){
 	#file: test$(i)
 	//Commands für jede Datei hier
 }
-</code></pre>
+</code>
+
+</pre>
 
 
 
 
 
 <h3>3.2 Command Gruppen / Wrapping</h3>
-<p>"As, At, Positioned" können zusammengefasst werden:</p>
+<p>"As, At, Positioned,align,dimension,rotated,anchored" können zusammengefasst werden:</p>
 <pre>
 <code>
 as('@a'){	 
@@ -109,16 +114,34 @@ as('@a'){
 positioned('~ ~1 ~'){
 	/commands 	=> /execute as @a run command
 }		 
-</code></pre>
+</code>
+<code>
+// dimension compiles zu in!!
+dimension('the_nether'){
+	/commands 	=> /execute in the_nether run command
+}		 
+</code>
 
-
-
-
-
-
-
+</pre>
 <p>In den Klammern muss das jeweilige Argument als String, sprich "" oder '' 
 stehen!</p>
+
+<p>"Gruppen können auch aufgelistet werden:</p>
+<pre>
+<code>
+as('@p'), at('@s'), positioned('~ ~1 ~'){
+	/say command
+}
+==> /execute as @p at @s positioned ~ ~-1 ~ run say command
+
+// also with if
+as('@p'), at('@s'), positioned('~ ~1 ~'), if(entity @s[tag=mytag]){
+	/say command
+}
+==> /execute as @p at @s positioned ~ ~-1 ~ if entity @s[tag=mytag] run say command
+</code>
+</pre>
+
 <h3>3.3 If/Else Statements</h3>
 <p>If funktioniert ähnlich wie das Command Wrapping:</p>
 <pre>
@@ -173,26 +196,18 @@ if('entity @s[tag=testIf]'){
 </code></pre>
 
 	</li>
-	<li>auch "else if() is möglich:"
+	<li>auch "else if" ist möglich:
 		<pre>
 			<code>
 if('statement'){
 	/commands 				=> /execute if statement run command
 } else if('statement2') {	   /execute unless statement if statement2 run command2
 	/commands2
-}		 
-</code></pre>
-	Hier darauf achten das Argument nicht zu verändern!
-	<pre>
-			<code>
-if('entity @s[tag=test]'){	
-	/tag @s remove test 	
-	} else {		  		
-	/tag @s remove test		
-}		 					
+}		 	 					
 </code>
 </pre>
 	</li>
+	
 
 
 </ul>
@@ -205,7 +220,44 @@ if('entity @s[tag=test]'){
 
 
 
-<h3>3.4 For-Loops</h3>
+<h3>3.4 Logische Operatoren</h3>
+<p>In Kombination mit Command Gruppen und If-Else-Statements können zusätzlich 
+logische Operatoren benutzt werden:</p>
+<ul>
+	<li>
+	<p>Der Oder-Operator kann bei den Gruppierungen auf zwei Arten benutzt werden:</p>
+	<pre>
+			<code>
+as('@s'||'@p'){	
+	/command 	
+}
+==> execute as @s run command
+    execute at @p run command
+	
+# oder als Liste
+if('entity @s[tag=entity1]','entity @s[tag=entity2]'){	
+	/command 	
+}
+==> execute if entity @s[tag=entity1] run command
+    execute if entity @s[tag=entity2] @p run command 					
+</code>
+</pre>
+
+	</li>
+	<li>
+	<p>Der Und-Operator wird so definiert: (nur für if-statements sinnvoll)</p>
+	<pre>
+			<code>
+if('entity @s'&&'entity @p'){	
+	/command 	
+}
+==> execute if entity @s if entity @p run command
+					</code></pre>
+
+	</li>
+
+</ul>
+<h3>3.5 For-Loops</h3>
 <p>Einer der hilfreichsten Features ist der For-Loop. Als Argumente werden ganze 
 Zahlen angenommen.</p>
 <p>Von <code>erstes Argument</code> bis <code>zweites Argument</code> wird optional ausgegeben als <code>drittes Argument</code></p>
@@ -248,7 +300,7 @@ for(1,5,i){
 }	 					
 </code>
 </pre>
-<h3>3.5 Modals</h3>
+<h3>3.6 Modals</h3>
 <p>Modals kann man wie functions oder Methoden verstehen, dass heißt man kann 
 sie definieren:</p>
 <pre>
@@ -262,7 +314,7 @@ modal newModal(argument){
 Ein Modal wird immer mit dem Keyword eingeleitet gefolgt von dem Namen und in 
 Klammern alle benötigten Argumente.</p>
 <p>
-Auf diese Argumente kann dann inerhalb mit $(argument_name) Referenz genommen 
+Auf diese Argumente kann dann innerhalb mit $(argument_name) Referenz genommen 
 werden.</p>
 <pre>
 <code>
@@ -303,11 +355,11 @@ say('test')
 # => say test				
 </code>
 </pre>
-<h3>3.6 System Modals</h3>
+<h3>3.7 System Modals</h3>
 <p>Es gibt schon einige vordefinierte Modals, die hilfreich sein könnten. Bitte 
-schaue dir dafür die spezifischen Dokumentationen an: hier</p>
+schaue dir dafür die spezifischen Dokumentationen <a href="#">hier</a> an.</p>
 <p>Du hast Ideen welche Modals umbedingt als Standart-Modal aufgegriffen werden 
-müssen? Sende mir einfach die Konfigurationsdatei zur Überprüfung.</p>
+müssen? Sende mir einfach die <a href="#ownmodal">Konfigurationsdatei </a>zur Überprüfung.</p>
 <h2>4) IDEs und Syntax Hightlighting</h2>
 <ul>
 	<li>GitHubs Atom Editor: link here (credit:

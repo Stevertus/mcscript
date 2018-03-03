@@ -1,100 +1,110 @@
+
+
 Minecraft Script Dokumentation
 ==============================
 
-Minecraft Script ist eine Programmiersprache für Entwickler der mcfunctions, sowie Minecraft Map und Package Erschaffer. Die .mcjs Dateien werden dabei zu mcfunction compiled und generiert. Dies bietet dem Entwickler erweiterte Möglichkeiten, wie zum Beispiel Modals, Loops, Variablen, Konstanten und Command-Wrapping.
+Minecraft Script is a programming language for developers of mcfunctions, Minecraft Maps and packages. The .mcscript files are therefor compiled and generated to the function format. This enables the developer extended possibilities, such as Modals, Loops, Varibles, Constants and Command-Wrapping.
 
-Wer das ausprobieren möchte oder Beispiele anschauen möchte, kann meinen playground [stevertus.ga/tools/mcscript](http://www.stevertus.ga/tools/mcscript) besuchen und etwas herumspielen.
+Everyone who wants to try, can visit my playground [stevertus.ga/tools/mcscript](http://www.stevertus.ga/tools/mcscript) and can play with its function.
 
-##1) Installation
+German documentation [here](https://github.com/Stevertus/mcscript/blob/master/README-DE.md)
+1) Installation
+---------------
 
-Der Compiler wird auch als Node.js Package angeboten, das lokal auf dem PC installiert wird und viele Features mehr als die Online-Version hat.  
-z.B: Alle Dateien in einem Ordner gleichzeitig compilen, direkter Output in neuen Dateien, auf Dateiänderungen "watchen", uvm.
+The Compiler gets offered as [Node.js/](https://nodejs.org/en/download/) Package that is installed locally on your machine. It enables much more features than the online version  
+For example: compile all files in a directory, direct output in new files, watch your files on changes, etc.
 
-### 1.1 Installation von Node.js
+### 1.1 Installation of Node.js
 
-Für die Installation wird die Node.js Umgebung und der Node Package Manager benötigt.
+The installation requires the Node.js environment and the Node Package Manager.
 
-Diese installiert man am besten über den Installer: [nodejs.org/en/download/](https://nodejs.org/en/download/)  
-Den einfach ausführen und installieren lassen.
+This is achieved the best way by using the installer: [nodejs.org/en/download/](https://nodejs.org/en/download/)  
+Just run it and install.
 
-### 1.2 Installation von Minecraft Script
+### 1.2 Installation of Minecraft Script
 
-Öffne nun die Konsole deines PCs. (Am besten über Suche unter CMD zu erreichen)
+Now open your PCs console. (search CMD).
 
-Hier muss nun dieser Command eingegeben werden: `npm install -g mcscript`  
-Bei einer erfolgreichen Antwort hast du alles richtig gemacht und kannst durchstarten.
+There you have to type in this command: `npm install -g mcscript`  
+If a successful answer apears you have done everything right and can start.
 
-##2) CLI Commands
+2) CLI Commands
+---------------
 
-Das Tool kannst du nun anwenden indem du die Command Line in deinen Datapacks Ordner startest  
-(über Shift + Rechtsklick auf Ordner -> Eingabeaufforderung hier öffnen)  
-Nun kannst du die Kommandos benutzen:
+You can now use the tool by launching the Command Line in your datapacks folder  
+(with Shift + rightclick on directory -> open command line)  
+Now you can use the commands like that:
 
-### 2.1 mcscript-compile
+### 2.1 mcscript new
 
-Dieser Command wandelt alle .mcscript Dateien in .mcfunction Format um. Was du in den mcscript Dateien möglich ist, kannst du hier nachlesen.  
-In der Konsole werden alle generierten Dateien angezeigt oder ein Fehler ausgeworfen, falls etwas nicht korrekt war.
+Creates a new datapack for you with all basic files. Takes as argument the datapack id!
 
-Alternativ kannst mit `mcscript-compile *filepath*` einen speziellen Pfad oder spezielle Datei angeben.
+### 2.2 mcscript compile
 
-### 2.2 mcscript-watch
+This command converts all .mcscript files into .mcfunction format. You can read [here](#syntax) what you can do in the mcscript files.  
+The console displays all generated files or throws an error if something was not correct.
 
-Hiermit wird dein Code automatisch compiled, wenn du irgendwelche Änderungen machst(speicherst). So musst du nicht bei jeder Änderung den obigen Command eingeben.
+Alternatively you can use `mcscript-compile *filepath*` to set an custom directory or file.
 
-Auch hier kann ein Pfad angegeben werden.
+### 2.3 mcscript watch
 
-### 2.3 Dev: mcscript-modals
+This will automatically compile your code if you make any changes (save). So you do not have to enter the above command with every change.
 
-!!Dieser Command ist nur für Entwicker gedacht, die ihre Modals in den Compiler einbauen wollen.  
-Es muss eine Datei angegeben werden und die Modals aus dieser Datei werden dann in eine Konfigurationsdatei geschrieben.
+Again, a path can be specified.
 
-##3) Minecraft Script Syntax
+### 2.4 Dev: mcscript-modals
 
-Der Code wird in Dateien mit der Endung .mcscript geschrieben. Es wird ein Code-Editor(IDE) empfohlen um die Dateien zu managen und den Syntax farbig zu markieren. mehr hier:
+!!This command is intended only for developers who want to install their modals in the compiler.  
+A file must be specified and then the modals out of this file are written to a configuration file.
 
-Anders als bei mcfunction wird jeder Command mit einem "/" oder "run: " injektiert.
+3) Minecraft Script Syntax
+--------------------------
 
-Kommentare werden mit "//" angekündigt, falls Kommentare auch in der neuen Datei auftauchen sollen mit "#"
+The code is written in files with the extension .mcscript. It is recommended to manage the files and to highlight the syntax in a code editor (IDE). explore more [here](#ide).  
 
-Leerzeilen und Zeilensprünge werden nicht beachtet.  
-Falls eine Leerzeile aus Struktur in der mcfunction gewünscht ist, dies mit einem # ohne Kommentar ausdrücken.  
-Zwei Leerzeilen können mit "##" erreicht werden.
+Unlike mcfunction, each command is injected with a "/" or "run:".
+
+Comments are announced with "//", if comments should also appear in the new file with "#"
+
+Blank lines and skipping lines are ignored.  
+If a blank line is desired in the mcfunction, express this with a '#' without a comment.  
+Two blank lines are reached with "##".
 
 ### 3.1 File setup
 
-Es werden immer Dateien mit gleichen Namen, wie ihr Root generiert.
+The generated files have always the same name as their root.
 
-Ein benutzerdefinierter Name kann mit `#file: *name*` erreicht werden.  
-Bitte ohne .mcfunction!!
+A custom name can be set with `#file: *name*.`  
+Please without .mcfunction!!
 
-Statt des Namen kann auch gleich ein ganzer Pfad, an dem die neue Datei sein soll, angegeben werden:
+Instead of the name, you can enter a whole path where the new file should be:
 
-*   `#file: C:/test/neu`
-*   `#file: ./neu` (Im gleichen Ordner)
-*   `#file: ./unterordner/neu`
-*   `#file: ../neu` (Ein Ordner dadrüber)
-*   `#file: ../unterordner/neu`
+*   `#file: C:/test/new`
+*   `#file: ./new` (in same directory)
+*   `#file: ./subfolder/new`
+*   `#file: ../new` (a directory above)
+*   `#file: ../subfolder/new`
 
-Es können auch mehrere Dateien spezifiziert werden:
+You can also specify several files:
 
-    #file: neu
-    //commands hier
-    #file: zwei
-    //Commands für zwei hier
+    #file: new
+    //commands here
+    #file: two
+    //Commands for two
 
-Auch sehr gut mit for-Loops kombinierbar:
+Also very well combinable with [for-loops](#loops):
 
-    #file: neu
-    //commands hier
+    #file: new
+    //commands here
     for(1,5){
     	#file: test$(i)
-    	//Commands für jede Datei hier
+    	//Commands for every file here
     }
 
 
-### 3.2 Command Gruppen / Wrapping
+### 3.2 Command Grouping / Wrapping
 
-"As, At, Positioned" können zusammengefasst werden:
+"as, at, positioned,align,dimension,rotated,anchored" can be grouped together:
 
 
     as('@a'){	 
@@ -102,11 +112,26 @@ Auch sehr gut mit for-Loops kombinierbar:
     }		 
 
 
-In den Klammern muss das jeweilige Argument als String, sprich "" oder '' stehen!
+The Argument / Arguments in the brackets have to be a string! (with ' ' or " ")
+
+"Groups can be listed like so:
+
+
+    as('@p'), at('@s'), positioned('~ ~1 ~'){
+    	/say command
+    }
+    ==> /execute as @p at @s positioned ~ ~-1 ~ run say command
+
+    // also with if
+    as('@p'), at('@s'), positioned('~ ~1 ~'), if(entity @s[tag=mytag]){
+    	/say command
+    }
+    ==> /execute as @p at @s positioned ~ ~-1 ~ if entity @s[tag=mytag] run say command
+
 
 ### 3.3 If/Else Statements
 
-If funktioniert ähnlich wie das Command Wrapping:
+If functions are similar to grouping:
 
 
     if('statement'){
@@ -114,36 +139,36 @@ If funktioniert ähnlich wie das Command Wrapping:
     }		 
 
 
-Mit einigen extra Features:
+With some additional features:
 
-*   Vor dem Argument kann ein "!" eingefügt werden um dies umzukehren:
+*   In front of every argument a "!" can be inserted to reverse the meaning:
+
 
         if(!'statement'){
-          /commands 	=> /execute unless statement run command
-        }
+        	/commands 	=> /execute unless statement run command
+        }		 
 
 
-*   Nach dem Schluss kann ein "else" angehängt werden:
-    ```
+*   After the end an "else" can be attached:
+```
     if('statement'){
     	/commands 	=> /execute if statement run command
     } else {		   /execute unless statement run command2
     	/commands2
     }
-    ```
+```
 
-    Hier darauf achten das Argument nicht zu verändern!
-    ```
+    Important: Do not change the argument!
+```
     if('entity @s[tag=test]'){
     	/tag @s remove test 	
-    	} else {		  		
+    } else {		  		
     	/tag @s remove test		
     }
-    ```
+```
 
-    Hier werden beide ausgeführt!! Verbessert:
-
-    ```
+    They are both executed!! Improved:
+```
     if('entity @s[tag=test]'){
     	/tag @s add testIf
     }
@@ -152,83 +177,100 @@ Mit einigen extra Features:
     	} else {		  		
     	/tag @s remove test		
     }
-    ```
+```
 
-*   auch "else if() is möglich:"
-
-    ```
+*   even "else if" is possible:
+```
     if('statement'){
     	/commands 				=> /execute if statement run command
     } else if('statement2') {	   /execute unless statement if statement2 run command2
     	/commands2
     }
-    ```
+```
 
-    Hier darauf achten das Argument nicht zu verändern!
+### 3.4 Logical operators
 
-    ```
-    if('entity @s[tag=test]'){
-    	/tag @s remove test 	
-    	} else {		  		
-    	/tag @s remove test		
+In combination with grouping and if-else statements logical operators can be used:
+
+*   The or operator can be used in two ways:
+```
+    as('@s'||'@p'){
+    	/command 	
     }
-    ```
+    ==> execute as @s run command
+        execute at @p run command
 
+    # or as list
+    if('entity @s[tag=entity1]','entity @s[tag=entity2]'){
+    	/command 	
+    }
+    ==> execute if entity @s[tag=entity1] run command
+        execute if entity @s[tag=entity2] @p run command
+```
 
-### 3.4 For-Loops
+*   The and operator is defined like so (makes only really sense with if)
+```
+    if('entity @s'&&'entity @p'){
+    	/command 	
+    }
+    ==> execute if entity @s if entity @p run command
+```
 
-Einer der hilfreichsten Features ist der For-Loop. Als Argumente werden ganze Zahlen angenommen.
+### 3.5 For-Loops
 
-Von `erstes Argument` bis `zweites Argument` wird optional ausgegeben als `drittes Argument`
+One of the most helpful features is the for loop. It takes in neutral numbers.
 
- ```
+From `first Argument` to `second Argument` is optional outputed as `third Argument`
+```
  for(1,5){
 	/commands
-	# es wird 5x command ausgegeben
+	# is outputed 5 times
 }
+```
+```
  for(1,5){
 	/say $(i)
-	# es wird 5x say mit 1 - 5 ausgegeben
+	# say with 1 - 5 is outputed 5 times
 }
 ```
 
-mit $(var_name) kann auf den Loopwert zugegriffen werden
+with $(var_name) the loop variable can be accessed
 
-var_name ist normalerweise als "i" definiert, kann aber im 3.Argument geändert werden:
+var_name is out of the box defined as "i", but can be changed with the third argument:
 
-```
+
     for(1,5,X){
     	/say $(X)
-    	# es wird 5x say mit 1 - 5 ausgegeben
-    }	 					
-```
+    	# say with 1 - 5 is outputed 5 times}	 					
 
-Das ist bei 2 dimensionalen Loops sinnvoll:
 
-```
+That makes especially with two-dimensional loops sence:
+
+ 
+
+
     for(1,5,i){
     	for(1,2,j){
     		/say $(i).$(j)
     	}
-    	# es wird 10x say mit 1.1 - 5.2 ausgegeben
+    	# say with 1.1 - 5,2 is outputed 10 times
     }	 					
-```
 
-### 3.5 Modals
 
-Modals kann man wie functions oder Methoden verstehen, dass heißt man kann sie definieren:
+### 3.6 Modals
 
-```
+Modals are like functions or methods. That means you can define them:
+
+
     modal newModal(argument){
     	/say $(argument)
     }	 					
-```
 
-Ein Modal wird immer mit dem Keyword eingeleitet gefolgt von dem Namen und in Klammern alle benötigten Argumente.
 
-Auf diese Argumente kann dann inerhalb mit $(argument_name) Referenz genommen werden.
+A modal is always introduced with the keyword followed by the name and the arguments in the brackets.
 
-```
+The arguments are accessible inside with $(argument_name).
+
     modal newModal(argument){
     	/say $(argument)
     }
@@ -236,11 +278,9 @@ Auf diese Argumente kann dann inerhalb mit $(argument_name) Referenz genommen we
     newModal('test')
 
     # => say test	 					
-```
 
-Wenn man das Modal so benutzt, dann werden die Werte eingesetzt und alles ausgegeben.
+If you use the modal like that, the values are used and it outputs everything.
 
-```
     modal createCommand(command,argument1,argument2){
     	/$(command) $(argument1) $(argument2)
     }
@@ -248,13 +288,11 @@ Wenn man das Modal so benutzt, dann werden die Werte eingesetzt und alles ausgeg
     createCommand('say', 'hallo', 'du')
 
     # => say hallo du 					
-```
 
-Es können so auch mehrere Argumente benutzt werden.
+You are also able to use multiple arguments.
 
-Auch sind optionale und vordefinierte Argumente verfügbar:
+There are optional and predefined arguments, too:
 
-```
     modal say(argument = "hallo"){
     	/say $(argument)
     }
@@ -264,20 +302,20 @@ Auch sind optionale und vordefinierte Argumente verfügbar:
 
     say('test')
     # => say test				
-```
 
-### 3.6 System Modals
+### 3.7 System Modals
 
-Es gibt schon einige vordefinierte Modals, die hilfreich sein könnten. Bitte schaue dir dafür die spezifischen Dokumentationen an: hier
+There are already some helpful predefined modals. Please read the specific documentation [here](#).
 
-Du hast Ideen welche Modals umbedingt als Standart-Modal aufgegriffen werden müssen? Sende mir einfach die Konfigurationsdatei zur Überprüfung.
+You have ideas which modals should be a standart? Send me your [configuration file](#ownmodal) to check.
 
-## 4) IDEs und Syntax Hightlighting
+4) IDEs and Syntax Hightlighting
+--------------------------------
 
 *   GitHubs Atom Editor: link here (credit: [MrYurihi](https://atom.io/users/MrYurihi))
 *   Notepad++: link here
 
-Jetzt bleibt nichts mehr übrig als: **Happy Developing**
---------------------------------------------------------
+Now there´s nothing left than: **Happy Developing**
+---------------------------------------------------
 
-Vielen Dank an alle die Minecraft Script benutzen und diese Dokumentation gelesen haben. Bei Vorschlägen, Problemen oder Fehlern bitte mich kontaktieren.
+Thanks to all who use Minecraft Script and read this documentation. Contact me if you have a proposal, problem or error.
