@@ -121,54 +121,61 @@ Mit einigen extra Features:
 
 *   Vor dem Argument kann ein "!" eingefügt werden um dies umzukehren:
 
-
         if(!'statement'){
-        	/commands 	=> /execute unless statement run command
-        }		 
+          /commands 	=> /execute unless statement run command
+        }
 
 
 *   Nach dem Schluss kann ein "else" angehängt werden:
-
-    			 `if('statement'){
+    ```
+    if('statement'){
     	/commands 	=> /execute if statement run command
     } else {		   /execute unless statement run command2
     	/commands2
-    }`
+    }
+    ```
 
     Hier darauf achten das Argument nicht zu verändern!
-
-    			 `if('entity @s[tag=test]'){
+    ```
+    if('entity @s[tag=test]'){
     	/tag @s remove test 	
     	} else {		  		
     	/tag @s remove test		
-    }`
+    }
+    ```
 
     Hier werden beide ausgeführt!! Verbessert:
 
-     `if('entity @s[tag=test]'){
+    ```
+    if('entity @s[tag=test]'){
     	/tag @s add testIf
     }
     if('entity @s[tag=testIf]'){
     	/tag @s remove test 	
     	} else {		  		
     	/tag @s remove test		
-    }`
+    }
+    ```
 
 *   auch "else if() is möglich:"
 
-    			 `if('statement'){
+    ```
+    if('statement'){
     	/commands 				=> /execute if statement run command
     } else if('statement2') {	   /execute unless statement if statement2 run command2
     	/commands2
-    }`
+    }
+    ```
 
     Hier darauf achten das Argument nicht zu verändern!
 
-    			 `if('entity @s[tag=test]'){
+    ```
+    if('entity @s[tag=test]'){
     	/tag @s remove test 	
     	} else {		  		
     	/tag @s remove test		
-    }`
+    }
+    ```
 
 
 ### 3.4 For-Loops
@@ -181,49 +188,50 @@ Von `erstes Argument` bis `zweites Argument` wird optional ausgegeben als `dritt
  for(1,5){
 	/commands
 	# es wird 5x command ausgegeben
-}`
- `for(1,5){
+}
+ for(1,5){
 	/say $(i)
 	# es wird 5x say mit 1 - 5 ausgegeben
-}```
+}
+```
 
 mit $(var_name) kann auf den Loopwert zugegriffen werden
 
 var_name ist normalerweise als "i" definiert, kann aber im 3.Argument geändert werden:
 
-
+```
     for(1,5,X){
     	/say $(X)
     	# es wird 5x say mit 1 - 5 ausgegeben
     }	 					
-
+```
 
 Das ist bei 2 dimensionalen Loops sinnvoll:
 
-
+```
     for(1,5,i){
     	for(1,2,j){
     		/say $(i).$(j)
     	}
     	# es wird 10x say mit 1.1 - 5.2 ausgegeben
     }	 					
-
+```
 
 ### 3.5 Modals
 
 Modals kann man wie functions oder Methoden verstehen, dass heißt man kann sie definieren:
 
-
+```
     modal newModal(argument){
     	/say $(argument)
     }	 					
-
+```
 
 Ein Modal wird immer mit dem Keyword eingeleitet gefolgt von dem Namen und in Klammern alle benötigten Argumente.
 
 Auf diese Argumente kann dann inerhalb mit $(argument_name) Referenz genommen werden.
 
-
+```
     modal newModal(argument){
     	/say $(argument)
     }
@@ -231,11 +239,11 @@ Auf diese Argumente kann dann inerhalb mit $(argument_name) Referenz genommen we
     newModal('test')
 
     # => say test	 					
-
+```
 
 Wenn man das Modal so benutzt, dann werden die Werte eingesetzt und alles ausgegeben.
 
-
+```
     modal createCommand(command,argument1,argument2){
     	/$(command) $(argument1) $(argument2)
     }
@@ -243,13 +251,13 @@ Wenn man das Modal so benutzt, dann werden die Werte eingesetzt und alles ausgeg
     createCommand('say', 'hallo', 'du')
 
     # => say hallo du 					
-
+```
 
 Es können so auch mehrere Argumente benutzt werden.
 
 Auch sind optionale und vordefinierte Argumente verfügbar:
 
-
+```
     modal say(argument = "hallo"){
     	/say $(argument)
     }
@@ -259,7 +267,7 @@ Auch sind optionale und vordefinierte Argumente verfügbar:
 
     say('test')
     # => say test				
-
+```
 
 ### 3.6 System Modals
 
