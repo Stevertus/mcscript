@@ -5,7 +5,7 @@ Minecraft Script ist eine Programmiersprache für Entwickler der mcfunctions, so
 
 Wer das ausprobieren möchte oder Beispiele anschauen möchte, kann meinen playground [stevertus.ga/tools/mcscript](http://www.stevertus.ga/tools/mcscript) besuchen und etwas herumspielen.
 
-##1) Installation
+## 1) Installation
 
 Der Compiler wird auch als Node.js Package angeboten, das lokal auf dem PC installiert wird und viele Features mehr als die Online-Version hat.  
 z.B: Alle Dateien in einem Ordner gleichzeitig compilen, direkter Output in neuen Dateien, auf Dateiänderungen "watchen", uvm.
