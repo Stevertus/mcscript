@@ -1,7 +1,6 @@
 
 
-Minecraft Script Dokumentation
-==============================
+## Minecraft Script Dokumentation
 
 Minecraft Script ist eine Programmiersprache für Entwickler der mcfunctions, sowie Minecraft Map und Package Erschaffer. Die .mcjs Dateien werden dabei zu mcfunction compiled und generiert. Dies bietet dem Entwickler erweiterte Möglichkeiten, wie zum Beispiel Modals, Loops, Variablen, Konstanten und Command-Wrapping.
 
@@ -29,8 +28,8 @@ Den einfach ausführen und installieren lassen.
 Hier muss nun dieser Command eingegeben werden: `npm install -g mcscript`  
 Bei einer erfolgreichen Antwort hast du alles richtig gemacht und kannst durchstarten.
 
-2) CLI Commands
----------------
+##  CLI Commands
+
 
 Das Tool kannst du nun anwenden indem du die Command Line in deinen Datapacks Ordner startest  
 (über Shift + Rechtsklick auf Ordner -> Eingabeaufforderung hier öffnen)  
@@ -58,8 +57,8 @@ Auch hier kann ein Pfad angegeben werden.
 !!Dieser Command ist nur für Entwicker gedacht, die ihre Modals in den Compiler einbauen wollen.  
 Es muss eine Datei angegeben werden und die Modals aus dieser Datei werden dann in eine Konfigurationsdatei geschrieben.
 
-3) Minecraft Script Syntax
---------------------------
+##  Minecraft Script Syntax
+
 
 Der Code wird in Dateien mit der Endung .mcscript geschrieben. Es wird ein Code-Editor(IDE) empfohlen um die Dateien zu managen und den Syntax farbig zu markieren. mehr hier:
 
@@ -316,8 +315,8 @@ Es gibt schon einige vordefinierte Modals, die hilfreich sein könnten. Bitte sc
 
 Du hast Ideen welche Modals umbedingt als Standart-Modal aufgegriffen werden müssen? Sende mir einfach die [Konfigurationsdatei](#ownmodal) zur Überprüfung.
 
-4) IDEs und Syntax Hightlighting
---------------------------------
+##  IDEs und Syntax Hightlighting
+
 
 *   GitHubs Atom Editor: link here (credit: [MrYurihi](https://atom.io/users/MrYurihi))
 *   Notepad++: link here

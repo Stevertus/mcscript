@@ -8,8 +8,8 @@ Minecraft Script is a programming language for developers of mcfunctions, Minecr
 Everyone who wants to try, can visit my playground [stevertus.ga/tools/mcscript](http://www.stevertus.ga/tools/mcscript) and can play with its function.
 
 German documentation [here](https://github.com/Stevertus/mcscript/blob/master/README-DE.md)
-1) Installation
----------------
+##  Installation
+
 
 The Compiler gets offered as [Node.js/](https://nodejs.org/en/download/) Package that is installed locally on your machine. It enables much more features than the online version  
 For example: compile all files in a directory, direct output in new files, watch your files on changes, etc.
@@ -28,8 +28,8 @@ Now open your PCs console. (search CMD).
 There you have to type in this command: `npm install -g mcscript`  
 If a successful answer apears you have done everything right and can start.
 
-2) CLI Commands
----------------
+##  CLI Commands
+
 
 You can now use the tool by launching the Command Line in your datapacks folder  
 (with Shift + rightclick on directory -> open command line)  
@@ -57,8 +57,8 @@ Again, a path can be specified.
 !!This command is intended only for developers who want to install their modals in the compiler.  
 A file must be specified and then the modals out of this file are written to a configuration file.
 
-3) Minecraft Script Syntax
---------------------------
+##  Minecraft Script Syntax
+
 
 The code is written in files with the extension .mcscript. It is recommended to manage the files and to highlight the syntax in a code editor (IDE). explore more [here](#ide).  
 
@@ -309,8 +309,8 @@ There are already some helpful predefined modals. Please read the specific docum
 
 You have ideas which modals should be a standart? Send me your [configuration file](#ownmodal) to check.
 
-4) IDEs and Syntax Hightlighting
---------------------------------
+##  IDEs and Syntax Hightlighting
+
 
 *   GitHubs Atom Editor: link here (credit: [MrYurihi](https://atom.io/users/MrYurihi))
 *   Notepad++: link here

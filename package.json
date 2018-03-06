@@ -2,6 +2,7 @@
   "name": "mcscript",
   "version": "0.0.3",
   "description": "Minecraft Script to mcfunction compiler",
+  "homepage":"http://stevertus.ga",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,7 +15,7 @@
   },
   "main": "./lib/index.js",
   "preferGlobal": "true",
-  "dependencies": {
+  "devDependencies": {
     "fs-finder": "^1.8.1"
   }
 }
