@@ -8,8 +8,7 @@ Wer das ausprobieren möchte oder Beispiele anschauen möchte, kann meinen playg
 
 English documentation [here](https://github.com/Stevertus/mcscript/blob/master/README.md)
 
-1) Installation
----------------
+## 1) Installation
 
 Der Compiler wird auch als [Node.js/](https://nodejs.org/en/download/) Package angeboten, das lokal auf dem PC installiert wird und viele Features mehr hat: als die Online-Version hat.  
 z.B: Alle Dateien in einem Ordner gleichzeitig compilen, direkter Output in neuen Dateien, auf Dateiänderungen "watchen", uvm.
