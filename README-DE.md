@@ -2,7 +2,7 @@
 
 ## Minecraft Script Dokumentation
 
-Minecraft Script ist eine Programmiersprache für Entwickler der mcfunctions, sowie Minecraft Map und Package Erschaffer. Die .mcjs Dateien werden dabei zu mcfunction compiled und generiert. Dies bietet dem Entwickler erweiterte Möglichkeiten, wie zum Beispiel Modals, Loops, Variablen, Konstanten und Command-Wrapping.
+Minecraft Script ist eine Programmiersprache für Entwickler der mcfunctions, sowie für die Minecraft Map und Package Erschaffer. Die .mcscript Dateien werden dabei zu mcfunction compiled und generiert. Dies bietet dem Entwickler erweiterte Möglichkeiten, wie zum Beispiel Modals, Loops, Variablen, Konstanten und Command-Wrapping.
 
 Wer das ausprobieren möchte oder Beispiele anschauen möchte, kann meinen playground [stevertus.ga/tools/mcscript](http://www.stevertus.ga/tools/mcscript) besuchen und etwas herumspielen.
 
@@ -11,7 +11,7 @@ English documentation [here](https://github.com/Stevertus/mcscript/blob/master/R
 1) Installation
 ---------------
 
-Der Compiler wird auch als [Node.js/](https://nodejs.org/en/download/) Package angeboten, das lokal auf dem PC installiert wird und viele Features mehr als die Online-Version hat.  
+Der Compiler wird auch als [Node.js/](https://nodejs.org/en/download/) Package angeboten, das lokal auf dem PC installiert wird und viele Features mehr hat: als die Online-Version hat.  
 z.B: Alle Dateien in einem Ordner gleichzeitig compilen, direkter Output in neuen Dateien, auf Dateiänderungen "watchen", uvm.
 
 ### 1.1 Installation von Node.js
@@ -23,7 +23,7 @@ Den einfach ausführen und installieren lassen.
 
 ### 1.2 Installation von Minecraft Script
 
-Öffne nun die Konsole deines PCs. (Am besten über Suche unter CMD zu erreichen)
+Öffne nun die Konsole deines PCs (Am besten über Suche unter CMD zu erreichen).
 
 Hier muss nun dieser Command eingegeben werden: `npm install -g mcscript`  
 Bei einer erfolgreichen Antwort hast du alles richtig gemacht und kannst durchstarten.
@@ -31,7 +31,7 @@ Bei einer erfolgreichen Antwort hast du alles richtig gemacht und kannst durchst
 ##  CLI Commands
 
 
-Das Tool kannst du nun anwenden indem du die Command Line in deinen Datapacks Ordner startest  
+Das Tool kannst du nun anwenden, indem du die Command Line in deinen Datapacks Ordner startest  
 (über Shift + Rechtsklick auf Ordner -> Eingabeaufforderung hier öffnen)  
 Nun kannst du die Kommandos benutzen:
 
@@ -41,18 +41,18 @@ Dieser Command generiert dir ein vorgefertigtes Datapack mit allen basic Dateien
 
 ### 2.2 mcscript compile
 
-Dieser Command wandelt alle .mcscript Dateien in .mcfunction Format um. Was du in den mcscript Dateien möglich ist, kannst du hier nachlesen.  
+Dieser Command wandelt alle .mcscript Dateien in .mcfunction Format um. Was in den mcscript Dateien möglich ist, kannst du hier nachlesen.  
 In der Konsole werden alle generierten Dateien angezeigt oder ein Fehler ausgeworfen, falls etwas nicht korrekt war.
 
-Alternativ kannst mit `mcscript-compile *filepath*` einen speziellen Pfad oder spezielle Datei angeben.
+Alternativ kannst mit `mcscript compile *filepath*` einen speziellen Pfad oder spezielle Datei angeben.
 
 ### 2.3 mcscript watch
 
-Hiermit wird dein Code automatisch compiled, wenn du irgendwelche Änderungen machst(speicherst). So musst du nicht bei jeder Änderung den obigen Command eingeben.
+Hiermit wird dein Code automatisch compiled, wenn du irgendwelche Änderungen machst (speicherst). So musst du nicht bei jeder Änderung den obigen Command eingeben.
 
 Auch hier kann ein Pfad angegeben werden.
 
-### 2.4 Dev: mcscript-modals
+### 2.4 Dev: mcscript modals
 
 !!Dieser Command ist nur für Entwicker gedacht, die ihre Modals in den Compiler einbauen wollen.  
 Es muss eine Datei angegeben werden und die Modals aus dieser Datei werden dann in eine Konfigurationsdatei geschrieben.
@@ -60,7 +60,7 @@ Es muss eine Datei angegeben werden und die Modals aus dieser Datei werden dann 
 ##  Minecraft Script Syntax
 
 
-Der Code wird in Dateien mit der Endung .mcscript geschrieben. Es wird ein Code-Editor(IDE) empfohlen um die Dateien zu managen und den Syntax farbig zu markieren. mehr hier:
+Der Code wird in Dateien mit der Endung .mcscript geschrieben. Es wird ein Code-Editor(IDE) empfohlen, um die Dateien zu verwalten und den Syntax farbig zu markieren. Mehr hier:
 
 Anders als bei mcfunction wird jeder Command mit einem "/" oder "run: " injektiert.
 
@@ -72,10 +72,10 @@ Zwei Leerzeilen können mit "##" erreicht werden.
 
 ### 3.1 File setup
 
-Es werden immer Dateien mit gleichen Namen, wie ihr Root generiert.
+Es werden immer Dateien mit gleichem Namen, wie ihr Root generiert.
 
 Ein benutzerdefinierter Name kann mit `#file: *name*` gesetzt werden.  
-Bitte ohne .mcfunction!!
+Bitte ohne `.mcfunction`!!
 
 Statt des Namen kann auch gleich ein ganzer Pfad, an dem die neue Datei sein soll, angegeben werden:
 
@@ -104,7 +104,7 @@ Auch sehr gut mit [for-loops](#loops) kombinierbar:
 
 ### 3.2 Command Gruppen / Wrapping
 
-"As, At, Positioned,align,dimension,rotated,anchored" können zusammengefasst werden:
+"as, at, positioned,align,dimension,rotated,anchored" können zusammengefasst werden:
 
 
     as('@a'){	 
@@ -112,7 +112,7 @@ Auch sehr gut mit [for-loops](#loops) kombinierbar:
     }		 
 
 
-In den Klammern muss das jeweilige Argument als String, sprich "" oder '' stehen!
+In den Klammern muss das jeweilige Argument als String, sprich " " oder ' ' stehen!
 
 "Gruppen können auch aufgelistet werden:
 
@@ -158,7 +158,7 @@ Mit einigen extra Features:
     }
 ```
 
-    Hier darauf achten das Argument nicht zu verändern!
+Hier darauf achten das Argument nicht zu verändern!
 ```
     if('entity @s[tag=test]'){
     	/tag @s remove test 	
@@ -166,7 +166,7 @@ Mit einigen extra Features:
     	/tag @s remove test		
     }
 ```
-    Hier werden beide ausgeführt!! Verbessert:
+Hier werden beide ausgeführt!! Verbessert:
 ```
     if('entity @s[tag=test]'){
     	/tag @s add testIf
@@ -235,7 +235,7 @@ for(1,5){
 }
 ```
 
-mit $(var_name) kann auf den Loopwert zugegriffen werden
+Mit $(var_name) kann auf den Loopwert zugegriffen werden.
 
 var_name ist normalerweise als "i" definiert, kann aber im 3.Argument geändert werden:
 
@@ -267,7 +267,7 @@ Modals kann man wie functions oder Methoden verstehen, dass heißt man kann sie 
     }	 					
 
 
-Ein Modal wird immer mit dem Keyword eingeleitet gefolgt von dem Namen und in Klammern alle benötigten Argumente.
+Ein Modal wird immer mit dem Keyword eingeleitet, gefolgt von dem Namen und in Klammern alle benötigten Argumente.
 
 Auf diese Argumente kann dann innerhalb mit $(argument_name) Referenz genommen werden.
 
@@ -313,9 +313,9 @@ Auch sind optionale und vordefinierte Argumente verfügbar:
 
 Es gibt schon einige vordefinierte Modals, die hilfreich sein könnten. Bitte schaue dir dafür die spezifischen Dokumentationen [hier](#) an.
 
-Du hast Ideen welche Modals umbedingt als Standart-Modal aufgegriffen werden müssen? Sende mir einfach die [Konfigurationsdatei](#ownmodal) zur Überprüfung.
+Du hast Ideen, welche Modals unbedingt als Standart-Modal aufgegriffen werden müssen? Sende mir einfach die [Konfigurationsdatei](#ownmodal) zur Überprüfung.
 
-##  IDEs und Syntax Hightlighting
+##  IDEs und Syntax Highlighting
 
 
 *   GitHubs Atom Editor: link here (credit: [MrYurihi](https://atom.io/users/MrYurihi))

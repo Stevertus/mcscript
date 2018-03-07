@@ -1,9 +1,9 @@
 
 
-Minecraft Script Dokumentation
+Minecraft Script Documentation
 ==============================
 
-Minecraft Script is a programming language for developers of mcfunctions, Minecraft Maps and packages. The .mcscript files are therefor compiled and generated to the function format. This enables the developer extended possibilities, such as Modals, Loops, Varibles, Constants and Command-Wrapping.
+Minecraft Script is a programming language for developers of mcfunctions, Minecraft maps and packages. The .mcscript files are therefore compiled and generated to the function format. This enables the developer extended possibilities, such as Modals, Loops, Varibles, Constants and Command-Wrapping.
 
 Everyone who wants to try, can visit my playground [stevertus.ga/tools/mcscript](http://www.stevertus.ga/tools/mcscript) and can play with its function.
 
@@ -52,7 +52,7 @@ This will automatically compile your code if you make any changes (save). So you
 
 Again, a path can be specified.
 
-### 2.4 Dev: mcscript-modals
+### 2.4 Dev: mcscript modals
 
 !!This command is intended only for developers who want to install their modals in the compiler.  
 A file must be specified and then the modals out of this file are written to a configuration file.
@@ -309,7 +309,7 @@ There are already some helpful predefined modals. Please read the specific docum
 
 You have ideas which modals should be a standart? Send me your [configuration file](#ownmodal) to check.
 
-##  IDEs and Syntax Hightlighting
+##  IDEs and Syntax Highlighting
 
 
 *   GitHubs Atom Editor: link here (credit: [MrYurihi](https://atom.io/users/MrYurihi))
