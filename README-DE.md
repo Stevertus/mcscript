@@ -51,7 +51,7 @@ Hiermit wird dein Code automatisch compiled, wenn du irgendwelche Änderungen ma
 
 Auch hier kann ein Pfad angegeben werden.
 
-### 2.4 Dev: mcscript modals
+### <a name="ownmodal">2.4 Dev: mcscript modals </a>
 
 !!Dieser Command ist nur für Entwicker gedacht, die ihre Modals in den Compiler einbauen wollen.  
 Es muss eine Datei angegeben werden und die Modals aus dieser Datei werden dann in eine Konfigurationsdatei geschrieben.
@@ -312,7 +312,7 @@ Auch sind optionale und vordefinierte Argumente verfügbar:
 
 Es gibt schon einige vordefinierte Modals, die hilfreich sein könnten. Bitte schaue dir dafür die spezifischen Dokumentationen [hier](#) an.
 
-Du hast Ideen, welche Modals unbedingt als Standart-Modal aufgegriffen werden müssen? Sende mir einfach die [Konfigurationsdatei](#2.4-dev:-mcscript-modals) zur Überprüfung.
+Du hast Ideen, welche Modals unbedingt als Standart-Modal aufgegriffen werden müssen? Sende mir einfach die [Konfigurationsdatei](#ownmodal) zur Überprüfung.
 
 ##  IDEs und Syntax Highlighting
 
