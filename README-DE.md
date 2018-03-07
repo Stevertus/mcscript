@@ -312,7 +312,7 @@ Auch sind optionale und vordefinierte Argumente verfügbar:
 
 Es gibt schon einige vordefinierte Modals, die hilfreich sein könnten. Bitte schaue dir dafür die spezifischen Dokumentationen [hier](#) an.
 
-Du hast Ideen, welche Modals unbedingt als Standart-Modal aufgegriffen werden müssen? Sende mir einfach die [Konfigurationsdatei](#ownmodal) zur Überprüfung.
+Du hast Ideen, welche Modals unbedingt als Standart-Modal aufgegriffen werden müssen? Sende mir einfach die [Konfigurationsdatei](#2.4-dev:-mcscript-modals) zur Überprüfung.
 
 ##  IDEs und Syntax Highlighting
 
