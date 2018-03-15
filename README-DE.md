@@ -1,6 +1,7 @@
 
 
-## Minecraft Script Dokumentation
+
+# Minecraft Script Dokumentation
 
 Minecraft Script ist eine Programmiersprache für Entwickler der mcfunctions, sowie für die Minecraft Map und Package Erschaffer. Die .mcscript Dateien werden dabei zu mcfunction compiled und generiert. Dies bietet dem Entwickler erweiterte Möglichkeiten, wie zum Beispiel Modals, Loops, Variablen, Konstanten und Command-Wrapping.
 
@@ -51,7 +52,7 @@ Hiermit wird dein Code automatisch compiled, wenn du irgendwelche Änderungen ma
 
 Auch hier kann ein Pfad angegeben werden.
 
-### <a name="ownmodal">2.4 Dev: mcscript modals </a>
+### 2.4 Dev: mcscript modals
 
 !!Dieser Command ist nur für Entwicker gedacht, die ihre Modals in den Compiler einbauen wollen.  
 Es muss eine Datei angegeben werden und die Modals aus dieser Datei werden dann in eine Konfigurationsdatei geschrieben.
@@ -99,9 +100,14 @@ Auch sehr gut mit [for-loops](#loops) kombinierbar:
     	#file: test$(i)
     	//Commands für jede Datei hier
     }
+### 3.2 Dateien erweitern
+Eine bereits bestehende Datei, vorher mit `#file:`, kann nun auch aus anderen Dateien erweitert werden und neuer Code einfach hinten drangehängt werden:
+```
+#extend: ./test
+/commands kommen hier.
+```
 
-
-### 3.2 Command Gruppen / Wrapping
+### 3.3 Command Gruppen / Wrapping
 
 "as, at, positioned,align,dimension,rotated,anchored" können zusammengefasst werden:
 
@@ -126,9 +132,55 @@ In den Klammern muss das jeweilige Argument als String, sprich " " oder ' ' steh
     	/say command
     }
     ==> /execute as @p at @s positioned ~ ~-1 ~ if entity @s[tag=mytag] run say command
+### 3.4 Variablen
+Wie jede Programmiersprache hat auch Minecraft Script Variablen. Sie müssen wiefolgt initialisiert werden:
+`var test`
+Der Variablen kann ein Wert hinzugewiesen werden:
+```
+var test = 5
+# oder
+var test
+test = 6
+```
+Dieser Wert kann beliebig oft wieder verändert werden.
 
+```
+var test
+test @s = 10
+```
+So können Werte auch nur speziellen Minecraft Selektoren zugewiesen werden.
+Alle Werte werden in einem scoreboard mit dem Variablennamen gespeichert. Also können die Werte auch ganz standart mäßig verändert und ausgelesen werden:
+```
+var test
+test @s = 10
+/scoreboard players get @s test ==> 10
+/scoreboard players set @s test 5
+# etc
+```
 
-### 3.3 If/Else Statements
+Variablen können auch mit anderen zusammen gerechnet und zusammengefügt werden:
+```
+var test = 10
+var neu = 5
+test += neu ==> 15
+test -= neu ==> 5
+test *= neu ==> 50
+test /= neu ==> 2
+test %= neu ==> 0
+```
+### 3.5 Konstanten
+Eine andere Art Variable ist die Konstante, so deklariert:
+`const test = [value]`
+Diese Art kann nicht verändert werden!
+Du kannst sie mit `$(var_name)` irgendwo in deinem Code benutzen um lange Strings und wiederholende Phrasen zu vermeiden:
+```
+const einString = "Hier könnte sehr viel Schrott stehen."
+const eineNum = 5
+
+/say $(einString)       ==> /say Hier könnte sehr viel Schrott stehen.
+var test = $(eineNum)   ==> var test = 5
+```
+### 3.6 If/Else Statements
 
 If funktioniert ähnlich wie das Command Wrapping:
 
@@ -187,20 +239,21 @@ Hier werden beide ausgeführt!! Verbessert:
 ```
 
 
-### 3.4 Logische Operatoren
+### 3.7 Logische Operatoren
 
 In Kombination mit Command Gruppen und If-Else-Statements können zusätzlich logische Operatoren benutzt werden:
 
 *   Der Oder-Operator kann bei den Gruppierungen auf zwei Arten benutzt werden:
 ```
-    as('@s'||'@p'){
+    as(@s||@p){
     	/command 	
     }
     ==> execute as @s run command
         execute at @p run command
 
     # oder als Liste
-    if('entity @s[tag=entity1]','entity @s[tag=entity2]'){
+    if(@s[tag=entity1],'entity @s[tag=entity2]'){
+    # hier gehen beide Varianten ^
     	/command 	
     }
     ==> execute if entity @s[tag=entity1] run command
@@ -214,9 +267,37 @@ In Kombination mit Command Gruppen und If-Else-Statements können zusätzlich lo
     }
     ==> execute if entity @s if entity @p run command
 ```
+*   Überprüfung von Variablen:
+```
+var test = 5
 
+# genau gleich
+if(test == 5){
+    /commands
+}
 
-### 3.5 For-Loops
+# größer/kleiner gleich
+if(test >= 5){
+    /commands
+}
+
+# größer/kleiner
+if(test > 5){
+    /commands
+}
+
+# auch im Vergleich möglich
+if(test > test2){
+    /commands
+}
+
+# oder mit entity variablen
+if(test @s > test2 @a){
+    /commands
+}
+```
+
+### 3.8 For-Loops
 
 Einer der hilfreichsten Features ist der For-Loop. Als Argumente werden ganze Zahlen angenommen.
 
@@ -254,9 +335,41 @@ Das ist bei 2 dimensionalen Loops sinnvoll:
     	}
     	# es wird 10x say mit 1.1 - 5.2 ausgegeben
     }	 					
+### 3.9 while-Loops
+Der while-Loop ist so zu definieren:
+```
+while([cond]){
+    /commands
+}
+```
+Die gruppierten Commands werden solange ausgeführt, wie die Bedingung[cond] war ist.
+Als Bedingung können hier alle Operatoren und Argumente der If-Bedingungen verwendet werden. z.B.
+```
+var test = 0
+while(test < 10){
+    /commands hier
+    test += 1
+}
+# ==> Die Commands werden innerhalb eines Ticks 10mal ausgeführt.
+```
+Bei while-Loops kann auch mit stop und continue gearbeitet werden:
+```
+var test = 0
+while(test < 10){
+    test += 1
+    if(test == 5){
+        continue
+        # Wenn test 5 ist werden die restlichen Commands übersprungen
+    }
+    /commands hier
+    if(test >= 9){
+        stop
+        # Wenn test 9 oder über 9 ist wird die Schleife abgebrochen
+    }
+}
+```
 
-
-### 3.6 Modals
+### 3.10 Modals
 
 Modals kann man wie functions oder Methoden verstehen, dass heißt man kann sie definieren:
 
@@ -308,11 +421,11 @@ Auch sind optionale und vordefinierte Argumente verfügbar:
     # => say test				
 
 
-### 3.7 System Modals
+### 3.11 System Modals
 
 Es gibt schon einige vordefinierte Modals, die hilfreich sein könnten. Bitte schaue dir dafür die spezifischen Dokumentationen [hier](#) an.
 
-Du hast Ideen, welche Modals unbedingt als Standart-Modal aufgegriffen werden müssen? Sende mir einfach die [Konfigurationsdatei](#ownmodal) zur Überprüfung.
+Du hast Ideen, welche Modals unbedingt als Standart-Modal aufgegriffen werden müssen? Sende mir einfach die [Konfigurationsdatei](#24_Dev_mcscript_modals_54) zur Überprüfung.
 
 ##  IDEs und Syntax Highlighting
 
