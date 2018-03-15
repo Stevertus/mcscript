@@ -1,0 +1,5 @@
+#file: ./basic_modal
+modal new(variable){
+  /say $(variable)
+}
+new("test")

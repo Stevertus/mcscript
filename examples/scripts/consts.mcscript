@@ -1,0 +1,9 @@
+#file: ./consts
+const newConst = "some string here"
+/say $(newConst)
+
+const score = 5
+
+if('score @s matches $(score)'){
+  log("is five")
+}

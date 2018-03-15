@@ -1,0 +1,6 @@
+#file: ./raycast
+raycast(10) {
+    /setblock ~ ~ ~ stone
+}, {
+    /particle flame ~ ~ ~
+}

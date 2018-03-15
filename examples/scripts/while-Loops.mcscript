@@ -1,0 +1,4 @@
+#file: ./while
+while('entity @s[tag=loop]'){
+  log("commands")
+}

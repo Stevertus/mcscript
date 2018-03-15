@@ -1,377 +1,545 @@
-﻿
-<h1>Minecraft Script Dokumentation</h1>
-<p>Minecraft Script ist eine Programmiersprache für Entwickler der mcfunctions, 
-sowie Minecraft Map und Package Erschaffer. Die .mcjs Dateien werden dabei zu 
-mcfunction compiled und generiert. Dies bietet dem Entwickler erweiterte 
-Möglichkeiten, wie zum Beispiel Modals, Loops, Variablen, Konstanten und 
-Command-Wrapping.</p>
-<p>Wer das ausprobieren möchte oder Beispiele anschauen möchte, kann meinen 
-playground <a href="http://www.stevertus.ga/tools/mcscript">
-stevertus.ga/tools/mcscript</a> besuchen und etwas herumspielen.</p>
-<h2>1) Installation</h2>
-<p>Der Compiler wird auch als <a href="https://nodejs.org/en/download/">Node.js/</a> Package angeboten, das lokal auf dem PC 
-installiert wird und viele Features mehr als die Online-Version hat.<br>z.B: Alle 
-Dateien in einem Ordner gleichzeitig compilen, direkter Output in neuen Dateien, 
-auf Dateiänderungen "watchen", uvm.</p>
-<h3>1.1 Installation von Node.js</h3>
-<p>Für die Installation wird die Node.js Umgebung und der Node Package Manager 
-benötigt.</p>
-<p>Diese installiert man am besten über den Installer:
-<a href="https://nodejs.org/en/download/">nodejs.org/en/download/</a><br>Den 
-einfach ausführen und installieren lassen.</p>
-<h3>1.2 Installation von Minecraft Script</h3>
-<p>Öffne nun die Konsole deines PCs. (Am besten über Suche unter CMD zu 
-erreichen)</p>
-<p>Hier muss nun dieser Command eingegeben werden: <code>npm install -g mcscript</code><br>
-Bei einer erfolgreichen Antwort hast du alles richtig gemacht und kannst 
-durchstarten.</p>
-<h2>2) CLI Commands</h2>
-<p>Das Tool kannst du nun anwenden indem du die Command Line in deinen Datapacks 
-Ordner startest<br>(über Shift + Rechtsklick auf Ordner -&gt; Eingabeaufforderung 
-hier öffnen)<br>Nun kannst du die Kommandos benutzen:</p>
-<h3>2.1 mcscript new</h3>
-<p>Dieser Command generiert dir ein vorgefertigtes Datapack mit allen basic 
-Dateien. Als Argument muss die Id des Packs angegeben werden!</p>
-<h3>2.2 mcscript compile</h3>
-<p>Dieser Command wandelt alle .mcscript Dateien in .mcfunction Format um. Was 
-du in den mcscript Dateien möglich ist, kannst du hier nachlesen.<br>In der 
-Konsole werden alle generierten Dateien angezeigt oder ein Fehler ausgeworfen, 
-falls etwas nicht korrekt war.</p>
-<p>Alternativ kannst mit <code>mcscript-compile *filepath*</code> einen 
-speziellen Pfad oder spezielle Datei angeben.</p>
-<h3>2.3 mcscript watch</h3>
-<p>Hiermit wird dein Code automatisch compiled, wenn du irgendwelche Änderungen 
-machst(speicherst). So musst du nicht bei jeder Änderung den obigen Command 
-eingeben.</p>
-<p>Auch hier kann ein Pfad angegeben werden.</p>
-<h3 id="ownmodal">2.4 Dev: mcscript-modals</h3>
-<p>!!Dieser Command ist nur für Entwicker gedacht, die ihre Modals in den 
-Compiler einbauen wollen.<br>Es muss eine Datei angegeben werden und die Modals 
-aus dieser Datei werden dann in eine Konfigurationsdatei geschrieben.</p>
-<h2>3) Minecraft Script Syntax</h2>
-<p>Der Code wird in Dateien mit der Endung .mcscript geschrieben. Es wird ein 
-Code-Editor(IDE) empfohlen um die Dateien zu managen und den Syntax farbig zu 
-markieren. mehr hier:</p>
-<p>Anders als bei mcfunction wird jeder Command mit einem "/" oder "run: " 
-injektiert.</p>
-<p>Kommentare werden mit "//" angekündigt, falls Kommentare auch in der neuen 
-Datei auftauchen sollen mit "#"</p>
-<p>Leerzeilen und Zeilensprünge werden nicht beachtet. <br>Falls eine Leerzeile 
-aus Struktur in der mcfunction gewünscht ist, dies mit einem # ohne Kommentar 
-ausdrücken.<br>Zwei Leerzeilen können mit "##" erreicht werden.</p>
-<h3>3.1 File setup</h3>
-<p>Es werden immer Dateien mit gleichen Namen, wie ihr Root generiert.</p>
-<p>Ein benutzerdefinierter Name kann mit <code>#file: *name*</code> gesetzt werden.<br>
-Bitte ohne .mcfunction!!</p>
-<p>Statt des Namen kann auch gleich ein ganzer Pfad, an dem die neue Datei sein 
-soll, angegeben werden:</p>
+<p><img src="https://i.imgur.com/YedWe7W.png" alt=""></p>
+<h1 id="minecraft-script-dokumentation">Minecraft Script Dokumentation</h1>
+<blockquote>
+<p>Update 0.1: <a href="https://github.com/Stevertus/mcscript/blob/master/_changelog.md">Alle Änderungen</a></p>
+</blockquote>
+<p>Minecraft Script ist eine Programmiersprache für Entwickler der mcfunctions, sowie für die Minecraft Map und Package Erschaffer. Die .mcscript Dateien werden dabei zu mcfunction compiled und generiert. Dies bietet dem Entwickler erweiterte Möglichkeiten, wie zum Beispiel Modals, Loops, Variablen, Konstanten und Command-Wrapping.</p>
+<p>Wer das ausprobieren möchte oder Beispiele anschauen möchte, kann meinen playground <a href="http://www.stevertus.ga/tools/mcscript">stevertus.ga/tools/mcscript</a> besuchen und etwas herumspielen.</p>
+<p>English documentation <a href="https://github.com/Stevertus/mcscript/blob/master/README.md">here</a></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#install">Installation</a>
 <ul>
-	<li><code>#file: C:/test/neu</code></li>
-	<li><code>#file: ./neu </code> (Im gleichen Ordner)</li>
-	<li><code>#file: ./unterordner/neu </code></li>
-	<li><code>#file: ../neu </code> (Ein Ordner dadrüber)</li>
-	<li><code>#file: ../unterordner/neu </code></li>
-
+<li><a href="#install-nodejs">Installation von Node.js</a></li>
+<li><a href="#install-mcscript">Installation von Minecraft Script</a></li>
 </ul>
-
-
-
+</li>
+<li><a href="#cli">Cli Commands</a>
+<ul>
+<li><a href="#cli-new">mcscript new</a></li>
+<li><a href="#cli-compile">mcscript compile</a></li>
+<li><a href="#cli-watch">mcscript watch</a></li>
+</ul>
+</li>
+<li><a href="#syntax">Syntax</a>
+<ul>
+<li><a href="#files">file setup</a></li>
+<li><a href="#extend">Dateien erweitern</a></li>
+<li><a href="#groups">Command Grouping</a></li>
+<li><a href="#files">file</a></li>
+<li><a href="#vars">Variablen</a></li>
+<li><a href="#boolean">Boolean Variablen</a></li>
+<li><a href="#consts">Konstanten</a></li>
+<li><a href="#if">If Statements</a></li>
+<li><a href="#operators">Logische Operatoren</a></li>
+<li><a href="#switch">Switches</a></li>
+<li><a href="#for">For-Loop</a></li>
+<li><a href="#raycast">Raycasting</a></li>
+<li><a href="#while">while-Loops</a></li>
+<li><a href="#dowhile">do-while-Loops</a></li>
+<li><a href="#foreach">forEach-Loops</a></li>
+<li><a href="#modals">Modals</a></li>
+<li><a href="#systemModals">System Modals</a></li>
+</ul>
+</li>
+<li><a href="#ide">IDEs und Syntax Highlighting</a><br>
+<a id="install"></a></li>
+</ol>
+<h2 id="installation">1) Installation</h2>
+<p>Der Compiler wird auch als <a href="https://nodejs.org/en/download/">Node.js/</a> Package angeboten, das lokal auf dem PC installiert wird und viele Features mehr hat: als die Online-Version hat.<br>
+z.B: Alle Dateien in einem Ordner gleichzeitig compilen, direkter Output in neuen Dateien, auf Dateiänderungen “watchen”, uvm.<br>
+<a id="install-nodejs"></a></p>
+<h3 id="installation-von-node.js">1.1 Installation von Node.js</h3>
+<p>Für die Installation wird die Node.js Umgebung und der Node Package Manager benötigt.</p>
+<p>Diese installiert man am besten über den Installer: <a href="https://nodejs.org/en/download/">nodejs.org/en/download/</a><br>
+Den einfach ausführen und installieren lassen.<br>
+<a id="install-mcscript"></a></p>
+<h3 id="installation-von-minecraft-script">1.2 Installation von Minecraft Script</h3>
+<p>Öffne nun die Konsole deines PCs (Am besten über Suche unter CMD zu erreichen).</p>
+<p>Hier muss nun dieser Command eingegeben werden:</p>
+<blockquote>
+<p><code>npm install -g mcscript</code></p>
+</blockquote>
+<p>Bei einer erfolgreichen Antwort hast du alles richtig gemacht und kannst durchstarten.<br>
+<a id="cli"></a></p>
+<h2 id="cli-commands">2) CLI Commands</h2>
+<p>Das Tool kannst du nun anwenden, indem du die Command Line in deinen Datapacks Ordner startest<br>
+(über Shift + Rechtsklick auf Ordner -&gt; Eingabeaufforderung hier öffnen)<br>
+Nun kannst du die Kommandos benutzen:<br>
+<a id="cli-new"></a></p>
+<h3 id="mcscript-new">2.1 mcscript new</h3>
+<p>Dieser Command generiert dir ein vorgefertigtes Datapack mit allen basic Dateien und einem Scripts-Ordner. Als Argument muss die Id des Packs angegeben werden!<br>
+<a id="cli-compile"></a></p>
+<h3 id="mcscript-compile">2.2 mcscript compile</h3>
+<p>Dieser Command wandelt alle .mcscript Dateien in .mcfunction Format um. Was in den mcscript Dateien möglich ist, kannst du hier nachlesen.<br>
+In der Konsole werden alle generierten Dateien angezeigt oder ein Fehler ausgeworfen, falls etwas nicht korrekt war.</p>
+<p>Alternativ kannst mit <code>mcscript compile *filepath*</code> einen speziellen Pfad oder spezielle Datei angeben.<br>
+<a id="cli-watch"></a></p>
+<h3 id="mcscript-watch">2.3 mcscript watch</h3>
+<p>Hiermit wird dein Code automatisch compiled, wenn du irgendwelche Änderungen machst (speicherst). So musst du nicht bei jeder Änderung den obigen Command eingeben.</p>
+<p>Auch hier kann ein Pfad angegeben werden.<br>
+<a id="cli-modals"></a></p>
+<h3 id="dev-mcscript-modals">2.4 Dev: mcscript modals</h3>
+<p>!!Dieser Command ist nur für Entwicker gedacht, die ihre Modals in den Compiler einbauen wollen.<br>
+Es muss eine Datei angegeben werden und die Modals aus dieser Datei werden dann in eine Konfigurationsdatei geschrieben.<br>
+<a id="syntax"></a></p>
+<h2 id="minecraft-script-syntax">Minecraft Script Syntax</h2>
+<p>Der Code wird in Dateien mit der Endung .mcscript geschrieben. Es wird ein Code-Editor(IDE) empfohlen, um die Dateien zu verwalten und den Syntax farbig zu markieren. <a href="#ide">Mehr hier</a></p>
+<p>Anders als bei mcfunction wird jeder Command mit einem “/” oder "run: " injektiert.</p>
+<p>Kommentare werden mit “//” angekündigt, falls Kommentare auch in der neuen Datei auftauchen sollen mit “#”</p>
+<p>Leerzeilen und Zeilensprünge werden nicht beachtet.<br>
+Falls eine Leerzeile aus Struktur in der mcfunction gewünscht ist, dies mit einem # ohne Kommentar ausdrücken.<br>
+Zwei Leerzeilen können mit “##” erreicht werden.<br>
+<a id="files"></a></p>
+<h3 id="file-setup">3.1 File setup</h3>
+<p>In einem Minecraft Datapack können alle Datein in ein scripts Ordner gepackt werden, um dann in <code>/functions</code> den Output zu generieren.<br>
+Es werden immer Dateien mit gleichem Namen, wie ihr Root generiert.</p>
+<p>Ein benutzerdefinierter Name kann mit <code>#file: *name*</code> gesetzt werden.<br>
+Bitte ohne <code>.mcfunction</code>!!</p>
+<p>Statt des Namen kann auch gleich ein ganzer Pfad, an dem die neue Datei sein soll, angegeben werden:</p>
+<ul>
+<li><code>#file: C:/test/neu</code></li>
+<li><code>#file: ./neu</code> (Im gleichen Ordner)</li>
+<li><code>#file: ./unterordner/neu</code></li>
+<li><code>#file: ../neu</code> (Ein Ordner dadrüber)</li>
+<li><code>#file: ../unterordner/neu</code></li>
+</ul>
 <p>Es können auch mehrere Dateien spezifiziert werden:</p>
-<pre>
-<code>#file: neu
+<pre><code>#file: neu
 //commands hier
 #file: zwei
-//Commands für zwei hier</code></pre>
-
-
-
-
+//Commands für zwei hier
+</code></pre>
 <p>Auch sehr gut mit <a href="#loops">for-loops</a> kombinierbar:</p>
-<pre>
-<code>#file: neu
+<pre><code>#file: neu
 //commands hier
 for(1,5){
 	#file: test$(i)
 	//Commands für jede Datei hier
 }
-</code>
-
-</pre>
-
-
-
-
-
-<h3>3.2 Command Gruppen / Wrapping</h3>
-<p>"As, At, Positioned,align,dimension,rotated,anchored" können zusammengefasst werden:</p>
-<pre>
-<code>
-as('@a'){	 
-	/commands 	=> /execute positioned ~ ~ ~ run command
-}		 
-</code>
-<code>
-positioned('~ ~1 ~'){
-	/commands 	=> /execute as @a run command
-}		 
-</code>
-<code>
-// dimension compiles zu in!!
-dimension('the_nether'){
-	/commands 	=> /execute in the_nether run command
-}		 
-</code>
-
-</pre>
-<p>In den Klammern muss das jeweilige Argument als String, sprich "" oder '' 
-stehen!</p>
-
+</code></pre>
+<p><a id="extend"></a></p>
+<h3 id="dateien-erweitern">3.2 Dateien erweitern</h3>
+<p>Eine bereits bestehende Datei, vorher mit <code>#file:</code>, kann nun auch aus anderen Dateien erweitert werden und neuer Code einfach hinten drangehängt werden:</p>
+<pre><code>#extend: ./test
+/commands kommen hier.
+</code></pre>
+<p><a id="groups"></a></p>
+<h3 id="command-gruppen--wrapping">3.3 Command Gruppen / Wrapping</h3>
+<blockquote>
+<p><code>[subcommand]([argument]){ [wrapped actions] }</code></p>
+</blockquote>
+<p>“as, at, positioned,align,dimension,rotated,anchored” können zusammengefasst werden:</p>
+<pre><code>as('@a'){
+	/commands 	=&gt; /execute positioned ~ ~ ~ run command
+}
+</code></pre>
+<p>In den Klammern muss das jeweilige Argument als String, sprich " " oder ’ ’ stehen!<br>
+Auch ist der eigende <code>asat()</code> möglich</p>
+<pre><code>asat(@s){
+    /commands =&gt; execute as @s at @s run commands
+}
+</code></pre>
 <p>"Gruppen können auch aufgelistet werden:</p>
-<pre>
-<code>
-as('@p'), at('@s'), positioned('~ ~1 ~'){
+<pre><code>as('@p'), at('@s'), positioned('~ ~1 ~'){
 	/say command
 }
-==> /execute as @p at @s positioned ~ ~-1 ~ run say command
+==&gt; /execute as @p at @s positioned ~ ~-1 ~ run say command
 
 // also with if
 as('@p'), at('@s'), positioned('~ ~1 ~'), if(entity @s[tag=mytag]){
 	/say command
 }
-==> /execute as @p at @s positioned ~ ~-1 ~ if entity @s[tag=mytag] run say command
-</code>
-</pre>
-
-<h3>3.3 If/Else Statements</h3>
-<p>If funktioniert ähnlich wie das Command Wrapping:</p>
-<pre>
-<code>
-if('statement'){
-	/commands 	=> /execute if statement run command
-}		 
+==&gt; /execute as @p at @s positioned ~ ~-1 ~ if entity @s[tag=mytag] run say command
 </code></pre>
+<p><a id="vars"></a></p>
+<h3 id="variablen">3.4 Variablen</h3>
+<p>Wie jede Programmiersprache hat auch Minecraft Script Variablen. Sie müssen wiefolgt initialisiert werden:<br>
+<code>var test</code><br>
+Der Variablen kann ein Wert hinzugewiesen werden:</p>
+<pre><code>var test = 5
+# oder
+var test
+test = 6
+</code></pre>
+<p>Dieser Wert kann beliebig oft wieder verändert werden.</p>
+<pre><code>var test
+test @s = 10
+</code></pre>
+<p>So können Werte auch nur speziellen Minecraft Selektoren zugewiesen werden.<br>
+Auch mit Spielernamen oder Placeholdern möglich:</p>
+<pre><code>test Spielername = 10
+</code></pre>
+<p>Alle Werte werden in einem scoreboard mit dem Variablennamen gespeichert. Also können die Werte auch ganz standart mäßig verändert und ausgelesen werden:</p>
+<pre><code>var test
+test @s = 10
+/scoreboard players get @s test ==&gt; 10
+/scoreboard players set @s test 5
+# etc
+</code></pre>
+<p>Variablen können auch mit anderen zusammen gerechnet und zusammengefügt werden:</p>
+<pre><code>var test = 10
+var neu = 5
+# Achtung: Der Einfachkeit halber starte ich immer wieder mit diesen Werten. Das Programm macht es nartürlich anders!
 
+test += 2 ==&gt; 12
+test -= 2 ==&gt; 8
+</code></pre>
+<p>Etwas gekürzt:</p>
+<pre><code>test++ ==&gt; test += 1
+test-- ==&gt; test -= 1
+
+test += neu ==&gt; 15
+test -= neu ==&gt; 5
+test *= neu ==&gt; 50
+test /= neu ==&gt; 2
+test %= neu ==&gt; 0
+</code></pre>
+<p><a id="boolean"></a></p>
+<h3 id="boolean-variablen-tags">3.5 Boolean Variablen (Tags)</h3>
+<blockquote>
+<p><code>bool [name] [selector](optional) = true|false</code></p>
+</blockquote>
+<p>So können Wahrheitswerte deklariert werden.<br>
+<code>bool isCool = true =&gt; tag [global] add isCool</code><br>
+Eine Boolean Variable kann später noch verändert werden:<br>
+<code>isCool = false =&gt; tag [global] remove isCool</code></p>
+<p>Mit <a href="#if">If</a> testbar:</p>
+<pre><code>if(isCool){
+    /commands =&gt; execute if entity [global][tag=isCool] run commands
+}
+</code></pre>
+<p><a id="consts"></a></p>
+<h3 id="konstanten">3.6 Konstanten</h3>
+<p>Eine andere Art Variable ist die Konstante, so deklariert:</p>
+<blockquote>
+<p><code>const [name] = [value]</code></p>
+</blockquote>
+<p>Diese Art kann nicht verändert werden!<br>
+Du kannst sie mit <code>$(var_name)</code> irgendwo in deinem Code benutzen um lange Strings und wiederholende Phrasen zu vermeiden:</p>
+<pre><code>const einString = "Hier könnte sehr viel Schrott stehen."
+const eineNum = 5
+
+/say $(einString)       ==&gt; /say Hier könnte sehr viel Schrott stehen.
+var test = $(eineNum)   ==&gt; var test = 5
+</code></pre>
+<p><a id="if"></a></p>
+<h3 id="ifelse-statements">3.7 If/Else Statements</h3>
+<p>If funktioniert ähnlich wie das Command Wrapping:</p>
+<pre><code>if('statement'){
+	/commands 	=&gt; /execute if statement run command
+}
+</code></pre>
 <p>Mit einigen extra Features:</p>
 <ul>
-	<li>Vor dem Argument kann ein "!" eingefügt werden um dies umzukehren:
-		<pre>
-<code>
-if(!'statement'){
-	/commands 	=> /execute unless statement run command
-}		 
-</code></pre>
-
-	</li>
-	<li>Nach dem Schluss kann ein "else" angehängt werden:
-		<pre>
-			<code>
-if('statement'){
-	/commands 	=> /execute if statement run command
-} else {		   /execute unless statement run command2
-	/commands2
-}		 
-</code></pre>
-	Hier darauf achten das Argument nicht zu verändern!
-	<pre>
-			<code>
-if('entity @s[tag=test]'){	
-	/tag @s remove test 	
-	} else {		  		
-	/tag @s remove test		
-}		 					
-</code>
-</pre>
-Hier werden beide ausgeführt!! Verbessert:
-<pre>
-
-<code>
-if('entity @s[tag=test]'){
-	/tag @s add testIf
+<li>
+<p>Vor dem Argument kann ein “!” eingefügt werden um dies umzukehren:</p>
+<pre><code>if(!'statement'){
+	/commands 	=&gt; /execute unless statement run command
 }
-if('entity @s[tag=testIf]'){	
-	/tag @s remove test 	
-	} else {		  		
-	/tag @s remove test		
-}		 					
 </code></pre>
-
-	</li>
-	<li>auch "else if" ist möglich:
-		<pre>
-			<code>
-if('statement'){
-	/commands 				=> /execute if statement run command
-} else if('statement2') {	   /execute unless statement if statement2 run command2
-	/commands2
-}		 	 					
-</code>
-</pre>
-	</li>
-	
-
-
+</li>
+<li>
+<p>Nach dem Schluss kann ein “else” angehängt werden:</p>
+</li>
 </ul>
-
-
-
-
-
-
-
-
-
-<h3>3.4 Logische Operatoren</h3>
-<p>In Kombination mit Command Gruppen und If-Else-Statements können zusätzlich 
-logische Operatoren benutzt werden:</p>
+<pre><code>    if('statement'){
+    	/commands 	=&gt; /execute if statement run command
+    } else {		   /execute unless statement run command2
+    	/commands2
+    }
+</code></pre>
+<p>Hier darauf achten das Argument nicht zu verändern!</p>
+<pre><code>    if('entity @s[tag=test]'){
+    	/tag @s remove test
+    	} else {
+    	/tag @s remove test
+    }
+</code></pre>
+<p>Hier werden beide ausgeführt!! Verbessert:</p>
+<pre><code>    if('entity @s[tag=test]'){
+    	/tag @s add testIf
+    }
+    if('entity @s[tag=testIf]'){
+    	/tag @s remove test
+    	} else {
+    	/tag @s remove test
+    }
+</code></pre>
 <ul>
-	<li>
-	<p>Der Oder-Operator kann bei den Gruppierungen auf zwei Arten benutzt werden:</p>
-	<pre>
-			<code>
-as('@s'||'@p'){	
-	/command 	
-}
-==> execute as @s run command
-    execute at @p run command
-	
-# oder als Liste
-if('entity @s[tag=entity1]','entity @s[tag=entity2]'){	
-	/command 	
-}
-==> execute if entity @s[tag=entity1] run command
-    execute if entity @s[tag=entity2] @p run command 					
-</code>
-</pre>
-
-	</li>
-	<li>
-	<p>Der Und-Operator wird so definiert: (nur für if-statements sinnvoll)</p>
-	<pre>
-			<code>
-if('entity @s'&&'entity @p'){	
-	/command 	
-}
-==> execute if entity @s if entity @p run command
-					</code></pre>
-
-	</li>
-
+<li>auch “else if” ist möglich:</li>
 </ul>
-<h3>3.5 For-Loops</h3>
-<p>Einer der hilfreichsten Features ist der For-Loop. Als Argumente werden ganze 
-Zahlen angenommen.</p>
-<p>Von <code>erstes Argument</code> bis <code>zweites Argument</code> wird optional ausgegeben als <code>drittes Argument</code></p>
-<pre>
+<pre><code>    if('statement'){
+    	/commands 				=&gt; /execute if statement run command
+    } else if('statement2') {	   /execute unless statement if statement2 run command2
+    	/commands2
+    }
+</code></pre>
+<p><a id="operators"></a></p>
+<h3 id="logische-operatoren">3.8 Logische Operatoren</h3>
+<p>In Kombination mit Command Gruppen und If-Else-Statements können zusätzlich logische Operatoren benutzt werden:</p>
+<ul>
+<li>Der Oder-Operator kann bei den Gruppierungen auf zwei Arten benutzt werden:</li>
+</ul>
+<pre><code>    as(@s||@p){
+    	/command
+    }
+    ==&gt; execute as @s run command
+        execute at @p run command
 
-<code>
-for(1,5){
+    # oder als Liste
+    if(@s[tag=entity1],'entity @s[tag=entity2]'){
+    # hier gehen beide Varianten ^
+    	/command
+    }
+    ==&gt; execute if entity @s[tag=entity1] run command
+        execute if entity @s[tag=entity2] @p run command
+</code></pre>
+<ul>
+<li>Der Und-Operator wird so definiert: (nur für if-statements sinnvoll)</li>
+</ul>
+<pre><code>    if('entity @s'&amp;&amp;'entity @p'){
+    	/command
+    }
+    ==&gt; execute if entity @s if entity @p run command
+</code></pre>
+<ul>
+<li>Überprüfung von Variablen:</li>
+</ul>
+<pre><code>var test = 5
+
+# genau gleich
+if(test == 5){
+    /commands
+}
+
+# größer/kleiner gleich
+if(test &gt;= 5){
+    /commands
+}
+
+# größer/kleiner
+if(test &gt; 5){
+    /commands
+}
+
+# auch im Vergleich möglich
+if(test &gt; test2){
+    /commands
+}
+
+# oder mit entity variablen
+if(test @s &gt; test2 @a){
+    /commands
+}
+</code></pre>
+<p><a id="switch"></a></p>
+<h3 id="switch-cases">3.9 Switch-Cases</h3>
+<pre><code>switch([var_name]){
+    case &lt;=|&lt;|==|&gt;|&gt;= [other_var]|[number] {
+        [actions]
+    },
+    default(optional) {
+        [default actions]
+    }
+}
+</code></pre>
+<p>Switches erleichtern dem Benutzer die vielen If-Bedingungen. Es kann einfach und übersichtlich auf verschiedene Werte von Variablen getestet werden.<br>
+bsp:</p>
+<pre><code>var test = 10
+switch(test){
+    case &gt; 10 {
+        /say var ist über 10
+    },
+    case &lt; 10 {
+        /say var ist unter 10
+    },
+    default {
+        /say nichts traf zu.
+    }
+}
+</code></pre>
+<p>Hier wird also test geprüft auf über 10, wenn das nicht zutrifft auf unter 10 und als standart default ausgegeben.<br>
+Auch abkürzbar:</p>
+<pre><code>var test = 10
+switch(test){
+    case &gt; 10 run: say var ist über 10
+    , case &lt; 10 run: say var ist unter 10
+    , default run: say nichts traf zu.
+}
+</code></pre>
+<p><a id="for"></a></p>
+<h3 id="for-loops">3.10 For-Loops</h3>
+<pre><code>for([from],[to],[var_name](optional)){
+    [actions]
+}
+</code></pre>
+<p>Einer der hilfreichsten Features ist der For-Loop. Als Argumente werden ganze Zahlen angenommen.</p>
+<p>Von <code>erstes Argument</code> bis <code>zweites Argument</code> wird optional ausgegeben als <code>drittes Argument</code></p>
+<pre><code>for(1,5){
 	/commands
 	# es wird 5x command ausgegeben
-}	 					
-</code>
-<code>
-for(1,5){
+}
+</code></pre>
+<pre><code>for(1,5){
 	/say $(i)
 	# es wird 5x say mit 1 - 5 ausgegeben
-}	 					
-</code>
-</pre>
-
-<p>mit $(var_name) kann auf den Loopwert zugegriffen werden</p>
-<p>var_name ist normalerweise als "i" definiert, kann aber im 3.Argument 
-geändert werden:</p>
-<pre>
-<code>
-for(1,5,X){
+}
+</code></pre>
+<p>Mit $(var_name) kann auf den Loopwert zugegriffen werden.</p>
+<p>var_name ist normalerweise als “i” definiert, kann aber im 3.Argument geändert werden:</p>
+<pre><code>for(1,5,X){
 	/say $(X)
 	# es wird 5x say mit 1 - 5 ausgegeben
-}	 					
-</code>
-</pre>
-Das ist bei 2 dimensionalen Loops sinnvoll:
-
-<pre>
-<code>
-for(1,5,i){
+}
+</code></pre>
+<p>Das ist bei 2 dimensionalen Loops sinnvoll:</p>
+<pre><code>for(1,5,i){
 	for(1,2,j){
 		/say $(i).$(j)
 	}
 	# es wird 10x say mit 1.1 - 5.2 ausgegeben
-}	 					
-</code>
-</pre>
-<h3>3.6 Modals</h3>
-<p>Modals kann man wie functions oder Methoden verstehen, dass heißt man kann 
-sie definieren:</p>
-<pre>
-<code>
-modal newModal(argument){
+}
+</code></pre>
+<p><a id="raycast"></a></p>
+<h3 id="raycasting">3.11 Raycasting</h3>
+<pre><code>raycast([distance](optional), [block to travel through](optional)){
+    [actions on hitted block]
+},{
+    [actions for every flight step]
+}
+default distance = 100 Blocks
+default block = air
+</code></pre>
+<p>Raycasting ist eine große Sache in Minecraft 1.13 und bietet viele Möglichkeiten.<br>
+Es ist allerdings bisschen schwierig, also warum nicht leichter machen?<br>
+Mit Minecraft Script ist das nun sehr sehr einfach:</p>
+<pre><code>raycast {
+    /setblock ~ ~ ~ stone
+}
+</code></pre>
+<p>Das alleine setzt überall, wo man hinschaut einen Steinblock.<br>
+Partikel und Blockbegrenzung auch noch sehr einfach:</p>
+<pre><code>raycast(10) {
+    /setblock ~ ~ ~ stone
+}, {
+    /particle flame ~ ~ ~
+}
+</code></pre>
+<p>Jetzt haben wir schöne Effekte und eine maximale Range von 10 Blöcken.<br>
+<a id="while"></a></p>
+<h3 id="while-loops">3.12 while-Loops</h3>
+<p>Der while-Loop ist so zu definieren:</p>
+<pre><code>while([cond]){
+    /commands
+}
+</code></pre>
+<p>Die gruppierten Commands werden solange ausgeführt, wie die Bedingung[cond] war ist.</p>
+<blockquote>
+<p>Wenn die Bedingung zum Start nicht wahr ist, wird die Gruppierung nicht ausgeführt!</p>
+</blockquote>
+<p>Als Bedingung können hier alle Operatoren und Argumente der If-Bedingungen verwendet werden. z.B.</p>
+<pre><code>var test = 0
+while(test &lt; 10){
+    /commands hier
+    test += 1
+}
+# ==&gt; Die Commands werden innerhalb eines Ticks 10mal ausgeführt.
+</code></pre>
+<p>Bei while-Loops kann auch mit stop und continue gearbeitet werden:</p>
+<pre><code>var test = 0
+while(test &lt; 10){
+    test += 1
+    if(test == 5){
+        continue
+        # Wenn test 5 ist werden die restlichen Commands übersprungen
+    }
+    /commands hier
+    if(test &gt;= 9){
+        stop
+        # Wenn test 9 oder über 9 ist wird die Schleife abgebrochen
+    }
+}
+</code></pre>
+<p><a id="dowhile"></a></p>
+<h3 id="do-while-loops">3.13 do-while-Loops</h3>
+<pre><code>do {
+    /commands
+} while([cond])
+</code></pre>
+<p>Der do-while-Loop funktioniert ähnlich, wie der while-Loop mit dem kleinen Unterschied, dass der Codeblock ausgeführt wird und danach erst die Bedingung geprüft wird.<br>
+Der Loop wird also mindestens einmal durchlaufen.<br>
+<a id="foreach"></a></p>
+<h3 id="foreach-loop">3.14 forEach-Loop</h3>
+<pre><code>forEach(var [var_name] = [startwert]; [var_name] ==|&gt;|&lt;|&lt;=|&gt;=|!= [other_var]|[number]; [varname]++){
+    /commands
+}
+</code></pre>
+<p>Der forEach-Loop ist ein Loop, wie man ihn in fast jeder Programmiersprache vorfindet.<br>
+Er ähnelt sich zu dem for-Loop von Minecraft Script, funktioniert aber dynamisch(d.h wird nicht beim generieren ausgeführt, sondern von Minecraft)</p>
+<p>Bsp:</p>
+<pre><code>forEach(var i = 0; i &lt; 10; i++){
+    /say hey
+}
+</code></pre>
+<p>Der Command wird also 10mal ausgeführt und der aktuelle Wert jeweils in dem scoreboard i gespeichert.<br>
+So kann man auch auf den Wert zugreifen. Bsp. Fakultät:</p>
+<pre><code>var result = 1
+forEach(var i = 2; i &lt;= 10; i++){
+    result *= i
+}
+==&gt; result = 1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10
+</code></pre>
+<p><a id="modals"></a></p>
+<h3 id="modals">3.15 Modals</h3>
+<pre><code>modal [name]([arguments]){
+    [actions]
+}
+</code></pre>
+<p>Modals kann man wie functions oder Methoden verstehen, dass heißt man kann sie definieren:</p>
+<pre><code>modal newModal(argument){
 	/say $(argument)
-}	 					
-</code>
-</pre>
-<p>
-Ein Modal wird immer mit dem Keyword eingeleitet gefolgt von dem Namen und in 
-Klammern alle benötigten Argumente.</p>
-<p>
-Auf diese Argumente kann dann innerhalb mit $(argument_name) Referenz genommen 
-werden.</p>
-<pre>
-<code>
-modal newModal(argument){
+}
+</code></pre>
+<p>Ein Modal wird immer mit dem Keyword eingeleitet, gefolgt von dem Namen und in Klammern alle benötigten Argumente.</p>
+<p>Auf diese Argumente kann dann innerhalb mit $(argument_name) Referenz genommen werden.</p>
+<pre><code>modal newModal(argument){
 	/say $(argument)
 }
 
 newModal('test')
 
-# => say test	 					
-</code>
-</pre>
-<p>Wenn man das Modal so benutzt, dann werden die Werte eingesetzt und alles 
-ausgegeben.</p>
-<pre>
-<code>
-modal createCommand(command,argument1,argument2){
+# =&gt; say test
+</code></pre>
+<p>Wenn man das Modal so benutzt, dann werden die Werte eingesetzt und alles ausgegeben.</p>
+<pre><code>modal createCommand(command,argument1,argument2){
 	/$(command) $(argument1) $(argument2)
 }
 
 createCommand('say', 'hallo', 'du')
 
-# => say hallo du 					
-</code>
-</pre>
+# =&gt; say hallo du
+</code></pre>
 <p>Es können so auch mehrere Argumente benutzt werden.</p>
 <p>Auch sind optionale und vordefinierte Argumente verfügbar:</p>
-<pre>
-<code>
-modal say(argument = "hallo"){
+<pre><code>modal say(argument = "hallo"){
 	/say $(argument)
 }
 
 say()
-# => say hallo	
-	
+# =&gt; say hallo
+
 say('test')
-# => say test				
-</code>
-</pre>
-<h3>3.7 System Modals</h3>
-<p>Es gibt schon einige vordefinierte Modals, die hilfreich sein könnten. Bitte 
-schaue dir dafür die spezifischen Dokumentationen <a href="#">hier</a> an.</p>
-<p>Du hast Ideen welche Modals umbedingt als Standart-Modal aufgegriffen werden 
-müssen? Sende mir einfach die <a href="#ownmodal">Konfigurationsdatei </a>zur Überprüfung.</p>
-<h2>4) IDEs und Syntax Hightlighting</h2>
+# =&gt; say test
+</code></pre>
+<p><a id="systemModals"></a></p>
+<h3 id="system-modals">3.16 System Modals</h3>
+<p>Es gibt schon einige vordefinierte Modals, die hilfreich sein könnten. Bitte schaue dir dafür die spezifischen Dokumentationen <a href="#">hier</a> an.</p>
+<p>Du hast Ideen, welche Modals unbedingt als Standart-Modal aufgegriffen werden müssen? Sende mir einfach die <a href="#24_Dev_mcscript_modals_54">Konfigurationsdatei</a> zur Überprüfung.</p>
+<h2 id="ides-und-syntax-highlighting">IDEs und Syntax Highlighting</h2>
 <ul>
-	<li>GitHubs Atom Editor: link here (credit:
-	<a href="https://atom.io/users/MrYurihi">MrYurihi</a>)</li>
-	<li>Notepad++: link here</li>
+<li>GitHubs Atom Editor: link here (credit: <a href="https://atom.io/users/MrYurihi">MrYurihi</a>)</li>
+<li>Notepad++: link here</li>
 </ul>
-<h2 class="auto-style1">Jetzt bleibt nichts mehr übrig als:
-<span class="auto-style2"><strong>Happy Developing</strong></span></h2>
-<p class="auto-style1">Vielen Dank an alle die Minecraft Script benutzen und 
-diese Dokumentation gelesen haben. Bei Vorschlägen, Problemen oder Fehlern bitte 
-mich kontaktieren.</p>
-
-
-
-
+<h2 id="jetzt-bleibt-nichts-mehr-übrig-als-happy-developing">Jetzt bleibt nichts mehr übrig als: <strong>Happy Developing</strong></h2>
+<p>Vielen Dank an alle die Minecraft Script benutzen und diese Dokumentation gelesen haben. Bei Vorschlägen, Problemen oder Fehlern bitte mich kontaktieren.</p>

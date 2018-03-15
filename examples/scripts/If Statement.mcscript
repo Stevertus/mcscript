@@ -1,0 +1,29 @@
+#file: ./if
+if(@s){
+    /say entity found
+}
+
+# multiline
+if("score @s matches 0.."){
+    /say score is positive
+    /say multi line
+}
+#
+# not statement
+if(!"entity @s"){
+    /say there is no entity
+}
+#
+# else statement
+if(@s){
+   /say entity found
+} else {
+    /say else command
+}
+#
+# else if statement
+if(@s){
+   /say entity found
+} else if("score @s matches 0..") {
+   /say there is no entity but score is over 0
+}

@@ -1,0 +1,11 @@
+#file: ./foreach
+# basic loop
+forEach(var i = 0; i < 10; i++){
+    /say hey
+}
+
+# faculty
+var result = 1
+forEach(var j = 2; j <= 10; j++){
+    result *= i
+}

@@ -1,0 +1,16 @@
+#file: ./groups
+
+as(@s){
+  /say hey
+}
+asat(@s){
+  /say hey
+}
+
+positioned("~ ~1 ~"){
+  /setblock ~ ~ ~ stone
+}
+
+dimension("overworld"){
+  /say Im in the overworld
+}

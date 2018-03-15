@@ -1,12 +1,18 @@
 {
   "name": "mcscript",
-  "version": "0.0.5",
-  "description": "Minecraft Script to mcfunction compiler",
-  "homepage":"http://stevertus.ga",
+  "version": "0.1.0",
+  "description": "Minecraft Script to mcfunction compiler cli",
+  "homepage":"http://stevertus.ga/mcscript",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Stevertus",
+  "person": "Barney Rubble <b@rubble.com> (http://barnyrubble.tumblr.com/)",
+  "repository" :
+  { "type" : "git"
+  , "url" : "https://github.com/Stevertus/mcscript.git"
+},
+  "bugs": {"url":"https://github.com/Stevertus/mcscript/issues"},
   "license": "ISC",
   "bin": {
     "mcscript": "bin/test-module.js",

@@ -1,0 +1,16 @@
+#file: ./switches
+var test = 10
+switch(test){
+    case 11 {
+      /say var is 11
+    },
+    case > 10 {
+        /say var is over 10
+    },
+    case < 10 {
+        /say var is below 10
+    },
+    default {
+        /say no match
+    }
+}

@@ -1,0 +1,14 @@
+#file: ./boolean
+bool isCool = true
+isCool = false
+
+if(isCool){
+    /say he is cool
+}
+
+bool isBad @s = true
+isBad @s = false
+
+if(isBad @s){
+  /say he is bad
+}

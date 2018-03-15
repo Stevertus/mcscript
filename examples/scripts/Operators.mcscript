@@ -1,0 +1,25 @@
+#file: ./operators
+# and operator
+if('cond1'&&'cond2'){
+    /say condition 1 and condition 2 is true
+}
+
+# or operator
+if('cond1'||'cond2'){
+    /say condition 1 or condition 2 is true
+}
+
+# or operator as list
+if('cond1','cond2'){
+    /say condition 1 or condition 2 is true
+}
+
+# and or combined
+if('cond1'&&'cond2'||'cond3'){
+    /say condition 1 and condition 2 or cond3 is true
+}
+
+# not and
+if('cond1'&&!'cond2'){
+    /say condition 1 and not condition 2 is true
+}
