@@ -2,7 +2,7 @@
 ![](https://i.imgur.com/YedWe7W.png)
 
 # Minecraft Script Dokumentation
-> Update 0.1: [Alle Änderungen](https://github.com/Stevertus/mcscript/releases)
+> Update 0.1.2: [Alle Änderungen](https://github.com/Stevertus/mcscript/releases)
 
 Minecraft Script ist eine Programmiersprache für Entwickler der mcfunctions, sowie für die Minecraft Map und Package Erschaffer. Die .mcscript Dateien werden dabei zu mcfunction compiled und generiert. Dies bietet dem Entwickler erweiterte Möglichkeiten, wie zum Beispiel Modals, Loops, Variablen, Konstanten und Command-Wrapping.
 
@@ -21,7 +21,6 @@ English documentation [here](https://github.com/Stevertus/mcscript/blob/master/R
     - [file setup](#files)
     - [Dateien erweitern](#extend)
     - [Command Grouping](#groups)
-    - [file](#files)
     - [Variablen](#vars)
     - [Boolean Variablen](#boolean)
     - [Konstanten](#consts)
@@ -450,13 +449,14 @@ Das ist bei 2 dimensionalen Loops sinnvoll:
 <a id="raycast"></a>
 ### 3.11 Raycasting
 ```
-raycast([distance](optional), [block to travel through](optional)){
-    [actions on hitted block]
+raycast([distance](optional), [block to travel through](optional),entity | block [target](optional) ){
+    [actions on hitted block or entity]
 },{
     [actions for every flight step]
 }
 default distance = 100 Blocks
 default block = air
+default target = any block
 ```
 Raycasting ist eine große Sache in Minecraft 1.13 und bietet viele Möglichkeiten.
 Es ist allerdings bisschen schwierig, also warum nicht leichter machen?
@@ -476,6 +476,35 @@ raycast(10) {
 }
 ```
 Jetzt haben wir schöne Effekte und eine maximale Range von 10 Blöcken.
+Das zweite optinale Argument gibt die durchlässigen Blöcke an.
+```
+raycast(10,"air") {
+    /setblock ~ ~ ~ stone
+}
+```
+Das Raycasting geht also nur durch Luft.
+Auch kann man die durchlässigen Blöcke negieren und mit einem "!" angeben, welche Blöcke nicht durchlässig sind:
+```
+raycast(10,!"white_wool") {
+    /setblock ~ ~ ~ stone
+}
+```
+Das Raycasting geht also durch alle Blöcke außer weiße Wolle.
+
+Als drittes optionales Argument kann man ein Ziel angeben:
+```
+raycast(10,"air",block "white_wool") {
+    /setblock ~ ~ ~ stone
+}
+```
+Jetzt weiß Mcscript, dass das Ziel ein Block ist und führt den Command nur aus, wenn der Block weiße Wolle ist.
+```
+raycast(10,"air",entity @e[type=armor_stand]) {
+    /say test
+}
+```
+Mcscript weiß nun, dass das Ziel eine Entity ist und führt den Command als diese aus, wenn sie getroffen wurde.
+Also würde der Armor Stand test sagen.
 <a id="while"></a>
 ### 3.12 while-Loops
 Der while-Loop ist so zu definieren:
@@ -608,12 +637,12 @@ Auch sind optionale und vordefinierte Argumente verfügbar:
 Es gibt schon einige vordefinierte Modals, die hilfreich sein könnten. Bitte schaue dir dafür die spezifischen Dokumentationen [hier](#) an.
 
 Du hast Ideen, welche Modals unbedingt als Standart-Modal aufgegriffen werden müssen? Sende mir einfach die [Konfigurationsdatei](#24_Dev_mcscript_modals_54) zur Überprüfung.
-
+<a id="ide"></a>
 ##  IDEs und Syntax Highlighting
 
 
 *   GitHubs Atom Editor: link here (credit: [MrYurihi](https://atom.io/users/MrYurihi))
-*   Notepad++: link here
+*   Notepad++: [see code](https://github.com/Stevertus/mcscript/blob/master/Nodepad%2B%2B%20Highlighter.xml) | [download](http://www.mediafire.com/file/4534q4tual7zccm/Nodepad++%20Highlighter.xml)
 
 Jetzt bleibt nichts mehr übrig als: **Happy Developing**
 --------------------------------------------------------

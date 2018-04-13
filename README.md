@@ -2,7 +2,7 @@
 
 Minecraft Script Documentation
 ==============================
-> Update 0.1: [All Changes](https://github.com/Stevertus/mcscript/releases)
+> Update 0.1.2: [All Changes](https://github.com/Stevertus/mcscript/releases)
 
 Minecraft Script is a programming language for developers of mcfunctions, Minecraft maps and packages. The .mcscript files are therefore compiled and generated to the function format. This enables the developer extended possibilities, such as Modals, Loops, Varibles, Constants and Command-Wrapping.
 
@@ -445,13 +445,14 @@ That makes especially with two-dimensional loops sence:
 <a id="raycast"></a>
 ### 3.11 Raycasting
 ```
-raycast([distance](optional), [block to travel through](optional)){
-    [actions on hitted block]
+raycast([distance](optional), [block to travel through](optional),entity | block [target](optional) ){
+    [actions on hitted block or entity]
 },{
     [actions for every flight step]
 }
 default distance = 100 Blocks
 default block = air
+default target = any block
 ```
 Raycasting is a big thing in Minecraft 1.13 and provides unlimeted opportunities. But it is a bit difficult, so why not making it easier? With Minecraft Script this is really really easy now:
 ```
@@ -469,6 +470,35 @@ raycast(10) {
 }
 ```
 Now there are beautiful effects and a max range of 10 blocks.
+The second argument sets the porous blocks.
+```
+raycast(10,"air") {
+    /setblock ~ ~ ~ stone
+}
+```
+So the ray only goes through air.
+You can also negate the porous blocks and set with a "!" the not porous blocks:
+```
+raycast(10,!"white_wool") {
+    /setblock ~ ~ ~ stone
+}
+```
+The ray goes through all blocks, but white wool.
+
+As third optional argument a target can be set:
+```
+raycast(10,"air",block "white_wool") {
+    /setblock ~ ~ ~ stone
+}
+```
+Now Mcscript knows that the target is a block and executes the command only if the block is white wool.
+```
+raycast(10,"air",entity @e[type=armor_stand]) {
+    /say test
+}
+```
+Now Mcscript knows that the target is an entity and executes as the entity if it´s hitted.
+So the armor stand would say test.
 <a id="while"></a>
 ### 3.12 while loops
 The while loop is defined like so:
@@ -586,19 +616,19 @@ There are optional and predefined arguments, too:
 
     say('test')
     # => say test				
-
+<a id="systemModals"></a>
 ### 3.11 System Modals
 
 There are already some helpful predefined modals. Please read the specific documentation [here](#).
 
 You have ideas which modals should be a standart? Send me your [configuration file](#ownmodal) to check.
-
+<a id="ide"></a>
 ##  IDEs and Syntax Highlighting
 
 > Not available yet
 
 *   GitHubs Atom Editor: link here (credit: [MrYurihi](https://atom.io/users/MrYurihi))
-*   Notepad++: link here
+*   Notepad++: [see code](https://github.com/Stevertus/mcscript/blob/master/Nodepad%2B%2B%20Highlighter.xml) | [download](http://www.mediafire.com/file/4534q4tual7zccm/Nodepad++%20Highlighter.xml)
 
 Now there´s nothing left than: **Happy Developing**
 ---------------------------------------------------
