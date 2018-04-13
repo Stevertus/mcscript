@@ -1,7 +1,13 @@
 
 Minecraft Script Changes
 ==============================
-
+### v0.1.2
+* changed: fixed asat to  "at @s"
+* changed: raycasting is more accurate
+* changed raycast performance
+* added a not block operator for Raycasting
+* added raycast entity option
+* added raycast target option
 ## v0.1
 * added a changelog
 * added table of contents for documentation
