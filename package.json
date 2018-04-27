@@ -1,6 +1,6 @@
 {
   "name": "mcscript",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Minecraft Script to mcfunction compiler cli",
   "homepage":"http://stevertus.ga/mcscript",
   "scripts": {
