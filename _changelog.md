@@ -1,6 +1,16 @@
 
 Minecraft Script Changes
 ==============================
+> Update your Version by running: `npm install -g mcscript@`
+
+### v0.1.3
+* added: Minecraft Cam datapack modals
+* added: Core Modal documentation
+* changed: the load.mcscript will automaticly generate the mcscript/load file and execute it
+* changed: the corresponding file generator for load.mcscript
+* changed: . are now allowed in variable names
+* changed: the mcscript folder will be automaticly deleted! save important files!!
+* fixed: the forWeb.js file
 ### v0.1.2
 * changed: fixed asat to  "at @s"
 * changed: raycasting is more accurate
@@ -9,6 +19,10 @@ Minecraft Script Changes
 * added raycast entity option
 * added raycast target option
 * added Nodepad++ Highlighting
+## v0.1.1
+* fixed: forEach function was written uppercase, which is not allowed by Minecraft
+* fixed: raycast score didn´t reset and messed up
+* added: now cases can accept a direct value instead of "== [value]"
 ## v0.1
 * added a changelog
 * added table of contents for documentation
@@ -25,7 +39,3 @@ Minecraft Script Changes
 * added a custom scripts folder for all files
 * added a switch functionality
 ____
-**v0.1.1**
-* fixed: forEach function was written uppercase, which is not allowed by Minecraft
-* fixed: raycast score didn´t reset and messed up
-* added: now cases can accept a direct value instead of "== [value]"

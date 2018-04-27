@@ -2,7 +2,7 @@
 
 Minecraft Script Documentation
 ==============================
-> Update 0.1.2: [All Changes](https://github.com/Stevertus/mcscript/releases)
+> Update 0.1.3: [All Changes](https://github.com/Stevertus/mcscript/releases)
 
 Minecraft Script is a programming language for developers of mcfunctions, Minecraft maps and packages. The .mcscript files are therefore compiled and generated to the function format. This enables the developer extended possibilities, such as Modals, Loops, Varibles, Constants and Command-Wrapping.
 
@@ -619,7 +619,7 @@ There are optional and predefined arguments, too:
 <a id="systemModals"></a>
 ### 3.11 System Modals
 
-There are already some helpful predefined modals. Please read the specific documentation [here](#).
+There are already some helpful predefined modals. Please read the specific documentation [here](https://github.com/Stevertus/mcscript/blob/master/Core%20Modals.md).
 
 You have ideas which modals should be a standart? Send me your [configuration file](#ownmodal) to check.
 <a id="ide"></a>
@@ -628,7 +628,7 @@ You have ideas which modals should be a standart? Send me your [configuration fi
 > Not available yet
 
 *   GitHubs Atom Editor: link here (credit: [MrYurihi](https://atom.io/users/MrYurihi))
-*   Notepad++: [see code](https://github.com/Stevertus/mcscript/blob/master/Nodepad%2B%2B%20Highlighter.xml) | [download](http://www.mediafire.com/file/4534q4tual7zccm/Nodepad++%20Highlighter.xml)
+*   Notepad++: [see code](https://github.com/Stevertus/mcscript/blob/master/Nodepad%2B%2B%20Highlighter.xml) | [download](http://download1496.mediafire.com/x2k7loq5imbg/4534q4tual7zccm/Nodepad+++Highlighter.xml)
 
 Now there´s nothing left than: **Happy Developing**
 ---------------------------------------------------
