@@ -3,6 +3,10 @@ Minecraft Script Changes
 ==============================
 > Update your Version by running: `npm install -g mcscript@`
 
+### v0.1.4
+* added: a `mcscript add` package command
+* reduced file size
+
 ### v0.1.3
 * added: Minecraft Cam datapack modals
 * added: Core Modal documentation
@@ -12,9 +16,6 @@ Minecraft Script Changes
 * changed: the mcscript folder will be automaticly deleted! save important files!!
 * fixed: the forWeb.js file
 
-** v0.1.3.1**
-* added: a `mcscript add` package command
-* reduced file size
 ### v0.1.2
 * changed: fixed asat to  "at @s"
 * changed: raycasting is more accurate
