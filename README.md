@@ -1,3 +1,4 @@
+
 ![](https://i.imgur.com/YedWe7W.png)
 
 Minecraft Script Documentation
@@ -17,6 +18,7 @@ German documentation [here](https://github.com/Stevertus/mcscript/blob/master/RE
     - [mcscript new](#cli-new)
     - [mcscript compile](#cli-compile)
     - [mcscript watch](#cli-watch)
+    - [mcscript add](#cli-add)
 3) [Syntax](#syntax)
     - [file setup](#files)
     - [expand files](#extend)
@@ -74,15 +76,22 @@ Creates a new datapack for you with all basic files in a scripts folder. Takes a
 This command converts all .mcscript files into .mcfunction format. You can read [here](#syntax) what you can do in the mcscript files.  
 The console displays all generated files or throws an error if something was not correct.
 
-Alternatively you can use `mcscript-compile *filepath*` to set an custom directory or file.
+Alternatively you can use `mcscript compile *filepath*` to set an custom directory or file.
 <a id="cli-watch"></a>
 ### 2.3 mcscript watch
 
 This will automatically compile your code if you make any changes (save). So you do not have to enter the above command with every change.
 
 Again, a path can be specified.
+<a id="cli-add"></a>
+### 2.4 mcscript add [url or package]
+This command adds a custom datapack to your directory.
+As argument an url to the resource or a *mcScript Extension* name can be used.
+
+Get a list of all supported packages by running just`mcscript add`
+
 <a id="cli-modals"></a>
-### 2.4 Dev: mcscript modals
+### 2.5 Dev: mcscript modals
 
 !!This command is intended only for developers who want to install their modals in the compiler.  
 A file must be specified and then the modals out of this file are written to a configuration file.

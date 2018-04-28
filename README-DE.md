@@ -80,6 +80,13 @@ Alternativ kannst mit `mcscript compile *filepath*` einen speziellen Pfad oder s
 Hiermit wird dein Code automatisch compiled, wenn du irgendwelche Änderungen machst (speicherst). So musst du nicht bei jeder Änderung den obigen Command eingeben.
 
 Auch hier kann ein Pfad angegeben werden.
+<a id="cli-add"></a>
+### 2.4 mcscript add [url or package]
+Dieser Conmmand kann ein datapack zu deiner Welt hinzufügen.
+Als Argument kann entweder eine Url direkt zur Datei oder der Name einer mcScript Extension genutzt werden.
+
+Eine Liste aller McScript Extensions kann bekommen werden mit `mcscript add`
+
 <a id="cli-modals"></a>
 ### 2.4 Dev: mcscript modals
 

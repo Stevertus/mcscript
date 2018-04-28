@@ -11,6 +11,10 @@ Minecraft Script Changes
 * changed: . are now allowed in variable names
 * changed: the mcscript folder will be automaticly deleted! save important files!!
 * fixed: the forWeb.js file
+
+** v0.1.3.1**
+* added: a `mcscript add` package command
+* reduced file size
 ### v0.1.2
 * changed: fixed asat to  "at @s"
 * changed: raycasting is more accurate

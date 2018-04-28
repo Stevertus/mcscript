@@ -1,7 +1,10 @@
 # Minecraft Script Core Modals
 `- parameter -`
+
 ` [optional] `
+
 ` <allowed types>`
+
 ` this | or that`
 ### console
 > `log( - text <string | number> - , [entity] )`
