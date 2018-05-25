@@ -14,3 +14,6 @@ var1 += var2
 if(var1 == 20){
   log("is 20")
 }
+
+# saving a command result in variable
+var varResult = run: data get entity @s Pos[0]
