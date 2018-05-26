@@ -1,9 +1,10 @@
 
+
 ![](https://i.imgur.com/YedWe7W.png)
 
 Minecraft Script Documentation
 ==============================
-> Update 0.1.4: [All Changes](https://github.com/Stevertus/mcscript/releases)
+> Update 0.1.5: [All Changes](https://github.com/Stevertus/mcscript/releases)
 
 Minecraft Script is a programming language for developers of mcfunctions, Minecraft maps and packages. The .mcscript files are therefore compiled and generated to the function format. This enables the developer extended possibilities, such as Modals, Loops, Varibles, Constants and Command-Wrapping.
 
@@ -19,9 +20,11 @@ German documentation [here](https://github.com/Stevertus/mcscript/blob/master/RE
     - [mcscript compile](#cli-compile)
     - [mcscript watch](#cli-watch)
     - [mcscript add](#cli-add)
-3) [Syntax](#syntax)
+3) [file system](#files)
     - [file setup](#files)
-    - [expand files](#extend)
+    - [Dateien erweitern](#extend)
+    - [Globale Dateien](#global)
+4) [Syntax](#syntax)
     - [Command Grouping](#groups)
     - [Variables](#vars)
     - [Boolean Variablen](#boolean)
@@ -36,7 +39,7 @@ German documentation [here](https://github.com/Stevertus/mcscript/blob/master/RE
     - [forEach loops](#foreach)
     - [Modals](#modals)
     - [System Modals](#systemModals)
-4) [IDEs and Syntax Highlighting](#ide)
+5) [IDEs and Syntax Highlighting](#ide)
 <a id="install"></a>
 ##  Installation
 
@@ -95,20 +98,8 @@ Get a list of all supported packages by running just`mcscript add`
 
 !!This command is intended only for developers who want to install their modals in the compiler.  
 A file must be specified and then the modals out of this file are written to a configuration file.
-<a id="syntax"></a>
-##  Minecraft Script Syntax
-
-
-The code is written in files with the extension .mcscript. It is recommended to manage the files and to highlight the syntax in a code editor (IDE). explore more [here](#ide).  
-
-Unlike mcfunction, each command is injected with a "/" or "run:".
-
-Comments are announced with "//", if comments should also appear in the new file with "#"
-
-Blank lines and skipping lines are ignored.  
-If a blank line is desired in the mcfunction, express this with a '#' without a comment.  
-Two blank lines are reached with "##".
 <a id="files"></a>
+## 3) File system
 ### 3.1 File setup
 
 The generated files have always the same name as their root.
@@ -140,12 +131,30 @@ Also very well combinable with [for-loops](#loops):
     	//Commands for every file here
     }
 <a id="extend"></a>
-### 3.2 extend files
+### 3.2 Extend Files
 A already existing file, that is generated before with `#file:`, can be expanded in other files and new code is easily attached:
 ```
 #extend: ./test
 /commands here
 ```
+<a id="global"></a>
+### 3.3 Global Files
+Variables (#vars), [constants] (#consts), and [Modals] (#modals) are stored separately for each file.
+Now you can create a global file with the extension '. gl. mcscript '. The compiler automatically detects globals and uses the declared objects in other files as well.
+For example, you can write the modals to a separate file.
+<a id="syntax"></a>
+##  Minecraft Script Syntax
+
+
+The code is written in files with the extension .mcscript. It is recommended to manage the files and to highlight the syntax in a code editor (IDE). explore more [here](#ide).  
+
+Unlike mcfunction, each command is injected with a "/" or "run:".
+
+Comments are announced with "//", if comments should also appear in the new file with "#"
+
+Blank lines and skipping lines are ignored.  
+If a blank line is desired in the mcfunction, express this with a '#' without a comment.  
+Two blank lines are reached with "##".
 <a id="groups"></a>
 ### 3.3 Command Grouping / Wrapping
 > ```[subcommand]([argument]){  [wrapped actions]   }```
@@ -229,6 +238,14 @@ test *= new ==> 50
 test /= new ==> 2
 test %= new ==> 0
 ```
+** Save command response to variable: **
+```
+var res = run: command
+==> execute store result score res res run command
+```
+The result of the command is written to the variable res.
+Example with `/data get`:
+' var varResult = run: data get entity @s Pos[0] '
 <a id="boolean"></a>
 ### 3.5 Boolean Variables (Tags)
 > `bool [name] [selector](optional) = true|false`
@@ -259,7 +276,16 @@ const aNum = 5
 /say $(aString)       ==> /say Here can be a string
 var test = $(aNum)   ==> var test = 5
 ```
+**Replace constants**
+The value of an constant can still be changed when used. To do this, add '.repl()' to the constant:
+> `$(const).repl([search],[replacement])`
 
+In our example, we want to replace `a`:
+```
+/say $(aString).repl(" a "," the ") ==> /say Here can be the string
+```
+Also a [RegEx](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/RegExp) can be inserted here and can be also accessed with '$&' in the replacement:
+`$(aString).repl([/regex/],["$&"])`
 <a id="if"></a>
 ### 3.6 If/Else Statements
 
@@ -584,10 +610,11 @@ forEach(var i = 2; i <= 10; i++){
 
 Modals are like functions or methods. That means you can define them:
 
-
-    modal newModal(argument){
-    	/say $(argument)
-    }	 					
+> ```
+> modal [name]([arguments]){
+>     [actions]
+> }
+> ```
 
 
 A modal is always introduced with the keyword followed by the name and the arguments in the brackets.
@@ -624,7 +651,27 @@ There are optional and predefined arguments, too:
     # => say hallo
 
     say('test')
-    # => say test				
+    # => say test
+**Override Modals**
+Modals that have already been created can be overridden within the process:
+> ```
+> override modal [name]([arguments]){
+>    [actions]
+>}
+>```
+
+Arguments and actions are exchanged completely and used for the ongoing process.
+
+**Replace arguments**
+The value of an argument can still be changed when used. To do this, add '.repl()' to the argument:
+> `$(argument).repl([search],[replacement])`
+
+In our example, we want to replace an entered test:
+```
+/say $(argument).repl("test","no test") ==> /say no test
+```
+Also a [RegEx](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/RegExp) can be inserted here and can be also accessed with '$&' in the replacement:
+`$(argument).repl([/regex/],["$&"])`
 <a id="systemModals"></a>
 ### 3.11 System Modals
 

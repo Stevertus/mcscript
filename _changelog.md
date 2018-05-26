@@ -2,6 +2,16 @@
 Minecraft Script Changes
 ==============================
 > Update your Version by running: `npm install -g mcscript@`
+### v0.1.5
+* added: multiline comments
+* added: global variables and `.gl.mcscript` files | Take a look at the documentation.
+* added: save the command response in a variable `var test = run: command`
+* added: a replace function on constant values and modals.
+* added: override keyword to change old modals
+* fixed: the common asat issue, should run now
+* fixed: while declaring the same variable twice, nothing generates
+* changed: the watch feature. Now it generates all files on change, not only the changed
+* changed the overall variable handling (but outputs are the same)
 
 ### v0.1.4
 * added: a `mcscript add` package command

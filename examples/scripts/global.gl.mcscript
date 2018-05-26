@@ -1,0 +1,8 @@
+// here I can add global variables, consts and modals
+var global1 = 5
+
+modal global2(){
+  /say hey
+}
+
+const global3 = "Hello"

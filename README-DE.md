@@ -1,8 +1,10 @@
 
+
+
 ![](https://i.imgur.com/YedWe7W.png)
 
 # Minecraft Script Dokumentation
-> Update 0.1.4: [Alle Änderungen](https://github.com/Stevertus/mcscript/releases)
+> Update 0.1.5: [Alle Änderungen](https://github.com/Stevertus/mcscript/releases)
 
 Minecraft Script ist eine Programmiersprache für Entwickler der mcfunctions, sowie für die Minecraft Map und Package Erschaffer. Die .mcscript Dateien werden dabei zu mcfunction compiled und generiert. Dies bietet dem Entwickler erweiterte Möglichkeiten, wie zum Beispiel Modals, Loops, Variablen, Konstanten und Command-Wrapping.
 
@@ -17,9 +19,11 @@ English documentation [here](https://github.com/Stevertus/mcscript/blob/master/R
     - [mcscript new](#cli-new)
     - [mcscript compile](#cli-compile)
     - [mcscript watch](#cli-watch)
-3) [Syntax](#syntax)
-    - [file setup](#files)
+3) [file system](#files)
+	  - [file setup](#files)
     - [Dateien erweitern](#extend)
+    - [Globale Dateien](#global)
+4) [Syntax](#syntax)
     - [Command Grouping](#groups)
     - [Variablen](#vars)
     - [Boolean Variablen](#boolean)
@@ -34,7 +38,7 @@ English documentation [here](https://github.com/Stevertus/mcscript/blob/master/R
     - [forEach-Loops](#foreach)
     - [Modals](#modals)
     - [System Modals](#systemModals)
-4) [IDEs und Syntax Highlighting](#ide)
+5) [IDEs und Syntax Highlighting](#ide)
 <a id="install"></a>
 ## 1) Installation
 
@@ -92,20 +96,8 @@ Eine Liste aller McScript Extensions kann bekommen werden mit `mcscript add`
 
 !!Dieser Command ist nur für Entwicker gedacht, die ihre Modals in den Compiler einbauen wollen.  
 Es muss eine Datei angegeben werden und die Modals aus dieser Datei werden dann in eine Konfigurationsdatei geschrieben.
-<a id="syntax"></a>
-##  Minecraft Script Syntax
-
-
-Der Code wird in Dateien mit der Endung .mcscript geschrieben. Es wird ein Code-Editor(IDE) empfohlen, um die Dateien zu verwalten und den Syntax farbig zu markieren. [Mehr hier](#ide)
-
-Anders als bei mcfunction wird jeder Command mit einem "/" oder "run: " injektiert.
-
-Kommentare werden mit "//" angekündigt, falls Kommentare auch in der neuen Datei auftauchen sollen mit "#"
-
-Leerzeilen und Zeilensprünge werden nicht beachtet.  
-Falls eine Leerzeile aus Struktur in der mcfunction gewünscht ist, dies mit einem # ohne Kommentar ausdrücken.  
-Zwei Leerzeilen können mit "##" erreicht werden.
 <a id="files"></a>
+## 3) File system
 ### 3.1 File setup
 In einem Minecraft Datapack können alle Datein in ein scripts Ordner gepackt werden, um dann in `/functions` den Output zu generieren.
 Es werden immer Dateien mit gleichem Namen, wie ihr Root generiert.
@@ -143,8 +135,33 @@ Eine bereits bestehende Datei, vorher mit `#file:`, kann nun auch aus anderen Da
 #extend: ./test
 /commands kommen hier.
 ```
+<a id="global"></a>
+### 3.3 Globale Dateien
+[Variablen](#vars), [Konstanten](#consts) und [Modals](#modals) werden für jede Datei seperat gespeichert.
+Jetzt kann man eine globale Datei mit der Endung `.gl.mcscript` erstellen. Der Compiler erkennt diese automatisch und verwendet die deklarierten Objekte auch in anderen Dateien.
+So kann man die Modals zum Beispiel in eine eigende Datei schreiben.
+<a id="syntax"></a>
+##  Minecraft Script Syntax
+
+
+Der Code wird in Dateien mit der Endung .mcscript geschrieben. Es wird ein Code-Editor(IDE) empfohlen, um die Dateien zu verwalten und den Syntax farbig zu markieren. [Mehr hier](#ide)
+
+Anders als bei mcfunction wird jeder Command mit einem "/" oder "run: " injektiert.
+
+Kommentare werden mit "//" angekündigt, falls Kommentare auch in der neuen Datei auftauchen sollen mit "#"
+Ein Kommentar über mehrere Zeilen muss mit
+```
+*/
+angegeben werden
+/*
+```
+
+Leerzeilen und Zeilensprünge werden nicht beachtet.  
+Falls eine Leerzeile aus Struktur in der mcfunction gewünscht ist,drücke dies mit einem # ohne Kommentar aus.  
+Zwei Leerzeilen können mit "##" erreicht werden.
 <a id="groups"></a>
-### 3.3 Command Gruppen / Wrapping
+
+### 4.1 Command Gruppen / Wrapping
 > ```[subcommand]([argument]){  [wrapped actions]   }```
 
 "as, at, positioned,align,dimension,rotated,anchored" können zusammengefasst werden:
@@ -176,7 +193,7 @@ asat(@s){
     }
     ==> /execute as @p at @s positioned ~ ~-1 ~ if entity @s[tag=mytag] run say command
 <a id="vars"></a>
-### 3.4 Variablen
+### 4.2 Variablen
 Wie jede Programmiersprache hat auch Minecraft Script Variablen. Sie müssen wiefolgt initialisiert werden:
 `var test`
 Der Variablen kann ein Wert hinzugewiesen werden:
@@ -226,8 +243,17 @@ test *= neu ==> 50
 test /= neu ==> 2
 test %= neu ==> 0
 ```
+**Command Response in Variable speichern:**
+```
+var res = run: command
+==> execute store result score res res run command
+```
+Das Ergebnis des command wird in die Variable res geschrieben.
+Beispiel mit /data get:
+`var varResult = run: data get entity @s Pos[0]`
+
 <a id="boolean"></a>
-### 3.5 Boolean Variablen (Tags)
+### 4.3 Boolean Variablen (Tags)
 > `bool [name] [selector](optional) = true|false`
 
 So können Wahrheitswerte deklariert werden.
@@ -242,7 +268,7 @@ if(isCool){
 }
 ```
 <a id="consts"></a>
-### 3.6 Konstanten
+### 4.4 Konstanten
 Eine andere Art Variable ist die Konstante, so deklariert:
 > `const [name] = [value]`
 
@@ -255,8 +281,19 @@ const eineNum = 5
 /say $(einString)       ==> /say Hier könnte sehr viel Schrott stehen.
 var test = $(eineNum)   ==> var test = 5
 ```
+**Replace Konstanten**
+Der Wert einer Konstante kann bei der Verwendung noch umgeändert werden. Hierzu ein `.repl()` an die Verwendung anfügen:
+> `$(const).repl([suchwert],[replacement])`
+
+Bei unserem Beispiel wollen wir das viel replacen:
+```
+/say $(einString).repl("viel","sehr viel") ==> /say Hier könnte sehr sehr viel Schrott stehen.
+```
+Auch kann hier ein [RegEx](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/RegExp) eingefügt werden und auch auf diesen im Replacement zugegriffen werden:
+`$(const).repl([/regex/],["$&"])`
+
 <a id="if"></a>
-### 3.7 If/Else Statements
+### 4.5 If/Else Statements
 
 If funktioniert ähnlich wie das Command Wrapping:
 
@@ -315,7 +352,7 @@ Hier werden beide ausgeführt!! Verbessert:
 ```
 
 <a id="operators"></a>
-### 3.8 Logische Operatoren
+### 4.6 Logische Operatoren
 
 In Kombination mit Command Gruppen und If-Else-Statements können zusätzlich logische Operatoren benutzt werden:
 
@@ -373,7 +410,7 @@ if(test @s > test2 @a){
 }
 ```
 <a id="switch"></a>
-### 3.9 Switch-Cases
+### 4.7 Switch-Cases
 ```
 switch([var_name]){
     case <=|<|==|>|>= [other_var]|[number] {
@@ -411,7 +448,7 @@ switch(test){
 }
 ```
 <a id="for"></a>
-### 3.10 For-Loops
+### 4.8 For-Loops
 ```
 for([from],[to],[var_name](optional)){
     [actions]
@@ -454,7 +491,7 @@ Das ist bei 2 dimensionalen Loops sinnvoll:
     	# es wird 10x say mit 1.1 - 5.2 ausgegeben
     }
 <a id="raycast"></a>
-### 3.11 Raycasting
+### 4.9 Raycasting
 ```
 raycast([distance](optional), [block to travel through](optional),entity | block [target](optional) ){
     [actions on hitted block or entity]
@@ -513,7 +550,7 @@ raycast(10,"air",entity @e[type=armor_stand]) {
 Mcscript weiß nun, dass das Ziel eine Entity ist und führt den Command als diese aus, wenn sie getroffen wurde.
 Also würde der Armor Stand test sagen.
 <a id="while"></a>
-### 3.12 while-Loops
+### 4.10 while-Loops
 Der while-Loop ist so zu definieren:
 ```
 while([cond]){
@@ -549,7 +586,7 @@ while(test < 10){
 }
 ```
 <a id="dowhile"></a>
-### 3.13 do-while-Loops
+### 4.11 do-while-Loops
 ```
 do {
     /commands
@@ -558,7 +595,7 @@ do {
 Der do-while-Loop funktioniert ähnlich, wie der while-Loop mit dem kleinen Unterschied, dass der Codeblock ausgeführt wird und danach erst die Bedingung geprüft wird.
 Der Loop wird also mindestens einmal durchlaufen.
 <a id="foreach"></a>
-### 3.14 forEach-Loop
+### 4.12 forEach-Loop
 ```
 forEach(var [var_name] = [startwert]; [var_name] ==|>|<|<=|>=|!= [other_var]|[number]; [varname]++){
     /commands
@@ -583,12 +620,12 @@ forEach(var i = 2; i <= 10; i++){
 ==> result = 1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10
 ```
 <a id="modals"></a>
-### 3.15 Modals
-```
-modal [name]([arguments]){
-    [actions]
-}
-```
+### 4.13 Modals
+> ```
+> modal [name]([arguments]){
+>    [actions]
+>}
+>```
 Modals kann man wie functions oder Methoden verstehen, dass heißt man kann sie definieren:
 
 
@@ -637,9 +674,29 @@ Auch sind optionale und vordefinierte Argumente verfügbar:
 
     say('test')
     # => say test				
+**Modals überschreiben**
+Bereits erstellte modals können innerhalb des Prozesses überschrieben werden:
+> ```
+> override modal [name]([arguments]){
+>    [actions]
+>}
+>```
+
+Dabei werden Argumente und Actions komplett getauscht und für den fortlaufenden Prozess verwendet.
+
+**Argumente ersetzen**
+Der Wert eines Arguments kann bei der Verwendung noch umgeändert werden. Hierzu ein `.repl()` an die Verwendung anfügen:
+> `$(argument).repl([suchwert],[replacement])`
+
+Bei unserem Beispiel wollen wir ein eingegebenes test replacen:
+```
+/say $(argument).repl("test","no test") ==> /say no test
+```
+Auch kann hier ein [RegEx](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/RegExp) eingefügt werden und auch auf diesen im Replacement mit `$&` zugegriffen werden:
+`$(argument).repl([/regex/],["$&"])`
 
 <a id="systemModals"></a>
-### 3.16 System Modals
+### 4.14 System Modals
 
 Es gibt schon einige vordefinierte Modals, die hilfreich sein könnten. Bitte schaue dir dafür die spezifischen Dokumentationen [hier](https://github.com/Stevertus/mcscript/blob/master/Core%20Modals.md) an.
 

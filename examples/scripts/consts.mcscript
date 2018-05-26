@@ -1,7 +1,7 @@
 #file: ./consts
 const newConst = "some string here"
 /say $(newConst)
-
+/say $(newConst).repl('string','value')
 const score = 5
 
 if('score @s matches $(score)'){

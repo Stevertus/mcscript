@@ -1,0 +1,13 @@
+#file: ./advanced_modal
+modal hello(arg1, arg2 = "Stevertus"){
+  /say Hello $(arg1).repl('I','You')! A message from $(arg2)
+}
+hello('I')
+hello('Player','me')
+
+// override a modal
+override modal hello(arg1){
+  /say Hello $(arg1)
+}
+# overriden modal
+hello('Stevertus')
