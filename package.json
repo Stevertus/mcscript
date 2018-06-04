@@ -2,16 +2,18 @@
   "name": "mcscript",
   "version": "0.1.4",
   "description": "Minecraft Script to mcfunction compiler cli",
-  "homepage":"http://stevertus.ga/mcscript",
+  "homepage": "http://stevertus.ga/mcscript",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Stevertus",
-  "repository" :
-  { "type" : "git"
-  , "url" : "https://github.com/Stevertus/mcscript.git"
-},
-  "bugs": {"url":"https://github.com/Stevertus/mcscript/issues"},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Stevertus/mcscript.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Stevertus/mcscript/issues"
+  },
   "license": "ISC",
   "bin": {
     "mcscript": "bin/test-module.js",
@@ -19,5 +21,9 @@
     "mcscript-modals": "bin/modal.js"
   },
   "main": "./lib/index.js",
-  "preferGlobal": "true"
+  "preferGlobal": "true",
+  "devDependencies": {
+    "webpack": "^4.10.2",
+    "webpack-cli": "^3.0.1"
+  }
 }
