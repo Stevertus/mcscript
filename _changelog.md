@@ -2,6 +2,9 @@
 Minecraft Script Changes
 ==============================
 > Update your Version by running: `npm install -g mcscript@`
+### v0.1.6
+* fixed: modal calls inside modals.
+
 ### v0.1.5
 * added: multiline comments
 * added: global variables and `.gl.mcscript` files | Take a look at the documentation.
