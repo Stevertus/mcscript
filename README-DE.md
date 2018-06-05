@@ -4,7 +4,7 @@
 ![](https://i.imgur.com/YedWe7W.png)
 
 # Minecraft Script Dokumentation
-> Update 0.1.5: [Alle Änderungen](https://github.com/Stevertus/mcscript/releases)
+> Update 0.1.6: [Alle Änderungen](https://github.com/Stevertus/mcscript/releases)
 
 Minecraft Script ist eine Programmiersprache für Entwickler der mcfunctions, sowie für die Minecraft Map und Package Erschaffer. Die .mcscript Dateien werden dabei zu mcfunction compiled und generiert. Dies bietet dem Entwickler erweiterte Möglichkeiten, wie zum Beispiel Modals, Loops, Variablen, Konstanten und Command-Wrapping.
 
