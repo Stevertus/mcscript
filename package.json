@@ -23,7 +23,6 @@
   "main": "./lib/index.js",
   "preferGlobal": "true",
   "devDependencies": {
-    "webpack": "^4.10.2",
     "webpack-cli": "^3.0.1"
   }
 }
