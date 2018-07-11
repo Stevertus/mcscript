@@ -1,6 +1,6 @@
 {
   "name": "mcscript",
-  "version": "0.1.5",
+  "version": "0.2",
   "description": "Minecraft Script to mcfunction compiler cli",
   "homepage":"http://stevertus.ga/mcscript",
   "scripts": {
@@ -8,9 +8,9 @@
   },
   "author": "Stevertus",
   "repository" :
-  { "type" : "git"
-  , "url" : "https://github.com/Stevertus/mcscript.git"
-},
+  { "type" : "git",
+    "url" : "https://github.com/Stevertus/mcscript.git"
+  },
   "bugs": {"url":"https://github.com/Stevertus/mcscript/issues"},
   "license": "ISC",
   "bin": {

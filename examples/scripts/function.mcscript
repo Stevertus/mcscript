@@ -1,0 +1,4 @@
+run function test {
+	/say function
+}
+/say not function
