@@ -5,12 +5,18 @@ const addPack = require('./add.js');
 const gen_new = require('../lib/gen_new.js');
 const consoletheme = require('../lib/consoletheme.js');
 
+var fullError = false;
+if(process.argv.indexOf("-fullErr") != -1){ //does our flag exist?
+    fullError = true
+    process.argv.splice(process.argv.indexOf("-fullErr"),1)
+}
+
 switch(process.argv[2]){
   case 'compile':
-    lib.compile(process.argv[3] || './');
+    lib.compile(process.argv[3] || './',fullError);
     break;
   case 'watch':
-    lib.watch(process.argv[3] || './');
+    lib.watch(process.argv[3] || './',fullError);
     break;
   case 'modal':
     lib.genModals(process.argv[3] || './');

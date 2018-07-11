@@ -1,14 +1,15 @@
 
 
+
 ![](https://i.imgur.com/YedWe7W.png)
 
 Minecraft Script Documentation
 ==============================
-> Update 0.1.5: [All Changes](https://github.com/Stevertus/mcscript/releases)
+> Update 0.2: [All Changes](https://github.com/Stevertus/mcscript/releases)
 
 Minecraft Script is a programming language for developers of mcfunctions, Minecraft maps and packages. The .mcscript files are therefore compiled and generated to the function format. This enables the developer extended possibilities, such as Modals, Loops, Varibles, Constants and Command-Wrapping.
 
-Everyone who wants to try, can visit my online Editor [stevertus.ga/mcscript7code](http://www.stevertus.ga/mcscript/code) and can play with its functionality.
+Everyone who wants to try, can visit my online Editor [stevertus.ga/mcscript/code](http://www.stevertus.ga/mcscript/code) and can play with its functionality.
 
 German documentation [here](https://github.com/Stevertus/mcscript/blob/master/README-DE.md)
 ## Table of Contents
@@ -26,6 +27,7 @@ German documentation [here](https://github.com/Stevertus/mcscript/blob/master/RE
     - [Globale Dateien](#global)
 4) [Syntax](#syntax)
     - [Command Grouping](#groups)
+    - [Functions](#functions)
     - [Variables](#vars)
     - [Boolean Variablen](#boolean)
     - [Constants](#consts)
@@ -39,6 +41,7 @@ German documentation [here](https://github.com/Stevertus/mcscript/blob/master/RE
     - [forEach loops](#foreach)
     - [Modals](#modals)
     - [System Modals](#systemModals)
+    - [Error handling and debugging](#debugging)
 5) [IDEs and Syntax Highlighting](#ide)
 <a id="install"></a>
 ##  Installation
@@ -80,12 +83,14 @@ This command converts all .mcscript files into .mcfunction format. You can read 
 The console displays all generated files or throws an error if something was not correct.
 
 Alternatively you can use `mcscript compile *filepath*` to set an custom directory or file.
+With an additional `-fullErr` flag you can view full errors and code positions.
+<a id="cli-watch"></a>
 <a id="cli-watch"></a>
 ### 2.3 mcscript watch
 
 This will automatically compile your code if you make any changes (save). So you do not have to enter the above command with every change.
 
-Again, a path can be specified.
+Again, a path and `-fullErr` can be specified.
 <a id="cli-add"></a>
 ### 2.4 mcscript add [url or package]
 This command adds a custom datapack to your directory.
@@ -156,7 +161,7 @@ Blank lines and skipping lines are ignored.
 If a blank line is desired in the mcfunction, express this with a '#' without a comment.  
 Two blank lines are reached with "##".
 <a id="groups"></a>
-### 3.3 Command Grouping / Wrapping
+### 4.1 Command Grouping / Wrapping
 > ```[subcommand]([argument]){  [wrapped actions]   }```
 
 "as, at, positioned,align,dimension,rotated,anchored" can be grouped together:
@@ -183,12 +188,39 @@ asat(@s){
     ==> /execute as @p at @s positioned ~ ~-1 ~ run say command
 
     // also with if
-    as('@p'), at('@s'), positioned('~ ~1 ~'), if(entity @s[tag=mytag]){
+    as(@p), at(@s), positioned('~ ~1 ~'), if(entity @s[tag=mytag]){
     	/say command
     }
     ==> /execute as @p at @s positioned ~ ~-1 ~ if entity @s[tag=mytag] run say command
+<a id="functions"></a>
+### 4.2 Functions
+ ```
+[run] function "name|path" {
+	/commands
+}
+```
+> run optional
+> a path should be given as string
+> a name consisting of only characters, can be given without ""
+
+A function generates a new mcfunction with the given name or path. You can also execute the function directly with the `run` keyword.
+This is an alternative to a more complicated varient with `#file:`.
+
+e.g:
+```
+run function test {
+	/say function
+}
+/say not function
+=
+/function prj:test
+/say not function
+
+#file: ./test
+/say function
+```
 <a id="vars"></a>
-### 3.4 Variablen
+### 4.3 Variables
 Like every other programming language there are variables. They are initialized as follows:
 `var test`
 The variable can take in a value:
@@ -247,7 +279,7 @@ The result of the command is written to the variable res.
 Example with `/data get`:
 ' var varResult = run: data get entity @s Pos[0] '
 <a id="boolean"></a>
-### 3.5 Boolean Variables (Tags)
+### 4.4 Boolean Variables (Tags)
 > `bool [name] [selector](optional) = true|false`
 
 Boolean values can be declared like this.
@@ -262,7 +294,7 @@ if(isCool){
 }
 ```
 <a id="consts"></a>
-### 3.6 Constants
+### 4.5 Constants
 
 Another type of variable is the constant, declared as following:
 `const test = [value]`
@@ -287,7 +319,7 @@ In our example, we want to replace `a`:
 Also a [RegEx](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/RegExp) can be inserted here and can be also accessed with '$&' in the replacement:
 `$(aString).repl([/regex/],["$&"])`
 <a id="if"></a>
-### 3.6 If/Else Statements
+### 4.6 If/Else Statements
 
 If functions are similar to grouping:
 
@@ -346,7 +378,7 @@ With some additional features:
     }
 ```
 <a id="operators"></a>
-### 3.8 Logical operators
+### 4.7 Logical operators
 
 In combination with grouping and if-else statements logical operators can be used:
 
@@ -403,7 +435,7 @@ if(test @s > test2 @a){
 }
 ```
 <a id="switch"></a>
-### 3.9 Switch-Cases
+### 4.8 Switch-Cases
 ```
 switch([var_name]){
     case <=|<|==|>|>= [other_var]|[number] {
@@ -441,7 +473,7 @@ switch(test){
 }
 ```
 <a id="for"></a>
-### 3.10 For-Loops
+### 4.9 For-Loops
 
 One of the most helpful features is the for loop. It takes in neutral numbers.
 
@@ -478,7 +510,7 @@ That makes especially with two-dimensional loops sence:
     	# say with 1.1 - 5,2 is outputed 10 times
     }	 					
 <a id="raycast"></a>
-### 3.11 Raycasting
+### 4.10 Raycasting
 ```
 raycast([distance](optional), [block to travel through](optional),entity | block [target](optional) ){
     [actions on hitted block or entity]
@@ -535,7 +567,7 @@ raycast(10,"air",entity @e[type=armor_stand]) {
 Now Mcscript knows that the target is an entity and executes as the entity if it´s hitted.
 So the armor stand would say test.
 <a id="while"></a>
-### 3.12 while loops
+### 4.11 while loops
 The while loop is defined like so:
 ```
 while([cond]){
@@ -571,7 +603,7 @@ while(test < 10){
 }
 ```
 <a id="dowhile"></a>
-### 3.13 do-while-Loops
+### 4.12 do-while-Loops
 ```
 do {
     /commands
@@ -580,7 +612,7 @@ do {
 The do-while loop works in a similar way to the while loop, with the small difference that the code block is executed and then the condition is checked.
 So the loop is executed at least one time.
 <a id="foreach"></a>
-### 3.14 forEach-Loop
+### 4.13 forEach-Loop
 ```
 forEach(var [var_name] = [start value]; [var_name] ==|>|<|<=|>=|!= [other_var]|[number]; [varname]++){
     /commands
@@ -606,7 +638,7 @@ forEach(var i = 2; i <= 10; i++){
 ==> result = 1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10
 ```
 <a id="modals"></a>
-### 3.15 Modals
+### 4.14 Modals
 
 Modals are like functions or methods. That means you can define them:
 
@@ -673,11 +705,30 @@ In our example, we want to replace an entered test:
 Also a [RegEx](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/RegExp) can be inserted here and can be also accessed with '$&' in the replacement:
 `$(argument).repl([/regex/],["$&"])`
 <a id="systemModals"></a>
-### 3.11 System Modals
+### 4.15 System Modals
 
 There are already some helpful predefined modals. Please read the specific documentation [here](https://github.com/Stevertus/mcscript/blob/master/Core%20Modals.md).
 
 You have ideas which modals should be a standart? Send me your [configuration file](#ownmodal) to check.
+<a id="debugging"></a>
+### 4.16 Error handling and Debugging
+Minecraft Script shows since the version 0.2 only limeted errors with line and file displayed.
+Please use the flag `-fullErr` at generation to get the old full errors back, if you want so.
+
+If you find errors that make no sense in the context, please notify the team.
+
+**Debug keyword**
+You can debug your code with the keyword "Debug" and find some errors in Minecraft Script much easier. You can place these anywhere in your code and they have no affect on the compiled output.
+
+* `debug message: [message]`
+Sends a simple message with line and file references.
+* `debug success: [message]`
+* Sends a successful message in green with line and file references.
+* `debug break: [message]`
+Your program breakes at this point and sends the message obove .
+* `debug error: [message]`
+Your program breakes at this point and sends a critical error with system information and relevant code positions.
+
 <a id="ide"></a>
 ##  IDEs and Syntax Highlighting
 
