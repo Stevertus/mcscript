@@ -1,10 +1,11 @@
 
 
 
+
 ![](https://i.imgur.com/YedWe7W.png)
 
 # Minecraft Script Dokumentation
-> Update 0.1.5: [Alle Änderungen](https://github.com/Stevertus/mcscript/releases)
+> Update 0.2: [Alle Änderungen](https://github.com/Stevertus/mcscript/releases)
 
 Minecraft Script ist eine Programmiersprache für Entwickler der mcfunctions, sowie für die Minecraft Map und Package Erschaffer. Die .mcscript Dateien werden dabei zu mcfunction compiled und generiert. Dies bietet dem Entwickler erweiterte Möglichkeiten, wie zum Beispiel Modals, Loops, Variablen, Konstanten und Command-Wrapping.
 
@@ -25,6 +26,7 @@ English documentation [here](https://github.com/Stevertus/mcscript/blob/master/R
     - [Globale Dateien](#global)
 4) [Syntax](#syntax)
     - [Command Grouping](#groups)
+    - [Funktionen](#functions)
     - [Variablen](#vars)
     - [Boolean Variablen](#boolean)
     - [Konstanten](#consts)
@@ -38,6 +40,7 @@ English documentation [here](https://github.com/Stevertus/mcscript/blob/master/R
     - [forEach-Loops](#foreach)
     - [Modals](#modals)
     - [System Modals](#systemModals)
+    - [Fehler und Debugging](#debugging)
 5) [IDEs und Syntax Highlighting](#ide)
 <a id="install"></a>
 ## 1) Installation
@@ -78,12 +81,13 @@ Dieser Command wandelt alle .mcscript Dateien in .mcfunction Format um. Was in d
 In der Konsole werden alle generierten Dateien angezeigt oder ein Fehler ausgeworfen, falls etwas nicht korrekt war.
 
 Alternativ kannst mit `mcscript compile *filepath*` einen speziellen Pfad oder spezielle Datei angeben.
+Mit der zusätzlichen `-fullErr` flag können ganze Fehler mit code Referenzen angezeigt werden.
 <a id="cli-watch"></a>
 ### 2.3 mcscript watch
 
 Hiermit wird dein Code automatisch compiled, wenn du irgendwelche Änderungen machst (speicherst). So musst du nicht bei jeder Änderung den obigen Command eingeben.
 
-Auch hier kann ein Pfad angegeben werden.
+Auch hier kann ein Pfad angegeben und -fullErr verwendet werden.
 <a id="cli-add"></a>
 ### 2.4 mcscript add [url or package]
 Dieser Conmmand kann ein datapack zu deiner Welt hinzufügen.
@@ -167,7 +171,7 @@ Zwei Leerzeilen können mit "##" erreicht werden.
 "as, at, positioned,align,dimension,rotated,anchored" können zusammengefasst werden:
 
 
-    as('@a'){	 
+    as(@a){	 
     	/commands 	=> /execute positioned ~ ~ ~ run command
     }		 
 
@@ -182,18 +186,44 @@ asat(@s){
 "Gruppen können auch aufgelistet werden:
 
 
-    as('@p'), at('@s'), positioned('~ ~1 ~'){
+    as(@p), at(@s), positioned('~ ~1 ~'){
     	/say command
     }
     ==> /execute as @p at @s positioned ~ ~-1 ~ run say command
 
     // also with if
-    as('@p'), at('@s'), positioned('~ ~1 ~'), if(entity @s[tag=mytag]){
+    as(@p), at(@s), positioned('~ ~1 ~'), if(@s[tag=mytag]){
     	/say command
     }
     ==> /execute as @p at @s positioned ~ ~-1 ~ if entity @s[tag=mytag] run say command
+<a id="functions"></a>
+### 4.2 Funktionen
+ ```
+[run] function "name|path" {
+	/commands
+}
+```
+> run optional
+> ein Pfad sollte als String angegeben werden
+> ein nur aus Buchstaben bestehender name auch ohne ""
+
+Eine Funktion generiert eine weitere mcfunction mit den angegebenen Namen oder Pfad. Mit dem run keyword kann eine Funktion auch direkt ausgeführt werden.
+Dies ist eine alternative zu einer wesentlich komplizierteren Variante mit `#file:`.
+Bsp:
+```
+run function test {
+	/say function
+}
+/say not function
+=
+/function prj:test
+/say not function
+
+#file: ./test
+/say function
+```
 <a id="vars"></a>
-### 4.2 Variablen
+### 4.3 Variablen
 Wie jede Programmiersprache hat auch Minecraft Script Variablen. Sie müssen wiefolgt initialisiert werden:
 `var test`
 Der Variablen kann ein Wert hinzugewiesen werden:
@@ -253,7 +283,7 @@ Beispiel mit /data get:
 `var varResult = run: data get entity @s Pos[0]`
 
 <a id="boolean"></a>
-### 4.3 Boolean Variablen (Tags)
+### 4.4 Boolean Variablen (Tags)
 > `bool [name] [selector](optional) = true|false`
 
 So können Wahrheitswerte deklariert werden.
@@ -268,7 +298,7 @@ if(isCool){
 }
 ```
 <a id="consts"></a>
-### 4.4 Konstanten
+### 4.5 Konstanten
 Eine andere Art Variable ist die Konstante, so deklariert:
 > `const [name] = [value]`
 
@@ -293,7 +323,7 @@ Auch kann hier ein [RegEx](https://developer.mozilla.org/de/docs/Web/JavaScript/
 `$(const).repl([/regex/],["$&"])`
 
 <a id="if"></a>
-### 4.5 If/Else Statements
+### 4.6 If/Else Statements
 
 If funktioniert ähnlich wie das Command Wrapping:
 
@@ -324,7 +354,7 @@ Mit einigen extra Features:
 
 Hier darauf achten das Argument nicht zu verändern!
 ```
-    if('entity @s[tag=test]'){
+    if(@s[tag=test]){
     	/tag @s remove test 	
     	} else {		  		
     	/tag @s remove test		
@@ -332,10 +362,10 @@ Hier darauf achten das Argument nicht zu verändern!
 ```
 Hier werden beide ausgeführt!! Verbessert:
 ```
-    if('entity @s[tag=test]'){
+    if(@s[tag=test]){
     	/tag @s add testIf
     }
-    if('entity @s[tag=testIf]'){
+    if(@s[tag=testIf]){
     	/tag @s remove test 	
     	} else {		  		
     	/tag @s remove test		
@@ -352,7 +382,7 @@ Hier werden beide ausgeführt!! Verbessert:
 ```
 
 <a id="operators"></a>
-### 4.6 Logische Operatoren
+### 4.7 Logische Operatoren
 
 In Kombination mit Command Gruppen und If-Else-Statements können zusätzlich logische Operatoren benutzt werden:
 
@@ -410,7 +440,7 @@ if(test @s > test2 @a){
 }
 ```
 <a id="switch"></a>
-### 4.7 Switch-Cases
+### 4.8 Switch-Cases
 ```
 switch([var_name]){
     case <=|<|==|>|>= [other_var]|[number] {
@@ -448,7 +478,7 @@ switch(test){
 }
 ```
 <a id="for"></a>
-### 4.8 For-Loops
+### 4.9 For-Loops
 ```
 for([from],[to],[var_name](optional)){
     [actions]
@@ -491,7 +521,7 @@ Das ist bei 2 dimensionalen Loops sinnvoll:
     	# es wird 10x say mit 1.1 - 5.2 ausgegeben
     }
 <a id="raycast"></a>
-### 4.9 Raycasting
+### 4.10 Raycasting
 ```
 raycast([distance](optional), [block to travel through](optional),entity | block [target](optional) ){
     [actions on hitted block or entity]
@@ -550,7 +580,7 @@ raycast(10,"air",entity @e[type=armor_stand]) {
 Mcscript weiß nun, dass das Ziel eine Entity ist und führt den Command als diese aus, wenn sie getroffen wurde.
 Also würde der Armor Stand test sagen.
 <a id="while"></a>
-### 4.10 while-Loops
+### 4.11 while-Loops
 Der while-Loop ist so zu definieren:
 ```
 while([cond]){
@@ -586,7 +616,7 @@ while(test < 10){
 }
 ```
 <a id="dowhile"></a>
-### 4.11 do-while-Loops
+### 4.12 do-while-Loops
 ```
 do {
     /commands
@@ -595,7 +625,7 @@ do {
 Der do-while-Loop funktioniert ähnlich, wie der while-Loop mit dem kleinen Unterschied, dass der Codeblock ausgeführt wird und danach erst die Bedingung geprüft wird.
 Der Loop wird also mindestens einmal durchlaufen.
 <a id="foreach"></a>
-### 4.12 forEach-Loop
+### 4.13 forEach-Loop
 ```
 forEach(var [var_name] = [startwert]; [var_name] ==|>|<|<=|>=|!= [other_var]|[number]; [varname]++){
     /commands
@@ -620,7 +650,7 @@ forEach(var i = 2; i <= 10; i++){
 ==> result = 1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10
 ```
 <a id="modals"></a>
-### 4.13 Modals
+### 4.14 Modals
 > ```
 > modal [name]([arguments]){
 >    [actions]
@@ -696,11 +726,29 @@ Auch kann hier ein [RegEx](https://developer.mozilla.org/de/docs/Web/JavaScript/
 `$(argument).repl([/regex/],["$&"])`
 
 <a id="systemModals"></a>
-### 4.14 System Modals
+### 4.15 System Modals
 
 Es gibt schon einige vordefinierte Modals, die hilfreich sein könnten. Bitte schaue dir dafür die spezifischen Dokumentationen [hier](https://github.com/Stevertus/mcscript/blob/master/Core%20Modals.md) an.
 
 Du hast Ideen, welche Modals unbedingt als Standart-Modal aufgegriffen werden müssen? Sende mir einfach die [Konfigurationsdatei](#24_Dev_mcscript_modals_54) zur Überprüfung.
+<a id="debugging"></a>
+### 4.16 Error handling und Debugging
+Minecraft Script zeigt mit der Version 0.2 nur noch begrenzt Fehler an mit der Zeilen- und Dateiangabe.
+Benutze beim generieren bitte die Flag `-fullErr`, um vollständige alte Fehler wiederzuerlangen, falls du sie wünscht.
+
+Falls du Fehlerangaben findest, die im Kontext keinen Sinn machen, wende dich bitte an das Team.
+
+**Debug keyword**
+Mit "Debug" kannst du deinen Code debuggen und auch mögliche Fehler in Minecraft Script viel leichter entdecken. Sie können irgendwo im Code platziert werden und beeinflussen den generierten Code nicht.*
+* `debug message: [message]`
+Sendet eine einfache Nachricht in die Konsole mit Zeilen- und Dateiangaben.
+* `debug success: [message]`
+Sendet eine erfolgreiche Nachricht mit grüner Kennzeichnung in die Konsole mit Zeilen- und Dateiangaben.
+* `debug break: [message]`
+Dein Programm bricht an dieser Stelle ab und sendet erneut eine Nachricht.
+* `debug error: [message]`
+Dein Programm bricht an dieser Stelle ab und gibt einen kritischen Fehler mit Systeminformationen und relevanten Codestellen aus.
+
 <a id="ide"></a>
 ##  IDEs und Syntax Highlighting
 
@@ -712,3 +760,4 @@ Jetzt bleibt nichts mehr übrig als: **Happy Developing**
 --------------------------------------------------------
 
 Vielen Dank an alle die Minecraft Script benutzen und diese Dokumentation gelesen haben. Bei Vorschlägen, Problemen oder Fehlern bitte mich kontaktieren.
+Ich freue mich euch ebenfalls euch auf meinem Discord begrüßen zu dürfen und Vorschläge und Kritik zu hören.

@@ -2,6 +2,18 @@
 Minecraft Script Changes
 ==============================
 > Update your Version by running: `npm install -g mcscript@`
+
+### v0.2
+This is the first full release version of Minecraft Script! The language has all the necessary features now. I am open for new suggestions nevertheless.
+* added: a brand new error handling system. If you find some nonsense errors please report an issue and I will fix it.
+* added: the function and run function feature. Read more about its capabilities here.
+* added: a few more debugging options with the debug keyword. Read more here.
+* added: a -fullErr flag for compile and watch to see full Errors and files references
+* changed: if an execute command is generated after an execute command they will be combined now.
+* changed: if an error accures in a file you will be notified and the other files generate nevertheless.
+* fixed: an load.mcfunction issue that it generates random stuff sometimes
+* fixed: the watch mode crashes no longer if an error accures
+* fixed: if a #file tag was added after commands the compiler used to create a file with the name of the first command
 ### v0.1.5
 * added: multiline comments
 * added: global variables and `.gl.mcscript` files | Take a look at the documentation.
