@@ -785,6 +785,7 @@ There are optional and predefined arguments, too:
     # => say test
 
 **Tips and tricks**
+
 Use `console.log()` to output some information to the console while compiling without effecting the return value.
 
 
