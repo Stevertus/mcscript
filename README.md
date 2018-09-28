@@ -704,6 +704,74 @@ In our example, we want to replace an entered test:
 ```
 Also a [RegEx](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/RegExp) can be inserted here and can be also accessed with '$&' in the replacement:
 `$(argument).repl([/regex/],["$&"])`
+<a id="jsmodals"></a>
+### 4.14 JavaScript Modals
+
+JavaScript Modals are Modals, you can write in JavaScript. That means you can define them:
+
+> ```
+> modal [name]([arguments]){
+>     [actions]
+>     return [Text]
+> }
+> ```
+
+
+A modal is always introduced with the keyword followed by the name and the arguments in the brackets.
+
+The arguments are accessible inside with $(argument_name).
+
+    modal newModal(argument){
+    	/say $(argument)
+    }
+
+    newModal('test')
+
+    # => say test	 					
+
+If you use the modal like that, the values are used and it outputs everything.
+
+    modal createCommand(command,argument1,argument2){
+    	/$(command) $(argument1) $(argument2)
+    }
+
+    createCommand('say', 'hallo', 'du')
+
+    # => say hallo du 					
+
+You are also able to use multiple arguments.
+
+There are optional and predefined arguments, too:
+
+    modal say(argument = "hallo"){
+    	/say $(argument)
+    }
+
+    say()
+    # => say hallo
+
+    say('test')
+    # => say test
+**Override Modals**
+Modals that have already been created can be overridden within the process:
+> ```
+> override modal [name]([arguments]){
+>    [actions]
+>}
+>```
+
+Arguments and actions are exchanged completely and used for the ongoing process.
+
+**Replace arguments**
+The value of an argument can still be changed when used. To do this, add '.repl()' to the argument:
+> `$(argument).repl([search],[replacement])`
+
+In our example, we want to replace an entered test:
+```
+/say $(argument).repl("test","no test") ==> /say no test
+```
+Also a [RegEx](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/RegExp) can be inserted here and can be also accessed with '$&' in the replacement:
+`$(argument).repl([/regex/],["$&"])`
 <a id="systemModals"></a>
 ### 4.15 System Modals
 
