@@ -40,6 +40,7 @@ German documentation [here](https://github.com/Stevertus/mcscript/blob/master/RE
     - [do-while loops](#dowhile)
     - [forEach loops](#foreach)
     - [Modals](#modals)
+    - [JavaScript Modals](#modaljs)
     - [System Modals](#systemModals)
     - [Error handling and debugging](#debugging)
 5) [IDEs and Syntax Highlighting](#ide)
@@ -704,47 +705,77 @@ In our example, we want to replace an entered test:
 ```
 Also a [RegEx](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/RegExp) can be inserted here and can be also accessed with '$&' in the replacement:
 `$(argument).repl([/regex/],["$&"])`
-<a id="jsmodals"></a>
-### 4.14 JavaScript Modals
+<a id="modaljs"></a>
+### 4.15 JavaScript Modals
 
-JavaScript Modals are Modals, you can write in JavaScript. That means you can define them:
+JavaScript Modals are modals, you can write in JavaScript. You can define them like other modals:
 
 > ```
-> modal [name]([arguments]){
+> modaljs [name]([arguments]){
 >     [actions]
 >     return [Text]
 > }
 > ```
 
+The JavaScript Modal must end with the return statement. The returned value will end up in the `.mcfunction` file as plain text.
 
-A modal is always introduced with the keyword followed by the name and the arguments in the brackets.
+	modaljs newModal(){
+    	return "say hi";
+    }
 
-The arguments are accessible inside with $(argument_name).
+    newModal()
 
-    modal newModal(argument){
-    	/say $(argument)
+	# => say hi
+
+For multi line output I recommend doing something like this:
+
+	modaljs newModal(){
+		var ret = "";
+
+		ret += "say hi\n";
+		ret += "say ho\n";
+
+    	return ret;
+    }
+
+	newModal()
+
+	# => say hi
+	# => say ho
+Note: You need to add line breaks manually with `\n`.
+
+A JavaScript modal is always introduced with the keyword followed by the name and the arguments in the brackets.
+
+The arguments are accessible inside with `a.argument_name`.
+
+    modaljs newModal(argument){
+    	return "say " + a.argument;
     }
 
     newModal('test')
 
     # => say test	 					
 
-If you use the modal like that, the values are used and it outputs everything.
+You are also able to use multiple arguments.
 
-    modal createCommand(command,argument1,argument2){
-    	/$(command) $(argument1) $(argument2)
+	modaljs newModal(text,monster){
+		var ret = "";
+
+		ret += "say " + a.text + "\n";
+		ret += "summon " + a.monster + "\n";
+
+    	return ret;
     }
 
-    createCommand('say', 'hallo', 'du')
+	newModal("Brains!!!","minecraft:zombie")
 
-    # => say hallo du 					
-
-You are also able to use multiple arguments.
+	# => say Brains!!!
+	# => summon minecraft:zombie
 
 There are optional and predefined arguments, too:
 
-    modal say(argument = "hallo"){
-    	/say $(argument)
+    modaljs say(argument = "hallo"){
+    	return "say " + a.argument ;
     }
 
     say()
@@ -752,34 +783,19 @@ There are optional and predefined arguments, too:
 
     say('test')
     # => say test
-**Override Modals**
-Modals that have already been created can be overridden within the process:
-> ```
-> override modal [name]([arguments]){
->    [actions]
->}
->```
 
-Arguments and actions are exchanged completely and used for the ongoing process.
+**Tips and tricks**
+Use `console.log()` to output some information to the console while compiling without effecting the return value.
 
-**Replace arguments**
-The value of an argument can still be changed when used. To do this, add '.repl()' to the argument:
-> `$(argument).repl([search],[replacement])`
 
-In our example, we want to replace an entered test:
-```
-/say $(argument).repl("test","no test") ==> /say no test
-```
-Also a [RegEx](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/RegExp) can be inserted here and can be also accessed with '$&' in the replacement:
-`$(argument).repl([/regex/],["$&"])`
 <a id="systemModals"></a>
-### 4.15 System Modals
+### 4.16 System Modals
 
 There are already some helpful predefined modals. Please read the specific documentation [here](https://github.com/Stevertus/mcscript/blob/master/Core%20Modals.md).
 
 You have ideas which modals should be a standart? Send me your [configuration file](#ownmodal) to check.
 <a id="debugging"></a>
-### 4.16 Error handling and Debugging
+### 4.17 Error handling and Debugging
 Minecraft Script shows since the version 0.2 only limeted errors with line and file displayed.
 Please use the flag `-fullErr` at generation to get the old full errors back, if you want so.
 
