@@ -5,9 +5,9 @@ const addPack = require('./add.js');
 const gen_new = require('../lib/gen_new.js');
 const consoletheme = require('../lib/consoletheme.js');
 
-var fullError = false;
-if(process.argv.indexOf("-fullErr") != -1){ //does our flag exist?
-    fullError = true
+let fullError = false;
+if(process.argv.indexOf("-fullErr") !== -1){ //does our flag exist?
+    fullError = true;
     process.argv.splice(process.argv.indexOf("-fullErr"),1)
 }
 
