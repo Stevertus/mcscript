@@ -1,7 +1,7 @@
 <p><img src="https://i.imgur.com/YedWe7W.png" alt=""></p>
 <h1 id="minecraft-script-dokumentation">Minecraft Script Dokumentation</h1>
 <blockquote>
-<p>Update 0.1.5: <a href="https://github.com/Stevertus/mcscript/releases">Alle Änderungen</a></p>
+<p>Update 0.2: <a href="https://github.com/Stevertus/mcscript/releases">Alle Änderungen</a></p>
 </blockquote>
 <p>Minecraft Script ist eine Programmiersprache für Entwickler der mcfunctions, sowie für die Minecraft Map und Package Erschaffer. Die .mcscript Dateien werden dabei zu mcfunction compiled und generiert. Dies bietet dem Entwickler erweiterte Möglichkeiten, wie zum Beispiel Modals, Loops, Variablen, Konstanten und Command-Wrapping.</p>
 <p>Wer das ausprobieren möchte oder Beispiele anschauen möchte, kann meinen online Editor <a href="http://www.stevertus.ga/mcscript/code">stevertus.ga/mcscript/code</a> besuchen und etwas herumspielen.</p>
@@ -31,6 +31,7 @@
 <li><a href="#syntax">Syntax</a>
 <ul>
 <li><a href="#groups">Command Grouping</a></li>
+<li><a href="#functions">Funktionen</a></li>
 <li><a href="#vars">Variablen</a></li>
 <li><a href="#boolean">Boolean Variablen</a></li>
 <li><a href="#consts">Konstanten</a></li>
@@ -44,6 +45,7 @@
 <li><a href="#foreach">forEach-Loops</a></li>
 <li><a href="#modals">Modals</a></li>
 <li><a href="#systemModals">System Modals</a></li>
+<li><a href="#debugging">Fehler und Debugging</a></li>
 </ul>
 </li>
 <li><a href="#ide">IDEs und Syntax Highlighting</a><br>
@@ -78,10 +80,11 @@ Nun kannst du die Kommandos benutzen:<br>
 <p>Dieser Command wandelt alle .mcscript Dateien in .mcfunction Format um. Was in den mcscript Dateien möglich ist, kannst du hier nachlesen.<br>
 In der Konsole werden alle generierten Dateien angezeigt oder ein Fehler ausgeworfen, falls etwas nicht korrekt war.</p>
 <p>Alternativ kannst mit <code>mcscript compile *filepath*</code> einen speziellen Pfad oder spezielle Datei angeben.<br>
+Mit der zusätzlichen <code>-fullErr</code> flag können ganze Fehler mit code Referenzen angezeigt werden.<br>
 <a id="cli-watch"></a></p>
 <h3 id="mcscript-watch">2.3 mcscript watch</h3>
 <p>Hiermit wird dein Code automatisch compiled, wenn du irgendwelche Änderungen machst (speicherst). So musst du nicht bei jeder Änderung den obigen Command eingeben.</p>
-<p>Auch hier kann ein Pfad angegeben werden.<br>
+<p>Auch hier kann ein Pfad angegeben und -fullErr verwendet werden.<br>
 <a id="cli-add"></a></p>
 <h3 id="mcscript-add-url-or-package">2.4 mcscript add [url or package]</h3>
 <p>Dieser Conmmand kann ein datapack zu deiner Welt hinzufügen.<br>
@@ -150,7 +153,7 @@ Zwei Leerzeilen können mit “##” erreicht werden.<br>
 <p><code>[subcommand]([argument]){ [wrapped actions] }</code></p>
 </blockquote>
 <p>“as, at, positioned,align,dimension,rotated,anchored” können zusammengefasst werden:</p>
-<pre><code>as('@a'){
+<pre><code>as(@a){
 	/commands 	=&gt; /execute positioned ~ ~ ~ run command
 }
 </code></pre>
@@ -161,19 +164,44 @@ Auch ist der eigende <code>asat()</code> möglich</p>
 }
 </code></pre>
 <p>"Gruppen können auch aufgelistet werden:</p>
-<pre><code>as('@p'), at('@s'), positioned('~ ~1 ~'){
+<pre><code>as(@p), at(@s), positioned('~ ~1 ~'){
 	/say command
 }
 ==&gt; /execute as @p at @s positioned ~ ~-1 ~ run say command
 
 // also with if
-as('@p'), at('@s'), positioned('~ ~1 ~'), if(entity @s[tag=mytag]){
+as(@p), at(@s), positioned('~ ~1 ~'), if(@s[tag=mytag]){
 	/say command
 }
 ==&gt; /execute as @p at @s positioned ~ ~-1 ~ if entity @s[tag=mytag] run say command
 </code></pre>
+<p><a id="functions"></a></p>
+<h3 id="funktionen">4.2 Funktionen</h3>
+<pre><code>[run] function "name|path" {
+   /commands
+}
+</code></pre>
+<blockquote>
+<p>run optional<br>
+ein Pfad sollte als String angegeben werden<br>
+ein nur aus Buchstaben bestehender name auch ohne “”</p>
+</blockquote>
+<p>Eine Funktion generiert eine weitere mcfunction mit den angegebenen Namen oder Pfad. Mit dem run keyword kann eine Funktion auch direkt ausgeführt werden.<br>
+Dies ist eine alternative zu einer wesentlich komplizierteren Variante mit <code>#file:</code>.<br>
+Bsp:</p>
+<pre><code>run function test {
+	/say function
+}
+/say not function
+=
+/function prj:test
+/say not function
+
+#file: ./test
+/say function
+</code></pre>
 <p><a id="vars"></a></p>
-<h3 id="variablen">4.2 Variablen</h3>
+<h3 id="variablen">4.3 Variablen</h3>
 <p>Wie jede Programmiersprache hat auch Minecraft Script Variablen. Sie müssen wiefolgt initialisiert werden:<br>
 <code>var test</code><br>
 Der Variablen kann ein Wert hinzugewiesen werden:</p>
@@ -223,7 +251,7 @@ test %= neu ==&gt; 0
 Beispiel mit /data get:<br>
 <code>var varResult = run: data get entity @s Pos[0]</code></p>
 <p><a id="boolean"></a></p>
-<h3 id="boolean-variablen-tags">4.3 Boolean Variablen (Tags)</h3>
+<h3 id="boolean-variablen-tags">4.4 Boolean Variablen (Tags)</h3>
 <blockquote>
 <p><code>bool [name] [selector](optional) = true|false</code></p>
 </blockquote>
@@ -237,7 +265,7 @@ Eine Boolean Variable kann später noch verändert werden:<br>
 }
 </code></pre>
 <p><a id="consts"></a></p>
-<h3 id="konstanten">4.4 Konstanten</h3>
+<h3 id="konstanten">4.5 Konstanten</h3>
 <p>Eine andere Art Variable ist die Konstante, so deklariert:</p>
 <blockquote>
 <p><code>const [name] = [value]</code></p>
@@ -261,7 +289,7 @@ Der Wert einer Konstante kann bei der Verwendung noch umgeändert werden. Hierzu
 <p>Auch kann hier ein <a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/RegExp">RegEx</a> eingefügt werden und auch auf diesen im Replacement zugegriffen werden:<br>
 <code>$(const).repl([/regex/],["$&amp;"])</code></p>
 <p><a id="if"></a></p>
-<h3 id="ifelse-statements">4.5 If/Else Statements</h3>
+<h3 id="ifelse-statements">4.6 If/Else Statements</h3>
 <p>If funktioniert ähnlich wie das Command Wrapping:</p>
 <pre><code>if('statement'){
 	/commands 	=&gt; /execute if statement run command
@@ -287,17 +315,17 @@ Der Wert einer Konstante kann bei der Verwendung noch umgeändert werden. Hierzu
     }
 </code></pre>
 <p>Hier darauf achten das Argument nicht zu verändern!</p>
-<pre><code>    if('entity @s[tag=test]'){
+<pre><code>    if(@s[tag=test]){
     	/tag @s remove test
     	} else {
     	/tag @s remove test
     }
 </code></pre>
 <p>Hier werden beide ausgeführt!! Verbessert:</p>
-<pre><code>    if('entity @s[tag=test]'){
+<pre><code>    if(@s[tag=test]){
     	/tag @s add testIf
     }
-    if('entity @s[tag=testIf]'){
+    if(@s[tag=testIf]){
     	/tag @s remove test
     	} else {
     	/tag @s remove test
@@ -313,7 +341,7 @@ Der Wert einer Konstante kann bei der Verwendung noch umgeändert werden. Hierzu
     }
 </code></pre>
 <p><a id="operators"></a></p>
-<h3 id="logische-operatoren">4.6 Logische Operatoren</h3>
+<h3 id="logische-operatoren">4.7 Logische Operatoren</h3>
 <p>In Kombination mit Command Gruppen und If-Else-Statements können zusätzlich logische Operatoren benutzt werden:</p>
 <ul>
 <li>Der Oder-Operator kann bei den Gruppierungen auf zwei Arten benutzt werden:</li>
@@ -371,7 +399,7 @@ if(test @s &gt; test2 @a){
 }
 </code></pre>
 <p><a id="switch"></a></p>
-<h3 id="switch-cases">4.7 Switch-Cases</h3>
+<h3 id="switch-cases">4.8 Switch-Cases</h3>
 <pre><code>switch([var_name]){
     case &lt;=|&lt;|==|&gt;|&gt;= [other_var]|[number] {
         [actions]
@@ -406,7 +434,7 @@ switch(test){
 }
 </code></pre>
 <p><a id="for"></a></p>
-<h3 id="for-loops">4.8 For-Loops</h3>
+<h3 id="for-loops">4.9 For-Loops</h3>
 <pre><code>for([from],[to],[var_name](optional)){
     [actions]
 }
@@ -439,7 +467,7 @@ switch(test){
 }
 </code></pre>
 <p><a id="raycast"></a></p>
-<h3 id="raycasting">4.9 Raycasting</h3>
+<h3 id="raycasting">4.10 Raycasting</h3>
 <pre><code>raycast([distance](optional), [block to travel through](optional),entity | block [target](optional) ){
     [actions on hitted block or entity]
 },{
@@ -490,7 +518,7 @@ Auch kann man die durchlässigen Blöcke negieren und mit einem “!” angeben,
 <p>Mcscript weiß nun, dass das Ziel eine Entity ist und führt den Command als diese aus, wenn sie getroffen wurde.<br>
 Also würde der Armor Stand test sagen.<br>
 <a id="while"></a></p>
-<h3 id="while-loops">4.10 while-Loops</h3>
+<h3 id="while-loops">4.11 while-Loops</h3>
 <p>Der while-Loop ist so zu definieren:</p>
 <pre><code>while([cond]){
     /commands
@@ -524,7 +552,7 @@ while(test &lt; 10){
 }
 </code></pre>
 <p><a id="dowhile"></a></p>
-<h3 id="do-while-loops">4.11 do-while-Loops</h3>
+<h3 id="do-while-loops">4.12 do-while-Loops</h3>
 <pre><code>do {
     /commands
 } while([cond])
@@ -532,7 +560,7 @@ while(test &lt; 10){
 <p>Der do-while-Loop funktioniert ähnlich, wie der while-Loop mit dem kleinen Unterschied, dass der Codeblock ausgeführt wird und danach erst die Bedingung geprüft wird.<br>
 Der Loop wird also mindestens einmal durchlaufen.<br>
 <a id="foreach"></a></p>
-<h3 id="foreach-loop">4.12 forEach-Loop</h3>
+<h3 id="foreach-loop">4.13 forEach-Loop</h3>
 <pre><code>forEach(var [var_name] = [startwert]; [var_name] ==|&gt;|&lt;|&lt;=|&gt;=|!= [other_var]|[number]; [varname]++){
     /commands
 }
@@ -553,7 +581,7 @@ forEach(var i = 2; i &lt;= 10; i++){
 ==&gt; result = 1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10
 </code></pre>
 <p><a id="modals"></a></p>
-<h3 id="modals">4.13 Modals</h3>
+<h3 id="modals">4.14 Modals</h3>
 <blockquote>
 <pre><code>modal [name]([arguments]){
    [actions]
@@ -616,14 +644,32 @@ Der Wert eines Arguments kann bei der Verwendung noch umgeändert werden. Hierzu
 <p>Auch kann hier ein <a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/RegExp">RegEx</a> eingefügt werden und auch auf diesen im Replacement mit <code>$&amp;</code> zugegriffen werden:<br>
 <code>$(argument).repl([/regex/],["$&amp;"])</code></p>
 <p><a id="systemModals"></a></p>
-<h3 id="system-modals">4.14 System Modals</h3>
+<h3 id="system-modals">4.15 System Modals</h3>
 <p>Es gibt schon einige vordefinierte Modals, die hilfreich sein könnten. Bitte schaue dir dafür die spezifischen Dokumentationen <a href="https://github.com/Stevertus/mcscript/blob/master/Core%20Modals.md">hier</a> an.</p>
 <p>Du hast Ideen, welche Modals unbedingt als Standart-Modal aufgegriffen werden müssen? Sende mir einfach die <a href="#24_Dev_mcscript_modals_54">Konfigurationsdatei</a> zur Überprüfung.<br>
-<a id="ide"></a></p>
+<a id="debugging"></a></p>
+<h3 id="error-handling-und-debugging">4.16 Error handling und Debugging</h3>
+<p>Minecraft Script zeigt mit der Version 0.2 nur noch begrenzt Fehler an mit der Zeilen- und Dateiangabe.<br>
+Benutze beim generieren bitte die Flag <code>-fullErr</code>, um vollständige alte Fehler wiederzuerlangen, falls du sie wünscht.</p>
+<p>Falls du Fehlerangaben findest, die im Kontext keinen Sinn machen, wende dich bitte an das Team.</p>
+<p><strong>Debug keyword</strong><br>
+Mit “Debug” kannst du deinen Code debuggen und auch mögliche Fehler in Minecraft Script viel leichter entdecken. Sie können irgendwo im Code platziert werden und beeinflussen den generierten Code nicht.*</p>
+<ul>
+<li><code>debug message: [message]</code><br>
+Sendet eine einfache Nachricht in die Konsole mit Zeilen- und Dateiangaben.</li>
+<li><code>debug success: [message]</code><br>
+Sendet eine erfolgreiche Nachricht mit grüner Kennzeichnung in die Konsole mit Zeilen- und Dateiangaben.</li>
+<li><code>debug break: [message]</code><br>
+Dein Programm bricht an dieser Stelle ab und sendet erneut eine Nachricht.</li>
+<li><code>debug error: [message]</code><br>
+Dein Programm bricht an dieser Stelle ab und gibt einen kritischen Fehler mit Systeminformationen und relevanten Codestellen aus.</li>
+</ul>
+<p><a id="ide"></a></p>
 <h2 id="ides-und-syntax-highlighting">IDEs und Syntax Highlighting</h2>
 <ul>
 <li>GitHubs Atom Editor: link here (credit: <a href="https://atom.io/users/MrYurihi">MrYurihi</a>)</li>
 <li>Notepad++: <a href="https://github.com/Stevertus/mcscript/blob/master/Nodepad%2B%2B%20Highlighter.xml">see code</a> | <a href="http://download1496.mediafire.com/x2k7loq5imbg/4534q4tual7zccm/Nodepad+++Highlighter.xml">download</a></li>
 </ul>
 <h2 id="jetzt-bleibt-nichts-mehr-übrig-als-happy-developing">Jetzt bleibt nichts mehr übrig als: <strong>Happy Developing</strong></h2>
-<p>Vielen Dank an alle die Minecraft Script benutzen und diese Dokumentation gelesen haben. Bei Vorschlägen, Problemen oder Fehlern bitte mich kontaktieren.</p>
+<p>Vielen Dank an alle die Minecraft Script benutzen und diese Dokumentation gelesen haben. Bei Vorschlägen, Problemen oder Fehlern bitte mich kontaktieren.<br>
+Ich freue mich euch ebenfalls euch auf meinem Discord begrüßen zu dürfen und Vorschläge und Kritik zu hören.</p>
