@@ -2,7 +2,7 @@
 
 #do something as everybody
 as(@a) {
-  /say i'm also existing
+  /say i''m also existing
 }
 
 #do something at everybody
@@ -10,7 +10,7 @@ at(@a) {
   /summon lightning_bolt ~ ~ ~
 }
 
-#do sonthing as and at everybody
+#do something as and at every player
 asat(@a) {
   /summon lightning_bolt ~ ~ ~
   /say A lightning_bolt hit me

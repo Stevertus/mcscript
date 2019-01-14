@@ -2,7 +2,14 @@
 Minecraft Script Changes
 ==============================
 > Update your Version by running: `npm install -g mcscript@`
-
+### v0.2.1
+* added: new JavaScript Modal [here](https://github.com/Stevertus/mcscript#modaljs) by cblech.
+* added: Map const type
+* added: Array const type
+* new structured documentation at [stevertus.com/mcscript/documentation](https://stevertus.com/mcscript/documentation)
+* refactored the code
+* fixed: extend bugs. I am very sorry that this took so long :(
+* fixed: forEach operation
 ### v0.2
 This is the first full release version of Minecraft Script! The language has all the necessary features now. I am open for new suggestions nevertheless.
 * added: a brand new error handling system. If you find some nonsense errors please report an issue and I will fix it.
@@ -12,7 +19,7 @@ This is the first full release version of Minecraft Script! The language has all
 * changed: if an execute command is generated after an execute command they will be combined now.
 * changed: if an error accures in a file you will be notified and the other files generate nevertheless.
 * fixed: an load.mcfunction issue that it generates random stuff sometimes
-* fixed: modal calls inside modals should work again (thaks to coolsa)
+* fixed: modal calls inside modals should work again (thanks to coolsa)
 * fixed: the watch mode crashes no longer if an error accures
 * fixed: if a #file tag was added after commands the compiler used to create a file with the name of the first command
 ### v0.1.5

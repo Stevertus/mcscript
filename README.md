@@ -1,15 +1,16 @@
 
 
 
+
 ![](https://i.imgur.com/YedWe7W.png)
 
 Minecraft Script Documentation
 ==============================
-> Update 0.2: [All Changes](https://github.com/Stevertus/mcscript/releases)
+> Update 0.2.1: [All Changes](https://github.com/Stevertus/mcscript/releases)
 
 Minecraft Script is a programming language for developers of mcfunctions, Minecraft maps and packages. The .mcscript files are therefore compiled and generated to the function format. This enables the developer extended possibilities, such as Modals, Loops, Varibles, Constants and Command-Wrapping.
 
-Everyone who wants to try, can visit my online Editor [stevertus.ga/mcscript/code](http://www.stevertus.ga/mcscript/code) and can play with its functionality.
+Everyone who wants to try, can visit my online Editor [stevertus.com/mcscript/code](http://www.stevertus.com/mcscript/code) and can play with its functionality.
 
 German documentation [here](https://github.com/Stevertus/mcscript/blob/master/README-DE.md)
 ## Table of Contents
@@ -40,6 +41,7 @@ German documentation [here](https://github.com/Stevertus/mcscript/blob/master/RE
     - [do-while loops](#dowhile)
     - [forEach loops](#foreach)
     - [Modals](#modals)
+    - [JavaScript Modals](#modaljs)
     - [System Modals](#systemModals)
     - [Error handling and debugging](#debugging)
 5) [IDEs and Syntax Highlighting](#ide)
@@ -160,6 +162,13 @@ Comments are announced with "//", if comments should also appear in the new file
 Blank lines and skipping lines are ignored.  
 If a blank line is desired in the mcfunction, express this with a '#' without a comment.  
 Two blank lines are reached with "##".
+
+A comment across multiple lines can be expressed with:
+```
+/*
+ comment
+*/
+```
 <a id="groups"></a>
 ### 4.1 Command Grouping / Wrapping
 > ```[subcommand]([argument]){  [wrapped actions]   }```
@@ -318,6 +327,43 @@ In our example, we want to replace `a`:
 ```
 Also a [RegEx](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/RegExp) can be inserted here and can be also accessed with '$&' in the replacement:
 `$(aString).repl([/regex/],["$&"])`
+<a id="maps"></a>
+#### Maps
+Maps are essentially key-value pairs kind of like a dictionary. We define it with the Map-operator:
+```js
+const testMap = Map{
+
+}
+```
+In the brackets you can define as many pairs as you like:
+```js
+const testMap = Map{
+	"key1":"value",
+	"key2":"value2"
+}
+```
+It then can be accessed with
+```js
+/say $(testMap).key1
+
+⇒ /say value
+```
+<a id="arrays"></a>
+#### Arrays
+Arrays are pretty similar to Maps, but use a list of values instead of pairs:
+```js
+const testArr = Array{
+	"value", // index 0
+	"value2" // index 1
+}
+```
+The values can be accessed by the index of the item starting with 0.
+```js
+/say $(testArr).0
+⇒ /say value
+/say $(testArr).1
+⇒ /say value2
+```
 <a id="if"></a>
 ### 4.6 If/Else Statements
 
@@ -684,6 +730,21 @@ There are optional and predefined arguments, too:
 
     say('test')
     # => say test
+**Using Maps and Arrays**
+You can also use the [Map](#maps) and [Array](#arrays) type of constants in modals:
+```js
+modal defaultMap(args = Map{"key":"value"}){
+    /say $(args).key
+}
+defaultMap()
+defaultMap(Map{
+    "key":"value2"
+})
+
+⇒ /say value
+⇒ /say value2
+```
+
 **Override Modals**
 Modals that have already been created can be overridden within the process:
 > ```
@@ -704,14 +765,98 @@ In our example, we want to replace an entered test:
 ```
 Also a [RegEx](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/RegExp) can be inserted here and can be also accessed with '$&' in the replacement:
 `$(argument).repl([/regex/],["$&"])`
+<a id="modaljs"></a>
+### 4.15 JavaScript Modals
+
+JavaScript Modals are modals, you can write in JavaScript. You can define them like other modals:
+
+> ```
+> modaljs [name]([arguments]){
+>     [actions]
+>     return [Text]
+> }
+> ```
+
+The JavaScript Modal must end with the return statement. The returned value will end up in the `.mcfunction` file as plain text.
+
+	modaljs newModal(){
+    	return "say hi";
+	}
+
+    newModal()
+
+	# => say hi
+
+For multi line output I recommend doing something like this:
+
+	modaljs newModal(){
+		var ret = "";
+
+		ret += "say hi\n";
+		ret += "say ho\n";
+
+    	return ret;
+    }
+
+	newModal()
+
+	# => say hi
+	# => say ho
+Note: You need to add line breaks manually with `\n`.
+
+A JavaScript modal is always introduced with the keyword followed by the name and the arguments in the brackets.
+
+The arguments are accessible inside with their names.
+
+    modaljs newModal(argument){
+    	return "say " + argument;
+    }
+
+    newModal('test')
+
+    # => say test	 					
+
+You are also able to use multiple arguments.
+
+	modaljs newModal(text,monster){
+		var ret = "";
+
+		ret += "say " + text + "\n";
+		ret += "summon " + monster + "\n";
+
+    	return ret;
+    }
+
+	newModal("Brains!!!","minecraft:zombie")
+
+	# => say Brains!!!
+	# => summon minecraft:zombie
+
+There are optional and predefined arguments, too:
+
+    modaljs say(argument = "hallo"){
+    	return "say " + argument ;
+    }
+
+    say()
+    # => say hallo
+
+    say('test')
+    # => say test
+
+**Tips and tricks**
+
+Use `console.log()` to output some information to the console while compiling without effecting the return value.
+
+
 <a id="systemModals"></a>
-### 4.15 System Modals
+### 4.16 System Modals
 
 There are already some helpful predefined modals. Please read the specific documentation [here](https://github.com/Stevertus/mcscript/blob/master/Core%20Modals.md).
 
 You have ideas which modals should be a standart? Send me your [configuration file](#ownmodal) to check.
 <a id="debugging"></a>
-### 4.16 Error handling and Debugging
+### 4.17 Error handling and Debugging
 Minecraft Script shows since the version 0.2 only limeted errors with line and file displayed.
 Please use the flag `-fullErr` at generation to get the old full errors back, if you want so.
 
@@ -730,12 +875,18 @@ Your program breakes at this point and sends the message obove .
 Your program breakes at this point and sends a critical error with system information and relevant code positions.
 
 <a id="ide"></a>
-##  IDEs and Syntax Highlighting
 
-> Not available yet
+  ##  IDEs and Syntax Highlighting
 
-*   GitHubs Atom Editor: link here (credit: [MrYurihi](https://atom.io/users/MrYurihi))
-*   Notepad++: [see code](https://github.com/Stevertus/mcscript/blob/master/Nodepad%2B%2B%20Highlighter.xml) | [download](http://download1496.mediafire.com/x2k7loq5imbg/4534q4tual7zccm/Nodepad+++Highlighter.xml)
+  *   Visual Studio Code:
+  [Stevertus.mcscript](https://marketplace.visualstudio.com/items?itemName=Stevertus.mcscript)
+
+  *   GitHubs Atom Editor:
+  [mcscript](https://atom.io/packages/mcscript) (credit: [Trojaner](https://github.com/TrojanerHD))
+
+  *   Notepad++:
+  [code](https://github.com/Stevertus/mcscript/blob/master/Nodepad%2B%2B%20Highlighter.xml) | [download](http://download1496.mediafire.com/x2k7loq5imbg/4534q4tual7zccm/Nodepad+++Highlighter.xml)
+
 
 Now there´s nothing left than: **Happy Developing**
 ---------------------------------------------------

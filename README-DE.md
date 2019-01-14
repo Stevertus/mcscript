@@ -2,10 +2,11 @@
 
 
 
+
 ![](https://i.imgur.com/YedWe7W.png)
 
 # Minecraft Script Dokumentation
-> Update 0.2: [Alle Änderungen](https://github.com/Stevertus/mcscript/releases)
+> Update 0.2.1: [Alle Änderungen](https://github.com/Stevertus/mcscript/releases)
 
 Minecraft Script ist eine Programmiersprache für Entwickler der mcfunctions, sowie für die Minecraft Map und Package Erschaffer. Die .mcscript Dateien werden dabei zu mcfunction compiled und generiert. Dies bietet dem Entwickler erweiterte Möglichkeiten, wie zum Beispiel Modals, Loops, Variablen, Konstanten und Command-Wrapping.
 
@@ -39,6 +40,7 @@ English documentation [here](https://github.com/Stevertus/mcscript/blob/master/R
     - [do-while-Loops](#dowhile)
     - [forEach-Loops](#foreach)
     - [Modals](#modals)
+    - [JavaScript Modals](#modaljs)
     - [System Modals](#systemModals)
     - [Fehler und Debugging](#debugging)
 5) [IDEs und Syntax Highlighting](#ide)
@@ -321,7 +323,43 @@ Bei unserem Beispiel wollen wir das viel replacen:
 ```
 Auch kann hier ein [RegEx](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/RegExp) eingefügt werden und auch auf diesen im Replacement zugegriffen werden:
 `$(const).repl([/regex/],["$&"])`
+<a id="maps"></a>
+#### Maps
+Maps sind schlüssel-wert Paare ähnlich wie bei einem Wörterbuch. Wir definieren eine Map mit dem Map-Operator:
+```js
+const testMap = Map{
 
+}
+```
+In den Klammern kannst du so viele Paare angeben, wie du magst:
+```js
+const testMap = Map{
+	"key1":"value",
+	"key2":"value2"
+}
+```
+Wir können dann auf die Werte so zugreifen:
+```js
+/say $(testMap).key1
+
+⇒ /say value
+```
+<a id="arrays"></a>
+#### Arrays
+Arrays sind ziemlich ähnlich zu Maps, nur dass wir nicht Paare sondern eine einfache Liste an Werten haben.
+```js
+const testArr = Array{
+	"value", // index 0
+	"value2" // index 1
+}
+```
+Die Werte können mit dem Index des Elements abgerufen werden:
+```js
+/say $(testArr).0
+⇒ /say value
+/say $(testArr).1
+⇒ /say value2
+```
 <a id="if"></a>
 ### 4.6 If/Else Statements
 
@@ -704,6 +742,23 @@ Auch sind optionale und vordefinierte Argumente verfügbar:
 
     say('test')
     # => say test				
+
+**Maps und Arrays benutzen**
+Du kannst auch die [Map](#maps) und[Array](#arrays) typen der Konstanten in Modals benutzen:
+```js
+modal defaultMap(args = Map{"key":"value"}){
+    /say $(args).key
+}
+defaultMap()
+defaultMap(Map{
+    "key":"value2"
+})
+
+⇒ /say value
+⇒ /say value2
+```
+
+
 **Modals überschreiben**
 Bereits erstellte modals können innerhalb des Prozesses überschrieben werden:
 > ```
@@ -724,15 +779,94 @@ Bei unserem Beispiel wollen wir ein eingegebenes test replacen:
 ```
 Auch kann hier ein [RegEx](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/RegExp) eingefügt werden und auch auf diesen im Replacement mit `$&` zugegriffen werden:
 `$(argument).repl([/regex/],["$&"])`
+<a id="modaljs"></a>
+### 4.15 JavaScript Modals
+JavaScript Modals sind modals, die in Javascript geschrieben sind. Du kannst sie, wie andere modals auch, so definieren:
 
+> ```
+> modaljs [name]([argumente]){
+>     [aktionen]
+>     return [Text]
+> }
+> ```
+>
+Das JavaScript Modal muss mit einem return statement enden. Das, was zurückgegeben wurde, wird in der `.mcfunction` Datei als einfacher Text erscheinen.
+
+	modaljs newModal(){
+    	return "say hi";
+	}
+
+    newModal()
+
+	# => say hi
+Für Absätze empfehle ich etwas ähnliches zu dem:
+
+	modaljs newModal(){
+		var ret = "";
+
+		ret += "say hi\n";
+		ret += "say ho\n";
+
+    	return ret;
+    }
+
+	newModal()
+
+	# => say hi
+	# => say ho
+Achtung: Du musst Absätze manuell mit `\n` hinzufügen.
+
+Ein JavaScript modal ist immer deklariert durch das Keyword gefolgt vom Name und den Argumenten in den Klammern.
+
+Die Argumente sind aufrufbar in dem Code.
+
+    modaljs newModal(argument){
+    	return "say " + argument;
+    }
+
+    newModal('test')
+
+    # => say test	 					
+
+Du kannst auch mehrere Argumente verwenden:
+
+	modaljs newModal(text,monster){
+		var ret = "";
+
+		ret += "say " + text + "\n";
+		ret += "summon " + monster + "\n";
+
+    	return ret;
+    }
+
+	newModal("Gehirne!!!","minecraft:zombie")
+
+	# => say Gehirne!!!
+	# => summon minecraft:zombie
+
+Es gibt ebenfalls optionale Argumente:
+
+    modaljs say(argument = "hallo"){
+    	return "say " + argument ;
+    }
+
+    say()
+    # => say hallo
+
+    say('test')
+    # => say test
+
+**Tipps und Tricks**
+
+Benutze `console.log`, um einige Informationen in der Konsole, während des Kompelieren, auszugeben, ohne den Wert zu verändern.
 <a id="systemModals"></a>
-### 4.15 System Modals
+### 4.16 System Modals
 
 Es gibt schon einige vordefinierte Modals, die hilfreich sein könnten. Bitte schaue dir dafür die spezifischen Dokumentationen [hier](https://github.com/Stevertus/mcscript/blob/master/Core%20Modals.md) an.
 
 Du hast Ideen, welche Modals unbedingt als Standart-Modal aufgegriffen werden müssen? Sende mir einfach die [Konfigurationsdatei](#24_Dev_mcscript_modals_54) zur Überprüfung.
 <a id="debugging"></a>
-### 4.16 Error handling und Debugging
+### 4.17 Error handling und Debugging
 Minecraft Script zeigt mit der Version 0.2 nur noch begrenzt Fehler an mit der Zeilen- und Dateiangabe.
 Benutze beim generieren bitte die Flag `-fullErr`, um vollständige alte Fehler wiederzuerlangen, falls du sie wünscht.
 
@@ -750,11 +884,17 @@ Dein Programm bricht an dieser Stelle ab und sendet erneut eine Nachricht.
 Dein Programm bricht an dieser Stelle ab und gibt einen kritischen Fehler mit Systeminformationen und relevanten Codestellen aus.
 
 <a id="ide"></a>
-##  IDEs und Syntax Highlighting
 
+## IDEs and Syntax Highlighting
 
-*   GitHubs Atom Editor: link here (credit: [MrYurihi](https://atom.io/users/MrYurihi))
-*   Notepad++: [see code](https://github.com/Stevertus/mcscript/blob/master/Nodepad%2B%2B%20Highlighter.xml) | [download](http://download1496.mediafire.com/x2k7loq5imbg/4534q4tual7zccm/Nodepad+++Highlighter.xml)
+  *   Visual Studio Code:
+  [Stevertus.mcscript](https://marketplace.visualstudio.com/items?itemName=Stevertus.mcscript)
+
+  *   GitHubs Atom Editor:
+  [mcscript](https://atom.io/packages/mcscript) (credit: [Trojaner](https://github.com/TrojanerHD))
+
+  *   Notepad++:
+  [code](https://github.com/Stevertus/mcscript/blob/master/Nodepad%2B%2B%20Highlighter.xml) | [download](http://download1496.mediafire.com/x2k7loq5imbg/4534q4tual7zccm/Nodepad+++Highlighter.xml)
 
 Jetzt bleibt nichts mehr übrig als: **Happy Developing**
 --------------------------------------------------------
