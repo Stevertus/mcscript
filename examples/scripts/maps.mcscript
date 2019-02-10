@@ -1,0 +1,23 @@
+const map = Map{
+    "key":"value",
+    "key2":"value2"
+}
+/say $(map).key
+
+/say $(map).key2.replace("value","no value")
+
+// with modal
+modal testMap(args){
+    /say $(args).key
+}
+// calling it with Inline Map
+testMap(Map{"key":"value"})
+
+// with defaults
+modal defaultMap(args = Map{"key":"value"}){
+    /say $(args).key
+}
+defaultMap()
+defaultMap(Map{
+    "key":"value2"
+})

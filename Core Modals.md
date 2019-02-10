@@ -7,9 +7,24 @@
 
 ` this | or that`
 ### console
-> `log( - text <string | number> - , [entity] )`
-### ToDo
-Logges into a console for the Minecraft Chat
+> `log( - text <string | number> - , [target entity] )`
+
+Logs a message into the Minecraft Chat.
+
+### log variable
+> `log.var( - objective <string> - , [entityname], [target entity] )`
+
+Logs a variable into the Minecraft Chat.
+
+### newStand
+> `newStand( [name] , [position], [tags], [marker], [invisible], [noGravity] )`
+
+Summons a new armor_stand with opional parameters.
+
+### play
+> `play(- sound_name - <String>, [target entiy] [type] )`
+
+Plays a sound
 ## Minecraft Cam Modals
 These are integrated Modals from my Camera Datapack for Mapmaking.
 Install it [here](https://github.com/Stevertus/McCam).

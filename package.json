@@ -1,17 +1,19 @@
 {
   "name": "mcscript",
-  "version": "0.2.1-beta.0",
+  "version": "0.2.2",
   "description": "Minecraft Script to mcfunction compiler cli",
-  "homepage":"http://stevertus.com/mcscript",
+  "homepage": "http://stevertus.com/mcscript",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Stevertus",
-  "repository" :
-  { "type" : "git",
-    "url" : "https://github.com/Stevertus/mcscript.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Stevertus/mcscript.git"
   },
-  "bugs": {"url":"https://github.com/Stevertus/mcscript/issues"},
+  "bugs": {
+    "url": "https://github.com/Stevertus/mcscript/issues"
+  },
   "license": "ISC",
   "bin": {
     "mcscript": "bin/test-module.js",

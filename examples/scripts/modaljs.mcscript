@@ -1,0 +1,19 @@
+#file: ./jsmodal
+// here goes your main content
+// executes 20 times a second
+
+modaljs newModal(argument,monster){
+  var ret ="";
+  ret+= "say "+argument+"\n";
+  ret+= "summon "+monster+"\n";
+
+  return ret;
+};
+
+modal Modal1337(argument,monster){
+	/say $(argument)
+  /summon $(monster)
+}
+
+newModal("Hello World!","minecraft:zombie")
+Modal1337("Hello World!","minecraft:zombie")

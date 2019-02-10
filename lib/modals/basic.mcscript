@@ -1,0 +1,14 @@
+modal log (msg, sel = "@a"){
+  /tellraw $(sel) [{"text":"console => ","color":"aqua"},{"text":"$(text)","color":"white"}]
+}
+
+modaljs log.var(scoreboard,name = "",sel = "@a"){
+  //console.log(name)
+  if(name){
+    return 'tellraw '+sel+' [{"text":"console => ","color":"aqua"},{"score":{"name":"'+name+'","objective": "'+scoreboard+'"},"color":"white"}]'
+  } else {
+    return 'tellraw '+sel+' [{"text":"console => ","color":"aqua"},{"score":{"name":"'+scoreboard+'","objective": "'+scoreboard+'"},"color":"white"}]'
+  }
+}
+
+log.var("hello","he")

@@ -1,0 +1,23 @@
+const arr = Array{
+    "value",
+    "value2"
+}
+/say $(arr).0
+
+/say $(arr).1.replace("value","no value")
+
+// with modal
+modal testMap(args){
+    /say $(args).0
+}
+# calling it with Inline Array
+testMap(Array{"value"})
+
+# with defaults
+modal defaultMap(args = Array{"value"}){
+    /say $(args).0
+}
+defaultMap()
+defaultMap(Array{
+    "value2"
+})

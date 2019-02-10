@@ -2,11 +2,12 @@ node_modules
 package-lock.json
 lib/modals/cam.mcscript
 examples - Kopie
-examples
+examples/function
+#examples
 mcscript.tmlanguage.json
 Nodepad++ Highlighter.xml
-_changelog.md
-Core Modals.md
+#_changelog.md
+#Core Modals.md
 *.html
-README-DE.md
+#README-DE.md
 .bat

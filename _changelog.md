@@ -1,7 +1,10 @@
 
 Minecraft Script Changes
 ==============================
-> Update your Version by running: `npm install -g mcscript@`
+> Update your Version by running: `npm install -g mcscript@latest`
+### v0.2.2
+* added: log.var core modal and documentation
+* fixed: watch did not reset variables, modals and booleans on recompile
 ### v0.2.1
 * added: new JavaScript Modal [here](https://github.com/Stevertus/mcscript#modaljs) by cblech.
 * added: Map const type
