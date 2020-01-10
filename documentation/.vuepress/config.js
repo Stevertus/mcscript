@@ -25,8 +25,45 @@ module.exports = {
             { text: 'File System', link: '/files/' },
             { text: 'Syntax', link: '/syntax/' },
             { text: 'IDEs', link: '/ides/' },
-            
+
         ],
+
+        locales: {
+            '/': {
+                selectText: 'Languages',
+                label: 'English',
+                lastUpdated: 'Last Updated',
+                serviceWorker: {
+                    updatePopup: {
+                        message: "New content is available.",
+                        buttonText: "Refresh"
+                    }
+                },
+            },
+            '/de/': {
+                selectText: 'Sprachen',
+                label: 'Deutsch',
+                lastUpdated: 'Zuletzt geändert',
+                serviceWorker: {
+                    updatePopup: {
+                        message: "Neuer Inhalt ist verfügbar.",
+                        buttonText: "Refresh"
+                    }
+                },
+            }
+        }
+    },
+    locales: {
+        '/': {
+            lang: 'en-US',
+            title: 'mcscript',
+            description: 'mcscript is a programming language for Minecraft.'
+        },
+        '/de/': {
+            lang: 'de-DE',
+            title: 'mcscript',
+            description: 'mcscript ist eine Programmiersprache für Minecraft'
+        }
     },
     plugins: [
         '@vuepress/last-updated', ['@vuepress/pwa', {

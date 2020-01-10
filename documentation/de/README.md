@@ -2,16 +2,16 @@
 home: true
 heroImage: /logo.png
 title: mcscript
-actionText: Get Started →
+actionText: Lege los →
 actionLink: /guide/
-footer: MIT Licensed | Copyright © 2020 Stevertus
+footer: MIT Lizensiert | Copyright © 2020 Stevertus
 ---
 
 <div class="features">
   <a class="feature" href="/guide">
   <img src="/rocket_icon.svg" style="width:80px;margin-left:calc(50% - 40px);" />
   <h2>Quickstart</h2>
-  <p>Are you ready?</p>
+  <p>Bist du bereit?</p>
 </a>
   <!-- <a class="feature" href="https://stevertus.com/mcscript/code">
   <img src="/code_icon.svg" style="width:80px;margin-left:calc(50% - 40px);" />
@@ -21,29 +21,29 @@ footer: MIT Licensed | Copyright © 2020 Stevertus
   <a class="feature" href="https://github.com/Stevertus/mcscript">
   <img src="/gitHub_icon.svg" style="width:80px;margin-left:calc(50% - 40px);" />
   <h2>GitHub</h2>
-  <p>Everything is open-source</p>
+  <p>Alles ist Open-Source</p>
 </a>
   <a class="feature" href="/syntax">
   <img src="/documentation_icon.svg" style="width:80px;margin-left:calc(50% - 40px);" />
-  <h2>Documentation</h2>
-  <p>Everything well documentated</p>
+  <h2>Dokumentation</h2>
+  <p>Alles sorgfältig dokumentiert</p>
 </a>
 </div>
 </div>
 
-## A programming language for datapacks!
-Use a programming language built ontop of Minecrafts functions to add new expressions, generators and simplify development.
+## Eine Programmiersprache für Datapacks!
+Benutze eine Programmiersprache, die als Erweiterung der Minecraft Functions daher kommt, um neue Ausdrücke, Generatoren zu benutzen und die Entwicklungs von deinen Packs zu vereinfachen.
 
-# Get Started!
+# Starte heute!
 
-Start programming with mcscript today with the help of my video course:
+Fange heute an mcscript zu lernen mit meinem Videokurs:
 
 <iframe width="560" height="315" style="margin: 0 calc(50% - 280px)" src="https://www.youtube-nocookie.com/embed/ShXr2-OD3lw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ----
 
-### Variables
-Variables can store numbers, output these and perform operations. Minecraft Script now brings them to Minecraft Vanilla.
+### Variablen
+Variablen können Zahlen speichern, ausgeben und es können Rechenoperationen durchgeführt werden. Minecraft Script bringt diese nun auch zu Minecraft Vanilla.
 ```js
 var var1
 var var2 = 5
@@ -54,8 +54,8 @@ var2 += 5
 
 var1 += var2
 ```
-### Loops
-Have you ever had something that repeats itself over and over again? This is called a loop and is now also available in Minecraft!
+### Schleifen
+Hattet ihr schonmal etwas, dass sich immer und immer wiederholt? Soetwas wird Loop genannt und ist jetzt auch in Minecraft verfügbar!
 ```js
 for(1,5){
   log($(i))
@@ -65,8 +65,8 @@ while('entity @s[tag=loop]'){
 }
 ```
 
-### Conditions And If-Statements
-Simply summarize If conditions and name multiple conditions. Everything is controlled by mcscript!
+### Bedingungen und If-Abfragen
+Fasse If-Bedingungen ganz einfach zusammen und nenne mehrfache Bedingungen. Es wird alles von MC Script geregelt!
 ```js
 if("entity @s"){
   /say entity found
@@ -80,8 +80,8 @@ if("entity @s"){
 }
 ```
 
-### Clever File Handling
-Generate unlimited new files, merge files or use everything together in a loop. There are no limits in creativity except the space of your computer.
+### Cleveres Datei Management
+Generiere unbegrenzte neue Dateien, füge Dateien zusammen oder verwende alles zusammen im Loop. Der Kreatität sind keine Grenzen gesetzt, außer der Speicherplatz deines Computers.
 
 ```
 #file: file1
@@ -93,19 +93,19 @@ Generate unlimited new files, merge files or use everything together in a loop. 
 
 ## Installation
 
-The installation requires the Node.js environment and the Node Package Manager.
+Für die Installation wird die Node.js Umgebung und der Node Package Manager benötigt.
 
-This is achieved the best way by using the installer: nodejs.org/en/download/
+Diese installiert man am besten über den Installer: nodejs.org/en/download/
 
-Install the mcscript-cli with: 
+Installiere die CLI mit: 
 ```bash
 npm install -g mcscript
 ```
 
-If a successful answer apears you have done everything right and can start.
+Bei einer erfolgreichen Antwort hast du alles richtig gemacht und kannst durchstarten.
 
 
-## Get Connected With the Community and get Updates
+## Trete in Kontakt mit der Community und bekomme Updates
 
 
 <iframe style="margin: 0 calc(50% - 280px)" src="https://discordapp.com/widget?id=152120147782533120&theme=light" width="560" height="700" allowtransparency="true" frameborder="0"></iframe>
