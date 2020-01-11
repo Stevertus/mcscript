@@ -30,7 +30,7 @@ module.exports = {
 
         locales: {
             '/': {
-                selectText: 'Languages',
+                selectText: 'English',
                 label: 'English',
                 lastUpdated: 'Last Updated',
                 serviceWorker: {
@@ -41,7 +41,7 @@ module.exports = {
                 },
             },
             '/de/': {
-                selectText: 'Sprachen',
+                selectText: 'Deutsch',
                 label: 'Deutsch',
                 lastUpdated: 'Zuletzt geändert',
                 serviceWorker: {

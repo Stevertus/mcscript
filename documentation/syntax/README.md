@@ -5,7 +5,7 @@ prev: /files/
 next: /ides/
 ---
 
-#  3) Minecraft Script Syntax
+#  4) Minecraft Script Syntax
 
 
 The code is written in files with the extension .mcscript. It is recommended to manage the files and to highlight the syntax in a code editor (IDE). explore more [here](#ide).  

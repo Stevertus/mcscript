@@ -3,12 +3,12 @@ home: true
 heroImage: /logo.png
 title: mcscript
 actionText: Lege los →
-actionLink: /guide/
+actionLink: /de/guide/
 footer: MIT Lizensiert | Copyright © 2020 Stevertus
 ---
 
 <div class="features">
-  <a class="feature" href="/guide">
+  <a class="feature" href="/de/guide">
   <img src="/rocket_icon.svg" style="width:80px;margin-left:calc(50% - 40px);" />
   <h2>Quickstart</h2>
   <p>Bist du bereit?</p>
@@ -23,7 +23,7 @@ footer: MIT Lizensiert | Copyright © 2020 Stevertus
   <h2>GitHub</h2>
   <p>Alles ist Open-Source</p>
 </a>
-  <a class="feature" href="/syntax">
+  <a class="feature" href="/de/syntax">
   <img src="/documentation_icon.svg" style="width:80px;margin-left:calc(50% - 40px);" />
   <h2>Dokumentation</h2>
   <p>Alles sorgfältig dokumentiert</p>
