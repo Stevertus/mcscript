@@ -2,7 +2,6 @@ module.exports = {
     title: 'mcscript',
     description: 'mcscript is a programming language for Minecraft.',
     head: [
-        ['base', { href: '/mcscript/' }],
         ['link', { rel: 'icon', href: '/logo.png' }],
         ['link', { rel: 'manifest', href: '/manifest.json' }],
         ['meta', { name: 'theme-color', content: '#86d286' }],
