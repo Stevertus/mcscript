@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="de-DE">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>4) Minecraft Script Syntax | mcscript</title>
+    <meta name="description" content="mcscript ist eine Programmiersprache für Minecraft">
+    <link rel="icon" href="/logo.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#86d286">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="/icons/icon-152x152.png">
+  <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#86d286">
+  <meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+  <meta name="msapplication-TileColor" content="#1069b4">
+  <script>var lyra=window.lyra||[];lyra.push(['lyra_Id', '5d74e4e574d14']);</script>
+  <script async="true" src="https://thelyra.pro/a/analytics.js"></script>
+    
+    <link rel="preload" href="/assets/css/0.styles.ab3291f4.css" as="style"><link rel="preload" href="/assets/js/app.bf23ee6d.js" as="script"><link rel="preload" href="/assets/js/2.47b2ef3a.js" as="script"><link rel="preload" href="/assets/js/12.21a03a1b.js" as="script"><link rel="prefetch" href="/assets/js/10.6b6bb21d.js"><link rel="prefetch" href="/assets/js/11.65f31930.js"><link rel="prefetch" href="/assets/js/13.ebd06678.js"><link rel="prefetch" href="/assets/js/14.793c2846.js"><link rel="prefetch" href="/assets/js/15.66230efd.js"><link rel="prefetch" href="/assets/js/16.c434ef8c.js"><link rel="prefetch" href="/assets/js/17.1ef558fd.js"><link rel="prefetch" href="/assets/js/3.545e7989.js"><link rel="prefetch" href="/assets/js/4.df2b3952.js"><link rel="prefetch" href="/assets/js/5.e39f71e0.js"><link rel="prefetch" href="/assets/js/6.e74a0e91.js"><link rel="prefetch" href="/assets/js/7.d6ade5f0.js"><link rel="prefetch" href="/assets/js/8.8c27f33b.js"><link rel="prefetch" href="/assets/js/9.139b5653.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.ab3291f4.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/de/" class="home-link router-link-active"><img src="/logo.png" alt="mcscript" class="logo"> <span class="site-name can-hide">mcscript</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/guide/" class="nav-link">Guide</a></div><div class="nav-item"><a href="/cli/" class="nav-link">CLI</a></div><div class="nav-item"><a href="/files/" class="nav-link">File System</a></div><div class="nav-item"><a href="/syntax/" class="nav-link">Syntax</a></div><div class="nav-item"><a href="/ides/" class="nav-link">IDEs</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">Deutsch</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/syntax/" class="nav-link">English</a></li><li class="dropdown-item"><!----> <a href="/de/syntax/" class="nav-link router-link-exact-active router-link-active">Deutsch</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/guide/" class="nav-link">Guide</a></div><div class="nav-item"><a href="/cli/" class="nav-link">CLI</a></div><div class="nav-item"><a href="/files/" class="nav-link">File System</a></div><div class="nav-item"><a href="/syntax/" class="nav-link">Syntax</a></div><div class="nav-item"><a href="/ides/" class="nav-link">IDEs</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">Deutsch</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/syntax/" class="nav-link">English</a></li><li class="dropdown-item"><!----> <a href="/de/syntax/" class="nav-link router-link-exact-active router-link-active">Deutsch</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>4) Minecraft Script Syntax</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/de/syntax/#_4-1-command-gruppen-wrapping" class="sidebar-link">4.1 Command Gruppen / Wrapping</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/de/syntax/#_4-2-funktionen" class="sidebar-link">4.2 Funktionen</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/de/syntax/#_4-3-variablen" class="sidebar-link">4.3 Variablen</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/de/syntax/#_4-4-boolean-variablen-tags" class="sidebar-link">4.4 Boolean Variablen (Tags)</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/de/syntax/#_4-5-konstanten" class="sidebar-link">4.5 Konstanten</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/de/syntax/#maps" class="sidebar-link">Maps</a></li><li class="sidebar-sub-header"><a href="/de/syntax/#arrays" class="sidebar-link">Arrays</a></li></ul></li><li><a href="/de/syntax/#_4-6-if-else-statements" class="sidebar-link">4.6 If/Else Statements</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/de/syntax/#_4-7-logische-operatoren" class="sidebar-link">4.7 Logische Operatoren</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/de/syntax/#_4-8-switch-cases" class="sidebar-link">4.8 Switch-Cases</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/de/syntax/#_4-9-for-loops" class="sidebar-link">4.9 For-Loops</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/de/syntax/#_4-10-raycasting" class="sidebar-link">4.10 Raycasting</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/de/syntax/#_4-11-while-loops" class="sidebar-link">4.11 while-Loops</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/de/syntax/#_4-12-do-while-loops" class="sidebar-link">4.12 do-while-Loops</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/de/syntax/#_4-13-foreach-loop" class="sidebar-link">4.13 forEach-Loop</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/de/syntax/#_4-14-modals" class="sidebar-link">4.14 Modals</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/de/syntax/#_4-15-javascript-modals" class="sidebar-link">4.15 JavaScript Modals</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/de/syntax/#_4-16-system-modals" class="sidebar-link">4.16 System Modals</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/de/syntax/#_4-17-error-handling-und-debugging" class="sidebar-link">4.17 Error handling und Debugging</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="_4-minecraft-script-syntax"><a href="#_4-minecraft-script-syntax" aria-hidden="true" class="header-anchor">#</a> 4) Minecraft Script Syntax</h1> <p>Der Code wird in Dateien mit der Endung .mcscript geschrieben. Es wird ein Code-Editor(IDE) empfohlen, um die Dateien zu verwalten und den Syntax farbig zu markieren. <a href="/de/ides">Mehr hier</a></p> <p>Anders als bei mcfunction wird jeder Command mit einem &quot;/&quot; oder &quot;run: &quot; injektiert.</p> <p>Kommentare werden mit &quot;//&quot; angekündigt, falls Kommentare auch in der neuen Datei auftauchen sollen mit &quot;#&quot;
+Ein Kommentar über mehrere Zeilen muss mit</p> <div class="language- extra-class"><pre class="language-text"><code>*/
+angegeben werden
+/*
+</code></pre></div><p>Leerzeilen und Zeilensprünge werden nicht beachtet.<br>
+Falls eine Leerzeile aus Struktur in der mcfunction gewünscht ist,drücke dies mit einem # ohne Kommentar aus.<br>
+Zwei Leerzeilen können mit &quot;##&quot; erreicht werden.</p> <h2 id="_4-1-command-gruppen-wrapping"><a href="#_4-1-command-gruppen-wrapping" aria-hidden="true" class="header-anchor">#</a> 4.1 Command Gruppen / Wrapping</h2> <blockquote><p><code>[subcommand]([argument]){ [wrapped actions] }</code></p></blockquote> <p>&quot;as, at, positioned,align,dimension,rotated,anchored&quot; können zusammengefasst werden:</p> <pre><code>as(@a){	 
+	/commands 	=&gt; /execute positioned ~ ~ ~ run command
+}		 
+</code></pre> <p>In den Klammern muss das jeweilige Argument als String, sprich &quot; &quot; oder ' ' stehen!
+Auch ist der eigende <code>asat()</code> möglich</p> <div class="language- extra-class"><pre class="language-text"><code>asat(@s){
+    /commands =&gt; execute as @s at @s run commands
+}
+</code></pre></div><p>&quot;Gruppen können auch aufgelistet werden:</p> <pre><code>as(@p), at(@s), positioned('~ ~1 ~'){
+	/say command
+}
+==&gt; /execute as @p at @s positioned ~ ~-1 ~ run say command
+
+// also with if
+as(@p), at(@s), positioned('~ ~1 ~'), if(@s[tag=mytag]){
+	/say command
+}
+==&gt; /execute as @p at @s positioned ~ ~-1 ~ if entity @s[tag=mytag] run say command
+</code></pre> <h2 id="_4-2-funktionen"><a href="#_4-2-funktionen" aria-hidden="true" class="header-anchor">#</a> 4.2 Funktionen</h2> <div class="language- extra-class"><pre class="language-text"><code>[run] function &quot;name|path&quot; {
+   /commands
+}
+</code></pre></div><blockquote><p>run optional
+ein Pfad sollte als String angegeben werden
+ein nur aus Buchstaben bestehender name auch ohne &quot;&quot;</p></blockquote> <p>Eine Funktion generiert eine weitere mcfunction mit den angegebenen Namen oder Pfad. Mit dem run keyword kann eine Funktion auch direkt ausgeführt werden.
+Dies ist eine alternative zu einer wesentlich komplizierteren Variante mit <code>#file:</code>.
+Bsp:</p> <div class="language- extra-class"><pre class="language-text"><code>run function test {
+	/say function
+}
+/say not function
+=
+/function prj:test
+/say not function
+
+file: ./test
+/say function
+</code></pre></div><h2 id="_4-3-variablen"><a href="#_4-3-variablen" aria-hidden="true" class="header-anchor">#</a> 4.3 Variablen</h2> <p>Wie jede Programmiersprache hat auch Minecraft Script Variablen. Sie müssen wiefolgt initialisiert werden:
+<code>var test</code>
+Der Variablen kann ein Wert hinzugewiesen werden:</p> <div class="language- extra-class"><pre class="language-text"><code>var test = 5
+ oder
+var test
+test = 6
+</code></pre></div><p>Dieser Wert kann beliebig oft wieder verändert werden.</p> <div class="language- extra-class"><pre class="language-text"><code>var test
+test @s = 10
+</code></pre></div><p>So können Werte auch nur speziellen Minecraft Selektoren zugewiesen werden.
+Auch mit Spielernamen oder Placeholdern möglich:</p> <div class="language- extra-class"><pre class="language-text"><code>test Spielername = 10
+</code></pre></div><p>Alle Werte werden in einem scoreboard mit dem Variablennamen gespeichert. Also können die Werte auch ganz standart mäßig verändert und ausgelesen werden:</p> <div class="language- extra-class"><pre class="language-text"><code>var test
+test @s = 10
+/scoreboard players get @s test ==&gt; 10
+/scoreboard players set @s test 5
+ etc
+</code></pre></div><p>Variablen können auch mit anderen zusammen gerechnet und zusammengefügt werden:</p> <div class="language- extra-class"><pre class="language-text"><code>var test = 10
+var neu = 5
+ Achtung: Der Einfachkeit halber starte ich immer wieder mit diesen Werten. Das Programm macht es nartürlich anders!
+
+test += 2 ==&gt; 12
+test -= 2 ==&gt; 8
+</code></pre></div><p>Etwas gekürzt:</p> <div class="language- extra-class"><pre class="language-text"><code>test++ ==&gt; test += 1
+test-- ==&gt; test -= 1
+
+test += neu ==&gt; 15
+test -= neu ==&gt; 5
+test *= neu ==&gt; 50
+test /= neu ==&gt; 2
+test %= neu ==&gt; 0
+</code></pre></div><p><strong>Command Response in Variable speichern:</strong></p> <div class="language- extra-class"><pre class="language-text"><code>var res = run: command
+==&gt; execute store result score res res run command
+</code></pre></div><p>Das Ergebnis des command wird in die Variable res geschrieben.
+Beispiel mit /data get:
+<code>var varResult = run: data get entity @s Pos[0]</code></p> <h2 id="_4-4-boolean-variablen-tags"><a href="#_4-4-boolean-variablen-tags" aria-hidden="true" class="header-anchor">#</a> 4.4 Boolean Variablen (Tags)</h2> <blockquote><p><code>bool [name] [selector](optional) = true|false</code></p></blockquote> <p>So können Wahrheitswerte deklariert werden.
+<code>bool isCool = true =&gt; tag [global] add isCool</code>
+Eine Boolean Variable kann später noch verändert werden:
+<code>isCool = false =&gt; tag [global] remove isCool</code></p> <p>Mit <a href="#if">If</a> testbar:</p> <div class="language- extra-class"><pre class="language-text"><code>if(isCool){
+    /commands =&gt; execute if entity [global][tag=isCool] run commands
+}
+</code></pre></div><h2 id="_4-5-konstanten"><a href="#_4-5-konstanten" aria-hidden="true" class="header-anchor">#</a> 4.5 Konstanten</h2> <p>Eine andere Art Variable ist die Konstante, so deklariert:</p> <blockquote><p><code>const [name] = [value]</code></p></blockquote> <p>Diese Art kann nicht verändert werden!
+Du kannst sie mit <code>$(var_name)</code> irgendwo in deinem Code benutzen um lange Strings und wiederholende Phrasen zu vermeiden:</p> <div class="language- extra-class"><pre class="language-text"><code>const einString = &quot;Hier könnte sehr viel Schrott stehen.&quot;
+const eineNum = 5
+
+/say $(einString)       ==&gt; /say Hier könnte sehr viel Schrott stehen.
+var test = $(eineNum)   ==&gt; var test = 5
+</code></pre></div><p><strong>Replace Konstanten</strong>
+Der Wert einer Konstante kann bei der Verwendung noch umgeändert werden. Hierzu ein <code>.repl()</code> an die Verwendung anfügen:</p> <blockquote><p><code>$(const).repl([suchwert],[replacement])</code></p></blockquote> <p>Bei unserem Beispiel wollen wir das viel replacen:</p> <div class="language- extra-class"><pre class="language-text"><code>/say $(einString).repl(&quot;viel&quot;,&quot;sehr viel&quot;) ==&gt; /say Hier könnte sehr sehr viel Schrott stehen.
+</code></pre></div><p>Auch kann hier ein <a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/RegExp" target="_blank" rel="noopener noreferrer">RegEx<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> eingefügt werden und auch auf diesen im Replacement zugegriffen werden:
+<code>$(const).repl([/regex/],[&quot;$&amp;&quot;])</code></p> <h3 id="maps"><a href="#maps" aria-hidden="true" class="header-anchor">#</a> Maps</h3> <p>Maps sind schlüssel-wert Paare ähnlich wie bei einem Wörterbuch. Wir definieren eine Map mit dem Map-Operator:</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> testMap <span class="token operator">=</span> Map<span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+</code></pre></div><p>In den Klammern kannst du so viele Paare angeben, wie du magst:</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> testMap <span class="token operator">=</span> Map<span class="token punctuation">{</span>
+	<span class="token string">&quot;key1&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;value&quot;</span><span class="token punctuation">,</span>
+	<span class="token string">&quot;key2&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;value2&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Wir können dann auf die Werte so zugreifen:</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token operator">/</span>say <span class="token function">$</span><span class="token punctuation">(</span>testMap<span class="token punctuation">)</span><span class="token punctuation">.</span>key1
+
+⇒ <span class="token operator">/</span>say value
+</code></pre></div><h3 id="arrays"><a href="#arrays" aria-hidden="true" class="header-anchor">#</a> Arrays</h3> <p>Arrays sind ziemlich ähnlich zu Maps, nur dass wir nicht Paare sondern eine einfache Liste an Werten haben.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> testArr <span class="token operator">=</span> Array<span class="token punctuation">{</span>
+	<span class="token string">&quot;value&quot;</span><span class="token punctuation">,</span> <span class="token comment">// index 0</span>
+	<span class="token string">&quot;value2&quot;</span> <span class="token comment">// index 1</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Die Werte können mit dem Index des Elements abgerufen werden:</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token operator">/</span>say <span class="token function">$</span><span class="token punctuation">(</span>testArr<span class="token punctuation">)</span><span class="token number">.0</span>
+⇒ <span class="token operator">/</span>say value
+<span class="token operator">/</span>say <span class="token function">$</span><span class="token punctuation">(</span>testArr<span class="token punctuation">)</span><span class="token number">.1</span>
+⇒ <span class="token operator">/</span>say value2
+</code></pre></div><h2 id="_4-6-if-else-statements"><a href="#_4-6-if-else-statements" aria-hidden="true" class="header-anchor">#</a> 4.6 If/Else Statements</h2> <p>If funktioniert ähnlich wie das Command Wrapping:</p> <pre><code>if('statement'){
+	/commands 	=&gt; /execute if statement run command
+}		 
+</code></pre> <p>Mit einigen extra Features:</p> <ul><li><p>Vor dem Argument kann ein &quot;!&quot; eingefügt werden um dies umzukehren:</p> <pre><code>if(!'statement'){
+	/commands 	=&gt; /execute unless statement run command
+}		 
+</code></pre></li> <li><p>Nach dem Schluss kann ein &quot;else&quot; angehängt werden:</p></li></ul> <div class="language- extra-class"><pre class="language-text"><code>    if('statement'){
+    	/commands 	=&gt; /execute if statement run command
+    } else {		   /execute unless statement run command2
+    	/commands2
+    }
+</code></pre></div><p>Hier darauf achten das Argument nicht zu verändern!</p> <div class="language- extra-class"><pre class="language-text"><code>    if(@s[tag=test]){
+    	/tag @s remove test 	
+    	} else {		  		
+    	/tag @s remove test		
+    }
+</code></pre></div><p>Hier werden beide ausgeführt!! Verbessert:</p> <div class="language- extra-class"><pre class="language-text"><code>    if(@s[tag=test]){
+    	/tag @s add testIf
+    }
+    if(@s[tag=testIf]){
+    	/tag @s remove test 	
+    	} else {		  		
+    	/tag @s remove test		
+    }
+</code></pre></div><ul><li>auch &quot;else if&quot; ist möglich:</li></ul> <div class="language- extra-class"><pre class="language-text"><code>    if('statement'){
+    	/commands 				=&gt; /execute if statement run command
+    } else if('statement2') {	   /execute unless statement if statement2 run command2
+    	/commands2
+    }
+</code></pre></div><h2 id="_4-7-logische-operatoren"><a href="#_4-7-logische-operatoren" aria-hidden="true" class="header-anchor">#</a> 4.7 Logische Operatoren</h2> <p>In Kombination mit Command Gruppen und If-Else-Statements können zusätzlich logische Operatoren benutzt werden:</p> <ul><li>Der Oder-Operator kann bei den Gruppierungen auf zwei Arten benutzt werden:</li></ul> <div class="language- extra-class"><pre class="language-text"><code>    as(@s||@p){
+    	/command 	
+    }
+    ==&gt; execute as @s run command
+        execute at @p run command
+
+    # oder als Liste
+    if(@s[tag=entity1],'entity @s[tag=entity2]'){
+    # hier gehen beide Varianten ^
+    	/command 	
+    }
+    ==&gt; execute if entity @s[tag=entity1] run command
+        execute if entity @s[tag=entity2] @p run command
+</code></pre></div><ul><li>Der Und-Operator wird so definiert: (nur für if-statements sinnvoll)</li></ul> <div class="language- extra-class"><pre class="language-text"><code>    if('entity @s'&amp;&amp;'entity @p'){
+    	/command 	
+    }
+    ==&gt; execute if entity @s if entity @p run command
+</code></pre></div><ul><li>Überprüfung von Variablen:</li></ul> <div class="language- extra-class"><pre class="language-text"><code>var test = 5
+
+ genau gleich
+if(test == 5){
+    /commands
+}
+
+ größer/kleiner gleich
+if(test &gt;= 5){
+    /commands
+}
+
+ größer/kleiner
+if(test &gt; 5){
+    /commands
+}
+
+ auch im Vergleich möglich
+if(test &gt; test2){
+    /commands
+}
+
+ oder mit entity variablen
+if(test @s &gt; test2 @a){
+    /commands
+}
+</code></pre></div><h2 id="_4-8-switch-cases"><a href="#_4-8-switch-cases" aria-hidden="true" class="header-anchor">#</a> 4.8 Switch-Cases</h2> <div class="language- extra-class"><pre class="language-text"><code>switch([var_name]){
+    case &lt;=|&lt;|==|&gt;|&gt;= [other_var]|[number] {
+        [actions]
+    },
+    default(optional) {
+        [default actions]
+    }
+}
+</code></pre></div><p>Switches erleichtern dem Benutzer die vielen If-Bedingungen. Es kann einfach und übersichtlich auf verschiedene Werte von Variablen getestet werden.
+bsp:</p> <div class="language- extra-class"><pre class="language-text"><code>var test = 10
+switch(test){
+    case &gt; 10 {
+        /say var ist über 10
+    },
+    case &lt; 10 {
+        /say var ist unter 10
+    },
+    default {
+        /say nichts traf zu.
+    }
+}
+</code></pre></div><p>Hier wird also test geprüft auf über 10, wenn das nicht zutrifft auf unter 10 und als standart default ausgegeben.
+Auch abkürzbar:</p> <div class="language- extra-class"><pre class="language-text"><code>var test = 10
+switch(test){
+    case &gt; 10 run: say var ist über 10
+    , case &lt; 10 run: say var ist unter 10
+    , default run: say nichts traf zu.
+}
+</code></pre></div><h2 id="_4-9-for-loops"><a href="#_4-9-for-loops" aria-hidden="true" class="header-anchor">#</a> 4.9 For-Loops</h2> <div class="language- extra-class"><pre class="language-text"><code>for([from],[to],[var_name](optional)){
+    [actions]
+}
+</code></pre></div><p>Einer der hilfreichsten Features ist der For-Loop. Als Argumente werden ganze Zahlen angenommen.</p> <p>Von <code>erstes Argument</code> bis <code>zweites Argument</code> wird optional ausgegeben als <code>drittes Argument</code></p> <div class="language- extra-class"><pre class="language-text"><code>for(1,5){
+	/commands
+	# es wird 5x command ausgegeben
+}
+</code></pre></div><div class="language- extra-class"><pre class="language-text"><code>for(1,5){
+	/say $(i)
+	# es wird 5x say mit 1 - 5 ausgegeben
+}
+</code></pre></div><p>Mit $(var_name) kann auf den Loopwert zugegriffen werden.</p> <p>var_name ist normalerweise als &quot;i&quot; definiert, kann aber im 3.Argument geändert werden:</p> <pre><code>for(1,5,X){
+	/say $(X)
+	# es wird 5x say mit 1 - 5 ausgegeben
+}	 					
+</code></pre> <p>Das ist bei 2 dimensionalen Loops sinnvoll:</p> <pre><code>for(1,5,i){
+	for(1,2,j){
+		/say $(i).$(j)
+	}
+	# es wird 10x say mit 1.1 - 5.2 ausgegeben
+}
+</code></pre> <h2 id="_4-10-raycasting"><a href="#_4-10-raycasting" aria-hidden="true" class="header-anchor">#</a> 4.10 Raycasting</h2> <div class="language- extra-class"><pre class="language-text"><code>raycast([distance](optional), [block to travel through](optional),entity | block [target](optional) ){
+    [actions on hitted block or entity]
+},{
+    [actions for every flight step]
+}
+default distance = 100 Blocks
+default block = air
+default target = any block
+</code></pre></div><p>Raycasting ist eine große Sache in Minecraft 1.13 und bietet viele Möglichkeiten.
+Es ist allerdings bisschen schwierig, also warum nicht leichter machen?
+Mit Minecraft Script ist das nun sehr sehr einfach:</p> <div class="language- extra-class"><pre class="language-text"><code>raycast {
+    /setblock ~ ~ ~ stone
+}
+</code></pre></div><p>Das alleine setzt überall, wo man hinschaut einen Steinblock.
+Partikel und Blockbegrenzung auch noch sehr einfach:</p> <div class="language- extra-class"><pre class="language-text"><code>raycast(10) {
+    /setblock ~ ~ ~ stone
+}, {
+    /particle flame ~ ~ ~
+}
+</code></pre></div><p>Jetzt haben wir schöne Effekte und eine maximale Range von 10 Blöcken.
+Das zweite optinale Argument gibt die durchlässigen Blöcke an.</p> <div class="language- extra-class"><pre class="language-text"><code>raycast(10,&quot;air&quot;) {
+    /setblock ~ ~ ~ stone
+}
+</code></pre></div><p>Das Raycasting geht also nur durch Luft.
+Auch kann man die durchlässigen Blöcke negieren und mit einem &quot;!&quot; angeben, welche Blöcke nicht durchlässig sind:</p> <div class="language- extra-class"><pre class="language-text"><code>raycast(10,!&quot;white_wool&quot;) {
+    /setblock ~ ~ ~ stone
+}
+</code></pre></div><p>Das Raycasting geht also durch alle Blöcke außer weiße Wolle.</p> <p>Als drittes optionales Argument kann man ein Ziel angeben:</p> <div class="language- extra-class"><pre class="language-text"><code>raycast(10,&quot;air&quot;,block &quot;white_wool&quot;) {
+    /setblock ~ ~ ~ stone
+}
+</code></pre></div><p>Jetzt weiß Mcscript, dass das Ziel ein Block ist und führt den Command nur aus, wenn der Block weiße Wolle ist.</p> <div class="language- extra-class"><pre class="language-text"><code>raycast(10,&quot;air&quot;,entity @e[type=armor_stand]) {
+    /say test
+}
+</code></pre></div><p>Mcscript weiß nun, dass das Ziel eine Entity ist und führt den Command als diese aus, wenn sie getroffen wurde.
+Also würde der Armor Stand test sagen.</p> <h2 id="_4-11-while-loops"><a href="#_4-11-while-loops" aria-hidden="true" class="header-anchor">#</a> 4.11 while-Loops</h2> <p>Der while-Loop ist so zu definieren:</p> <div class="language- extra-class"><pre class="language-text"><code>while([cond]){
+    /commands
+}
+</code></pre></div><p>Die gruppierten Commands werden solange ausgeführt, wie die Bedingung[cond] war ist.</p> <blockquote><p>Wenn die Bedingung zum Start nicht wahr ist, wird die Gruppierung nicht ausgeführt!</p></blockquote> <p>Als Bedingung können hier alle Operatoren und Argumente der If-Bedingungen verwendet werden. z.B.</p> <div class="language- extra-class"><pre class="language-text"><code>var test = 0
+while(test &lt; 10){
+    /commands hier
+    test += 1
+}
+ ==&gt; Die Commands werden innerhalb eines Ticks 10mal ausgeführt.
+</code></pre></div><p>Bei while-Loops kann auch mit stop und continue gearbeitet werden:</p> <div class="language- extra-class"><pre class="language-text"><code>var test = 0
+while(test &lt; 10){
+    test += 1
+    if(test == 5){
+        continue
+        # Wenn test 5 ist werden die restlichen Commands übersprungen
+    }
+    /commands hier
+    if(test &gt;= 9){
+        stop
+        # Wenn test 9 oder über 9 ist wird die Schleife abgebrochen
+    }
+}
+</code></pre></div><h2 id="_4-12-do-while-loops"><a href="#_4-12-do-while-loops" aria-hidden="true" class="header-anchor">#</a> 4.12 do-while-Loops</h2> <div class="language- extra-class"><pre class="language-text"><code>do {
+    /commands
+} while([cond])
+</code></pre></div><p>Der do-while-Loop funktioniert ähnlich, wie der while-Loop mit dem kleinen Unterschied, dass der Codeblock ausgeführt wird und danach erst die Bedingung geprüft wird.
+Der Loop wird also mindestens einmal durchlaufen.</p> <h2 id="_4-13-foreach-loop"><a href="#_4-13-foreach-loop" aria-hidden="true" class="header-anchor">#</a> 4.13 forEach-Loop</h2> <div class="language- extra-class"><pre class="language-text"><code>forEach(var [var_name] = [startwert]; [var_name] ==|&gt;|&lt;|&lt;=|&gt;=|!= [other_var]|[number]; [varname]++){
+    /commands
+}
+</code></pre></div><p>Der forEach-Loop ist ein Loop, wie man ihn in fast jeder Programmiersprache vorfindet.
+Er ähnelt sich zu dem for-Loop von Minecraft Script, funktioniert aber dynamisch(d.h wird nicht beim generieren ausgeführt, sondern von Minecraft)</p> <p>Bsp:</p> <div class="language- extra-class"><pre class="language-text"><code>forEach(var i = 0; i &lt; 10; i++){
+    /say hey
+}
+</code></pre></div><p>Der Command wird also 10mal ausgeführt und der aktuelle Wert jeweils in dem scoreboard i gespeichert.
+So kann man auch auf den Wert zugreifen. Bsp. Fakultät:</p> <div class="language- extra-class"><pre class="language-text"><code>var result = 1
+forEach(var i = 2; i &lt;= 10; i++){
+    result *= i
+}
+==&gt; result = 1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10
+</code></pre></div><h2 id="_4-14-modals"><a href="#_4-14-modals" aria-hidden="true" class="header-anchor">#</a> 4.14 Modals</h2> <blockquote><div class="language- extra-class"><pre class="language-text"><code>modal [name]([arguments]){
+   [actions]
+}
+</code></pre></div></blockquote> <p>Modals kann man wie functions oder Methoden verstehen, dass heißt man kann sie definieren:</p> <pre><code>modal newModal(argument){
+	/say $(argument)
+}	 					
+</code></pre> <p>Ein Modal wird immer mit dem Keyword eingeleitet, gefolgt von dem Namen und in Klammern alle benötigten Argumente.</p> <p>Auf diese Argumente kann dann innerhalb mit $(argument_name) Referenz genommen werden.</p> <pre><code>modal newModal(argument){
+	/say $(argument)
+}
+
+newModal('test')
+
+# =&gt; say test	 					
+</code></pre> <p>Wenn man das Modal so benutzt, dann werden die Werte eingesetzt und alles ausgegeben.</p> <pre><code>modal createCommand(command,argument1,argument2){
+	/$(command) $(argument1) $(argument2)
+}
+
+createCommand('say', 'hallo', 'du')
+
+# =&gt; say hallo du 					
+</code></pre> <p>Es können so auch mehrere Argumente benutzt werden.</p> <p>Auch sind optionale und vordefinierte Argumente verfügbar:</p> <pre><code>modal say(argument = &quot;hallo&quot;){
+	/say $(argument)
+}
+
+say()
+# =&gt; say hallo
+
+say('test')
+# =&gt; say test				
+</code></pre> <p><strong>Maps und Arrays benutzen</strong>
+Du kannst auch die <a href="#maps">Map</a> und<a href="#arrays">Array</a> typen der Konstanten in Modals benutzen:</p> <div class="language-js extra-class"><pre class="language-js"><code>modal <span class="token function">defaultMap</span><span class="token punctuation">(</span>args <span class="token operator">=</span> Map<span class="token punctuation">{</span><span class="token string">&quot;key&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;value&quot;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token operator">/</span>say <span class="token function">$</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">.</span>key
+<span class="token punctuation">}</span>
+<span class="token function">defaultMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">defaultMap</span><span class="token punctuation">(</span>Map<span class="token punctuation">{</span>
+    <span class="token string">&quot;key&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;value2&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+⇒ <span class="token operator">/</span>say value
+⇒ <span class="token operator">/</span>say value2
+</code></pre></div><p><strong>Modals überschreiben</strong>
+Bereits erstellte modals können innerhalb des Prozesses überschrieben werden:</p> <blockquote><div class="language- extra-class"><pre class="language-text"><code>override modal [name]([arguments]){
+   [actions]
+}
+</code></pre></div></blockquote> <p>Dabei werden Argumente und Actions komplett getauscht und für den fortlaufenden Prozess verwendet.</p> <p><strong>Argumente ersetzen</strong>
+Der Wert eines Arguments kann bei der Verwendung noch umgeändert werden. Hierzu ein <code>.repl()</code> an die Verwendung anfügen:</p> <blockquote><p><code>$(argument).repl([suchwert],[replacement])</code></p></blockquote> <p>Bei unserem Beispiel wollen wir ein eingegebenes test replacen:</p> <div class="language- extra-class"><pre class="language-text"><code>/say $(argument).repl(&quot;test&quot;,&quot;no test&quot;) ==&gt; /say no test
+</code></pre></div><p>Auch kann hier ein <a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/RegExp" target="_blank" rel="noopener noreferrer">RegEx<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> eingefügt werden und auch auf diesen im Replacement mit <code>$&amp;</code> zugegriffen werden:
+<code>$(argument).repl([/regex/],[&quot;$&amp;&quot;])</code></p> <h2 id="_4-15-javascript-modals"><a href="#_4-15-javascript-modals" aria-hidden="true" class="header-anchor">#</a> 4.15 JavaScript Modals</h2> <p>JavaScript Modals sind modals, die in Javascript geschrieben sind. Du kannst sie, wie andere modals auch, so definieren:</p> <blockquote><div class="language- extra-class"><pre class="language-text"><code>modaljs [name]([argumente]){
+    [aktionen]
+    return [Text]
+}
+</code></pre></div></blockquote> <p>Das JavaScript Modal muss mit einem return statement enden. Das, was zurückgegeben wurde, wird in der <code>.mcfunction</code> Datei als einfacher Text erscheinen.</p> <pre><code>modaljs newModal(){
+	return &quot;say hi&quot;;
+}
+
+newModal()
+
+# =&gt; say hi
+</code></pre> <p>Für Absätze empfehle ich etwas ähnliches zu dem:</p> <pre><code>modaljs newModal(){
+	var ret = &quot;&quot;;
+
+	ret += &quot;say hi\n&quot;;
+	ret += &quot;say ho\n&quot;;
+
+	return ret;
+}
+
+newModal()
+
+# =&gt; say hi
+# =&gt; say ho
+</code></pre> <p>Achtung: Du musst Absätze manuell mit <code>\n</code> hinzufügen.</p> <p>Ein JavaScript modal ist immer deklariert durch das Keyword gefolgt vom Name und den Argumenten in den Klammern.</p> <p>Die Argumente sind aufrufbar in dem Code.</p> <pre><code>modaljs newModal(argument){
+	return &quot;say &quot; + argument;
+}
+
+newModal('test')
+
+# =&gt; say test	 					
+</code></pre> <p>Du kannst auch mehrere Argumente verwenden:</p> <pre><code>modaljs newModal(text,monster){
+	var ret = &quot;&quot;;
+
+	ret += &quot;say &quot; + text + &quot;\n&quot;;
+	ret += &quot;summon &quot; + monster + &quot;\n&quot;;
+
+	return ret;
+}
+
+newModal(&quot;Gehirne!!!&quot;,&quot;minecraft:zombie&quot;)
+
+# =&gt; say Gehirne!!!
+# =&gt; summon minecraft:zombie
+</code></pre> <p>Es gibt ebenfalls optionale Argumente:</p> <pre><code>modaljs say(argument = &quot;hallo&quot;){
+	return &quot;say &quot; + argument ;
+}
+
+say()
+# =&gt; say hallo
+
+say('test')
+# =&gt; say test
+</code></pre> <p><strong>Tipps und Tricks</strong></p> <p>Benutze <code>console.log</code>, um einige Informationen in der Konsole, während des Kompelieren, auszugeben, ohne den Wert zu verändern.</p> <h2 id="_4-16-system-modals"><a href="#_4-16-system-modals" aria-hidden="true" class="header-anchor">#</a> 4.16 System Modals</h2> <p>Es gibt schon einige vordefinierte Modals, die hilfreich sein könnten. Bitte schaue dir dafür die spezifischen Dokumentationen <a href="https://github.com/Stevertus/mcscript/blob/master/Core%20Modals.md" target="_blank" rel="noopener noreferrer">hier<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> an.</p> <p>Du hast Ideen, welche Modals unbedingt als Standart-Modal aufgegriffen werden müssen? Sende mir einfach die <a href="#24_Dev_mcscript_modals_54">Konfigurationsdatei</a> zur Überprüfung.</p> <h2 id="_4-17-error-handling-und-debugging"><a href="#_4-17-error-handling-und-debugging" aria-hidden="true" class="header-anchor">#</a> 4.17 Error handling und Debugging</h2> <p>Minecraft Script zeigt mit der Version 0.2 nur noch begrenzt Fehler an mit der Zeilen- und Dateiangabe.
+Benutze beim generieren bitte die Flag <code>-fullErr</code>, um vollständige alte Fehler wiederzuerlangen, falls du sie wünscht.</p> <p>Falls du Fehlerangaben findest, die im Kontext keinen Sinn machen, wende dich bitte an das Team.</p> <p><strong>Debug keyword</strong>
+Mit &quot;Debug&quot; kannst du deinen Code debuggen und auch mögliche Fehler in Minecraft Script viel leichter entdecken. Sie können irgendwo im Code platziert werden und beeinflussen den generierten Code nicht.*</p> <ul><li><code>debug message: [message]</code>
+Sendet eine einfache Nachricht in die Konsole mit Zeilen- und Dateiangaben.</li> <li><code>debug success: [message]</code>
+Sendet eine erfolgreiche Nachricht mit grüner Kennzeichnung in die Konsole mit Zeilen- und Dateiangaben.</li> <li><code>debug break: [message]</code>
+Dein Programm bricht an dieser Stelle ab und sendet erneut eine Nachricht.</li> <li><code>debug error: [message]</code>
+Dein Programm bricht an dieser Stelle ab und gibt einen kritischen Fehler mit Systeminformationen und relevanten Codestellen aus.</li></ul></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Zuletzt geändert: </span> <span class="time">2020-1-11 2:37:48 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/de/files/" class="prev">
+          3) File system
+        </a></span> <span class="next"><a href="/de/ides/">
+          4) IDEs and Syntax Highlighting
+        </a>
+        →
+      </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.bf23ee6d.js" defer></script><script src="/assets/js/2.47b2ef3a.js" defer></script><script src="/assets/js/12.21a03a1b.js" defer></script>
+  </body>
+</html>

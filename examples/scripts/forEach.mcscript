@@ -1,6 +1,6 @@
 #file: ./foreach
 # basic loop
-forEach(var i = 0; i < 10; i++){
+forEach(var i = -5; i < 5; i++){
     /say hey
 }
 

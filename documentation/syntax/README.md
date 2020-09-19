@@ -1,156 +1,11 @@
+---
+sidebar: auto
+footer: MIT Licensed | Copyright © 2020 Stevertus
+prev: /files/
+next: /ides/
+---
 
-
-
-
-![](https://i.imgur.com/YedWe7W.png)
-
-Minecraft Script Documentation
-==============================
-> Update 0.2.1: [All Changes](https://github.com/Stevertus/mcscript/releases)
-
-Minecraft Script is a programming language for developers of mcfunctions, Minecraft maps and packages. The .mcscript files are therefore compiled and generated to the function format. This enables the developer extended possibilities, such as Modals, Loops, Varibles, Constants and Command-Wrapping.
-
-Visit the official Website for information, guides and videos: https://mcscript.stevertus.com
-
-German documentation [here](https://mcscript.stevertus.com/de/)
-## Table of Contents
-1) [Installation](#install)
-    - [Installation of Node.js](#install-nodejs)
-    - [Installation of Minecraft Script](#install-mcscript)
-2) [Cli Commands](#cli)
-    - [mcscript new](#cli-new)
-    - [mcscript compile](#cli-compile)
-    - [mcscript watch](#cli-watch)
-    - [mcscript add](#cli-add)
-3) [file system](#files)
-    - [file setup](#files)
-    - [Dateien erweitern](#extend)
-    - [Globale Dateien](#global)
-4) [Syntax](#syntax)
-    - [Command Grouping](#groups)
-    - [Functions](#functions)
-    - [Variables](#vars)
-    - [Boolean Variablen](#boolean)
-    - [Constants](#consts)
-    - [If Statements](#if)
-    - [Operators](#operators)
-    - [Switches](#switch)
-    - [For loop](#for)
-    - [Raycasting](#raycast)
-    - [while loops](#while)
-    - [do-while loops](#dowhile)
-    - [forEach loops](#foreach)
-    - [Modals](#modals)
-    - [JavaScript Modals](#modaljs)
-    - [System Modals](#systemModals)
-    - [Error handling and debugging](#debugging)
-5) [IDEs and Syntax Highlighting](#ide)
-<a id="install"></a>
-##  Installation
-
-
-The Compiler gets offered as [Node.js/](https://nodejs.org/en/download/) Package that is installed locally on your machine. It enables much more features than the online version  
-For example: compile all files in a directory, direct output in new files, watch your files on changes, etc.
-<a id="install-nodejs"></a>
-### 1.1 Installation of Node.js
-
-The installation requires the Node.js environment and the Node Package Manager.
-
-This is achieved the best way by using the installer: [nodejs.org/en/download/](https://nodejs.org/en/download/)  
-Just run it and install.
-<a id="install-mcscript"></a>
-### 1.2 Installation of Minecraft Script
-
-Now open your PCs console. (search CMD).
-
-There you have to type in this command:
-> ```npm install -g mcscript```  
-
-If a successful answer apears you have done everything right and can start.
-<a id="cli"></a>
-##  CLI Commands
-
-
-You can now use the tool by launching the Command Line in your datapacks folder  
-(with Shift + rightclick on directory -> open command line)  
-Now you can use the commands like that:
-<a id="cli-new"></a>
-### 2.1 mcscript new
-
-Creates a new datapack for you with all basic files in a scripts folder. Takes as argument the datapack id!
-<a id="cli-compile"></a>
-### 2.2 mcscript compile
-
-This command converts all .mcscript files into .mcfunction format. You can read [here](#syntax) what you can do in the mcscript files.  
-The console displays all generated files or throws an error if something was not correct.
-
-Alternatively you can use `mcscript compile *filepath*` to set an custom directory or file.
-With an additional `-fullErr` flag you can view full errors and code positions.
-<a id="cli-watch"></a>
-<a id="cli-watch"></a>
-### 2.3 mcscript watch
-
-This will automatically compile your code if you make any changes (save). So you do not have to enter the above command with every change.
-
-Again, a path and `-fullErr` can be specified.
-<a id="cli-add"></a>
-### 2.4 mcscript add [url or package]
-This command adds a custom datapack to your directory.
-As argument an url to the resource or a *mcScript Extension* name can be used.
-
-Get a list of all supported packages by running just`mcscript add`
-
-<a id="cli-modals"></a>
-### 2.5 Dev: mcscript modals
-
-!!This command is intended only for developers who want to install their modals in the compiler.  
-A file must be specified and then the modals out of this file are written to a configuration file.
-<a id="files"></a>
-## 3) File system
-### 3.1 File setup
-
-The generated files have always the same name as their root.
-
-A custom name can be set with `#file: *name*.`  
-Please without .mcfunction!!
-
-Instead of the name, you can enter a whole path where the new file should be:
-
-*   `#file: C:/test/new`
-*   `#file: ./new` (in same directory)
-*   `#file: ./subfolder/new`
-*   `#file: ../new` (a directory above)
-*   `#file: ../subfolder/new`
-
-You can also specify several files:
-
-    #file: new
-    //commands here
-    #file: two
-    //Commands for two
-
-Also very well combinable with [for-loops](#loops):
-
-    #file: new
-    //commands here
-    for(1,5){
-    	#file: test$(i)
-    	//Commands for every file here
-    }
-<a id="extend"></a>
-### 3.2 Extend Files
-A already existing file, that is generated before with `#file:`, can be expanded in other files and new code is easily attached:
-```
-#extend: ./test
-/commands here
-```
-<a id="global"></a>
-### 3.3 Global Files
-Variables (#vars), [constants] (#consts), and [Modals] (#modals) are stored separately for each file.
-Now you can create a global file with the extension '. gl. mcscript '. The compiler automatically detects globals and uses the declared objects in other files as well.
-For example, you can write the modals to a separate file.
-<a id="syntax"></a>
-##  Minecraft Script Syntax
+#  4) Minecraft Script Syntax
 
 
 The code is written in files with the extension .mcscript. It is recommended to manage the files and to highlight the syntax in a code editor (IDE). explore more [here](#ide).  
@@ -169,8 +24,7 @@ A comment across multiple lines can be expressed with:
  comment
 */
 ```
-<a id="groups"></a>
-### 4.1 Command Grouping / Wrapping
+## 4.1 Command Grouping / Wrapping
 > ```[subcommand]([argument]){  [wrapped actions]   }```
 
 "as, at, positioned,align,dimension,rotated,anchored" can be grouped together:
@@ -201,8 +55,8 @@ asat(@s){
     	/say command
     }
     ==> /execute as @p at @s positioned ~ ~-1 ~ if entity @s[tag=mytag] run say command
-<a id="functions"></a>
-### 4.2 Functions
+
+## 4.2 Functions
  ```
 [run] function "name|path" {
 	/commands
@@ -225,17 +79,17 @@ run function test {
 /function prj:test
 /say not function
 
-#file: ./test
+file: ./test
 /say function
 ```
-<a id="vars"></a>
-### 4.3 Variables
+
+## 4.3 Variables
 Like every other programming language there are variables. They are initialized as follows:
 `var test`
 The variable can take in a value:
 ```
 var test = 5
-# or
+ or
 var test
 test = 6
 ```
@@ -256,14 +110,14 @@ var test
 test @s = 10
 /scoreboard players get @s test ==> 10
 /scoreboard players set @s test 5
-# etc
+ etc
 ```
 
 Variables can be merged together:
 ```
 var test = 10
 var new = 5
-#  For the sake of simplicity, I start again and again with these values. The program makes it naturally different!
+  For the sake of simplicity, I start again and again with these values. The program makes it naturally different!
 
 test += 2 ==> 12
 test -= 2 ==> 8
@@ -287,8 +141,8 @@ var res = run: command
 The result of the command is written to the variable res.
 Example with `/data get`:
 ' var varResult = run: data get entity @s Pos[0] '
-<a id="boolean"></a>
-### 4.4 Boolean Variables (Tags)
+
+## 4.4 Boolean Variables (Tags)
 > `bool [name] [selector](optional) = true|false`
 
 Boolean values can be declared like this.
@@ -302,8 +156,8 @@ if(isCool){
     /commands => execute if entity [global][tag=isCool] run commands
 }
 ```
-<a id="consts"></a>
-### 4.5 Constants
+
+## 4.5 Constants
 
 Another type of variable is the constant, declared as following:
 `const test = [value]`
@@ -327,8 +181,8 @@ In our example, we want to replace `a`:
 ```
 Also a [RegEx](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/RegExp) can be inserted here and can be also accessed with '$&' in the replacement:
 `$(aString).repl([/regex/],["$&"])`
-<a id="maps"></a>
-#### Maps
+
+### Maps
 Maps are essentially key-value pairs kind of like a dictionary. We define it with the Map-operator:
 ```js
 const testMap = Map{
@@ -348,8 +202,8 @@ It then can be accessed with
 
 ⇒ /say value
 ```
-<a id="arrays"></a>
-#### Arrays
+
+### Arrays
 Arrays are pretty similar to Maps, but use a list of values instead of pairs:
 ```js
 const testArr = Array{
@@ -364,8 +218,8 @@ The values can be accessed by the index of the item starting with 0.
 /say $(testArr).1
 ⇒ /say value2
 ```
-<a id="if"></a>
-### 4.6 If/Else Statements
+
+## 4.6 If/Else Statements
 
 If functions are similar to grouping:
 
@@ -423,8 +277,8 @@ With some additional features:
     	/commands2
     }
 ```
-<a id="operators"></a>
-### 4.7 Logical operators
+
+## 4.7 Logical operators
 
 In combination with grouping and if-else statements logical operators can be used:
 
@@ -455,33 +309,33 @@ In combination with grouping and if-else statements logical operators can be use
 ```
 var test = 5
 
-# equally
+ equally
 if(test == 5){
     /commands
 }
 
-# greater/smaller or equal
+ greater/smaller or equal
 if(test >= 5){
     /commands
 }
 
-# greater/smaller
+ greater/smaller
 if(test > 5){
     /commands
 }
 
-# also avalible as comparison
+ also avalible as comparison
 if(test > test2){
     /commands
 }
 
-# or with variables with entitys
+ or with variables with entitys
 if(test @s > test2 @a){
     /commands
 }
 ```
-<a id="switch"></a>
-### 4.8 Switch-Cases
+
+## 4.8 Switch-Cases
 ```
 switch([var_name]){
     case <=|<|==|>|>= [other_var]|[number] {
@@ -518,8 +372,8 @@ switch(test){
     , default run: say no match
 }
 ```
-<a id="for"></a>
-### 4.9 For-Loops
+
+## 4.9 For-Loops
 
 One of the most helpful features is the for loop. It takes in neutral numbers.
 
@@ -555,8 +409,8 @@ That makes especially with two-dimensional loops sence:
     	}
     	# say with 1.1 - 5,2 is outputed 10 times
     }	 					
-<a id="raycast"></a>
-### 4.10 Raycasting
+
+## 4.10 Raycasting
 ```
 raycast([distance](optional), [block to travel through](optional),entity | block [target](optional) ){
     [actions on hitted block or entity]
@@ -612,8 +466,8 @@ raycast(10,"air",entity @e[type=armor_stand]) {
 ```
 Now Mcscript knows that the target is an entity and executes as the entity if it´s hitted.
 So the armor stand would say test.
-<a id="while"></a>
-### 4.11 while loops
+
+## 4.11 while loops
 The while loop is defined like so:
 ```
 while([cond]){
@@ -630,7 +484,7 @@ while(test < 10){
     /commands here
     test += 1
 }
-# ==> The commands are executed 10x in one tick
+ ==> The commands are executed 10x in one tick
 ```
 For while-loops you can also use stop and continue:
 ```
@@ -648,8 +502,8 @@ while(test < 10){
     }
 }
 ```
-<a id="dowhile"></a>
-### 4.12 do-while-Loops
+
+## 4.12 do-while-Loops
 ```
 do {
     /commands
@@ -657,8 +511,8 @@ do {
 ```
 The do-while loop works in a similar way to the while loop, with the small difference that the code block is executed and then the condition is checked.
 So the loop is executed at least one time.
-<a id="foreach"></a>
-### 4.13 forEach-Loop
+
+## 4.13 forEach-Loop
 ```
 forEach(var [var_name] = [start value]; [var_name] ==|>|<|<=|>=|!= [other_var]|[number]; [varname]++){
     /commands
@@ -683,8 +537,8 @@ forEach(var i = 2; i <= 10; i++){
 }
 ==> result = 1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10
 ```
-<a id="modals"></a>
-### 4.14 Modals
+
+## 4.14 Modals
 
 Modals are like functions or methods. That means you can define them:
 
@@ -765,8 +619,8 @@ In our example, we want to replace an entered test:
 ```
 Also a [RegEx](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/RegExp) can be inserted here and can be also accessed with '$&' in the replacement:
 `$(argument).repl([/regex/],["$&"])`
-<a id="modaljs"></a>
-### 4.15 JavaScript Modals
+
+## 4.15 JavaScript Modals
 
 JavaScript Modals are modals, you can write in JavaScript. You can define them like other modals:
 
@@ -849,14 +703,14 @@ There are optional and predefined arguments, too:
 Use `console.log()` to output some information to the console while compiling without effecting the return value.
 
 
-<a id="systemModals"></a>
-### 4.16 System Modals
+
+## 4.16 System Modals
 
 There are already some helpful predefined modals. Please read the specific documentation [here](https://github.com/Stevertus/mcscript/blob/master/Core%20Modals.md).
 
 You have ideas which modals should be a standart? Send me your [configuration file](#ownmodal) to check.
-<a id="debugging"></a>
-### 4.17 Error handling and Debugging
+
+## 4.17 Error handling and Debugging
 Minecraft Script shows since the version 0.2 only limeted errors with line and file displayed.
 Please use the flag `-fullErr` at generation to get the old full errors back, if you want so.
 
@@ -873,22 +727,3 @@ Sends a simple message with line and file references.
 Your program breakes at this point and sends the message obove .
 * `debug error: [message]`
 Your program breakes at this point and sends a critical error with system information and relevant code positions.
-
-<a id="ide"></a>
-
-  ##  IDEs and Syntax Highlighting
-
-  *   Visual Studio Code:
-  [Stevertus.mcscript](https://marketplace.visualstudio.com/items?itemName=Stevertus.mcscript)
-
-  *   GitHubs Atom Editor:
-  [mcscript](https://atom.io/packages/mcscript) (credit: [Trojaner](https://github.com/TrojanerHD))
-
-  *   Notepad++:
-  [code](https://github.com/Stevertus/mcscript/blob/master/Nodepad%2B%2B%20Highlighter.xml) | [download](http://download1496.mediafire.com/x2k7loq5imbg/4534q4tual7zccm/Nodepad+++Highlighter.xml)
-
-
-Now there´s nothing left than: **Happy Developing**
----------------------------------------------------
-
-Thanks to all who use Minecraft Script and read this documentation. Contact me if you have a proposal, problem or error.
