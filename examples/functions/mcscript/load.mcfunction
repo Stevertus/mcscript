@@ -23,3 +23,11 @@ scoreboard objectives add mcscript_raycast dummy
 # please do not touch this file!
 # it is used by the compiler!
 scoreboard objectives add test dummy
+
+# Extended from /examples/functions/forEach.mcscript
+# to examples/functions/mcscript/load.mcfunction
+# please do not touch this file!
+# it is used by the compiler!
+scoreboard objectives add i dummy
+scoreboard objectives add result dummy
+scoreboard objectives add j dummy

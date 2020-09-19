@@ -6,8 +6,8 @@
 ######
 # basic loop
 scoreboard players set i i 0
-execute if score i i matches ..9 run function examples:mcscript/foreach2
+execute if score i i matches ..9 run function examples:mcscript/foreach4
 # faculty
 scoreboard players set result result 1
 scoreboard players set j j 2
-execute if score j j matches ..10 run function examples:mcscript/foreach3
+execute if score j j matches ..10 run function examples:mcscript/foreach5

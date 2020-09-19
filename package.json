@@ -1,6 +1,6 @@
 {
   "name": "mcscript",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Minecraft Script to mcfunction compiler cli",
   "homepage": "http://stevertus.com/mcscript",
   "scripts": {
@@ -21,5 +21,5 @@
     "mcscript-modals": "bin/modal.js"
   },
   "main": "./lib/index.js",
-  "preferGlobal": "true"
+  "preferGlobal": true
 }

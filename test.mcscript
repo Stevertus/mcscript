@@ -1,0 +1,13 @@
+modaljs newModal(){
+    console.log(Math.sqrt(64))
+	return "say hi";
+}
+
+unless("test"){
+    /say hey
+}
+newModal()
+
+in('minecraft:minigames'){
+    run: say hi
+}
