@@ -6,8 +6,17 @@
 
 This will be the last update for mcscript fixing the most crucial bugs and simple requests. Thank you so much for all your support, all users of mcscript and the contributers for this update.
 
+- added: you can now use the keyword `trigger` after a new variables name to convert the scoreboard to trigger
+- added: The `in` keyword acts as a alias for `dimension` now
 - added: A new unless keyword which does the same as the if keyword, but negates the condition
-- added: aside console the Javascript Math object is now also accessible in the modaljs block
+- added: aside console the Javascript `Math` object is now also accessible in the modaljs block
+- fixed: if keyword did not recognize variables with a fakeplayername as entity
+- fixed: negative numbers were not allowed
+- fixed: possibility to generate packs with uppercase namespaces
+- fixed crash if parser returned undefined
+- formatting and improved code readability
+
+Thanks KaidenP and viniciuslrangel for fixing annoying bugs, sorry that this release took so long.
 
 ### v0.2.2
 
