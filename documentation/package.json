@@ -5,7 +5,7 @@
     "docs:build": "vuepress build"
   },
   "devDependencies": {
-    "@vuepress/plugin-pwa": "^1.0.4",
-    "vuepress": "^1.0.4"
+    "@vuepress/core": "^1.9.7",
+    "@vuepress/plugin-pwa": "^1.0.4"
   }
 }
