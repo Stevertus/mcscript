@@ -28,7 +28,20 @@
 			"cwd": "${workspaceFolder}\\tests",
 			"args": [
 				"new",
-				"if_statement"
+				"test_pack"
+			]
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "test:compile",
+			"skipFiles": [
+				"<node_internals>/**"
+			],
+			"program": "${workspaceFolder}\\bin\\test-module.js",
+			"cwd": "${workspaceFolder}\\tests\\test_pack",
+			"args": [
+				"compile"
 			]
 		},
 		{
@@ -40,6 +53,19 @@
 			],
 			"program": "${workspaceFolder}\\bin\\test-module.js",
 			"cwd": "${workspaceFolder}\\tests\\if_statement",
+			"args": [
+				"compile"
+			]
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "file_order:compile",
+			"skipFiles": [
+				"<node_internals>/**"
+			],
+			"program": "${workspaceFolder}\\bin\\test-module.js",
+			"cwd": "${workspaceFolder}\\tests\\file_order",
 			"args": [
 				"compile"
 			]
