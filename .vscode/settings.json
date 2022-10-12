@@ -1,0 +1,6 @@
+{
+	"javascript.format.enable": false,
+	"editor.tabSize": 4,
+	"editor.stickyTabStops": true,
+	"prettier.tabWidth": 4
+}

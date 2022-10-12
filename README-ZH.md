@@ -93,7 +93,7 @@ German documentation [here](https://mcscript.stevertus.com/de/)
 
 通过添加一个`-fullErr`参数，可以显示出完整的错误和代码位置。
 <a id="cli-watch"></a>
-<a id="cli-watch"></a>
+
 
 ### 2.3 mcscript watch
 
@@ -389,7 +389,7 @@ Also a [RegEx](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Gl
 
 #### 映射（字典）
 
-映射本质上是类似与字典的键值对。使用 Map 操作符来定义映射。
+映射本质上是类似于字典的键值对。使用 Map 操作符来定义映射。
 
 ```js
 const testMap = Map{

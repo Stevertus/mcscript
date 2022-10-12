@@ -10,3 +10,5 @@ _changelog.md
 Core Modals.md
 README-DE.md
 .bat
+.ignored
+tests/

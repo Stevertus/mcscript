@@ -1,0 +1,48 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "test",
+			"skipFiles": [
+				"<node_internals>/**"
+			],
+			"program": "${workspaceFolder}\\bin\\test-module.js",
+			"cwd": "${workspaceFolder}\\tests",
+			"args": [
+				"--help"
+			]
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "new datapack",
+			"skipFiles": [
+				"<node_internals>/**"
+			],
+			"program": "${workspaceFolder}\\bin\\test-module.js",
+			"cwd": "${workspaceFolder}\\tests",
+			"args": [
+				"new",
+				"if_statement"
+			]
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "if_statement:compile",
+			"skipFiles": [
+				"<node_internals>/**"
+			],
+			"program": "${workspaceFolder}\\bin\\test-module.js",
+			"cwd": "${workspaceFolder}\\tests\\if_statement",
+			"args": [
+				"compile"
+			]
+		},
+	]
+}

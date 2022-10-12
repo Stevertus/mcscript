@@ -1,25 +1,28 @@
 {
-  "name": "mcscript",
-  "version": "0.2.3",
-  "description": "Minecraft Script to mcfunction compiler cli",
-  "homepage": "http://stevertus.com/mcscript",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Stevertus",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Stevertus/mcscript.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Stevertus/mcscript/issues"
-  },
-  "license": "ISC",
-  "bin": {
-    "mcscript": "bin/test-module.js",
-    "mcscript-watch": "bin/watch.js",
-    "mcscript-modals": "bin/modal.js"
-  },
-  "main": "./lib/index.js",
-  "preferGlobal": true
+	"name": "mcscript",
+	"version": "0.2.3",
+	"description": "Minecraft Script to mcfunction compiler cli",
+	"homepage": "http://stevertus.com/mcscript",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"authors": [
+		"Stevertus",
+		"LEAWIND"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/LEAWIND/mcscript.git"
+	},
+	"bugs": {
+		"url": "https://github.com/LEAWIND/mcscript/issues"
+	},
+	"license": "ISC",
+	"bin": {
+		"mcscript": "bin/test-module.js",
+		"mcscript-watch": "bin/watch.js",
+		"mcscript-modals": "bin/modal.js"
+	},
+	"main": "lib/index.js",
+	"preferGlobal": true
 }

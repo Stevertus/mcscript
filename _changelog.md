@@ -2,6 +2,12 @@
 
 > Update your Version by running: `npm install -g mcscript@latest`
 
+### v0.3.0
+
+This  is contributed by LEAWIND.
+
+Nothing modified.
+
 ### v0.2.3
 
 This will be the last update for mcscript fixing the most crucial bugs and simple requests. Thank you so much for all your support, all users of mcscript and the contributers for this update.
