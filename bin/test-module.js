@@ -4,17 +4,12 @@ const lib = require("../lib/index.js");
 const addPack = require("./add.js");
 const gen_new = require("../lib/gen_new.js");
 const consoletheme = require("../lib/consoletheme.js");
-
+const USE_SYNC = true;
 const subCommands = {
-	compile: () => {
-		lib.compile(process.argv[3] || "./", fullError);
-	},
-	watch: () => {
-		lib.watch(process.argv[3] || "./", fullError);
-	},
-	modal: () => {
-		lib.genModals(process.argv[3] || "./");
-	},
+	add: () => addPack.addPack(process.argv[3] || ""),
+	compile: () => lib.compile(process.argv[3] || "./", fullError, USE_SYNC),
+	watch: () => lib.watch(process.argv[3] || "./", fullError, USE_SYNC),
+	modal: () => lib.genModals(process.argv[3] || "./"),
 	new: () => {
 		if (process.argv[3]) {
 			gen_new.new(process.argv[3]);
@@ -25,9 +20,6 @@ const subCommands = {
 				consoletheme.Reset
 			);
 		}
-	},
-	add: () => {
-		addPack.addPack(process.argv[3] || "");
 	},
 };
 
