@@ -34,7 +34,7 @@
 		{
 			"type": "node",
 			"request": "launch",
-			"name": "test:compile",
+			"name": "test_pack:compile",
 			"skipFiles": [
 				"<node_internals>/**"
 			],
