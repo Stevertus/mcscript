@@ -28,7 +28,7 @@
 			"cwd": "${workspaceFolder}\\tests",
 			"args": [
 				"new",
-				"test_pack"
+				""
 			]
 		},
 		{
@@ -66,6 +66,32 @@
 			],
 			"program": "${workspaceFolder}\\bin\\test-module.js",
 			"cwd": "${workspaceFolder}\\tests\\file_order",
+			"args": [
+				"compile"
+			]
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "nested_modal:compile",
+			"skipFiles": [
+				"<node_internals>/**"
+			],
+			"program": "${workspaceFolder}\\bin\\test-module.js",
+			"cwd": "${workspaceFolder}\\tests\\nested_modal",
+			"args": [
+				"compile"
+			]
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "jsfunc:compile",
+			"skipFiles": [
+				"<node_internals>/**"
+			],
+			"program": "${workspaceFolder}\\bin\\test-module.js",
+			"cwd": "${workspaceFolder}\\tests\\jsfunc",
 			"args": [
 				"compile"
 			]

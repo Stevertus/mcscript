@@ -14,11 +14,7 @@ const subCommands = {
 		if (process.argv[3]) {
 			gen_new.new(process.argv[3]);
 		} else {
-			console.log(
-				consoletheme.FgRed,
-				"You have to enter a datapack id!",
-				consoletheme.Reset
-			);
+			console.log(consoletheme.FgRed, "You have to enter a datapack id!", consoletheme.Reset);
 		}
 	},
 };
@@ -40,3 +36,5 @@ if (subcmd in subCommands) {
 	for (let subCmd in subCommands) console.log("    " + subCmd);
 	console.log(consoletheme.Reset);
 }
+
+console.log("done");
