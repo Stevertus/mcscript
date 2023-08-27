@@ -116,4 +116,4 @@ If a successful answer apears you have done everything right and can start.
 
 ## Get Connected With the Community and get Update
 
-<div class="hero" style="padding:16px"><a class="nav-link action-button" href="https://discord.gg/WVDFXUv">Join the Discord</a></div>
+<div class="hero" style="padding:16px"><a class="nav-link action-button" href="https://discord.gg/McYXVC8">Join the Discord</a></div>

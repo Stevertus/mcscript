@@ -108,6 +108,4 @@ Bei einer erfolgreichen Antwort hast du alles richtig gemacht und kannst durchst
 ## Trete in Kontakt mit der Community und bekomme Updates
 
 
-<iframe style="margin: 0 calc(50% - 280px)" src="https://discordapp.com/widget?id=152120147782533120&theme=light" width="560" height="700" allowtransparency="true" frameborder="0"></iframe>
-
-<div class="hero" style="padding:16px"><a class="nav-link action-button" href="https://discord.gg/WVDFXUv">Join the Discord</a></div>
+<div class="hero" style="padding:16px"><a class="nav-link action-button" href="https://discord.gg/McYXVC8">Joine Discord</a></div>
