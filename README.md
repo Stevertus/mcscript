@@ -650,7 +650,7 @@ default block = air
 default target = any block
 ```
 
-Raycasting is a big thing in Minecraft 1.13 and provides unlimeted opportunities. But it is a bit difficult, so why not making it easier? With Minecraft Script this is really really easy now:
+Raycasting is a big thing in Minecraft 1.13 and provides unlimited opportunities. But it is a bit difficult, so why not making it easier? With Minecraft Script this is really really easy now:
 
 ```
 raycast {
