@@ -1,7 +1,7 @@
 {
-  "name": "mcscript",
-  "version": "0.2.3",
-  "description": "Minecraft Script to mcfunction compiler cli",
+  "name": "mcscript-next",
+  "version": "0.3.0",
+  "description": "Port of Minecraft Script to make it work with 1.21 version",
   "homepage": "http://stevertus.com/mcscript",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

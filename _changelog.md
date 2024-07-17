@@ -1,6 +1,8 @@
 # Minecraft Script Changes
 
-> Update your Version by running: `npm install -g mcscript@latest`
+### v0.3.0
+
+Port compatibility with minecraft 1.21
 
 ### v0.2.3
 

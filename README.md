@@ -1,8 +1,9 @@
 ![](https://i.imgur.com/YedWe7W.png)
 
-# Minecraft Script Documentation
+# Minecraft Script Next Documentation
 
-> Update 0.2.3: [All Changes](https://github.com/Stevertus/mcscript/releases)
+__This a port from [https://github.com/Stevertus/mcscript.git] to solve issues with 1.21 version__ 
+
 
 Minecraft Script is a programming language for developers of mcfunctions, Minecraft maps and packages. The .mcscript files are therefore compiled and generated to the function format. This enables the developer extended possibilities, such as Modals, Loops, Varibles, Constants and Command-Wrapping.
 
@@ -12,38 +13,43 @@ German documentation [here](https://mcscript.stevertus.com/de/)
 
 ## Table of Contents
 
-1. [Installation](#install)
-   - [Installation of Node.js](#install-nodejs)
-   - [Installation of Minecraft Script](#install-mcscript)
-2. [Cli Commands](#cli)
-   - [mcscript new](#cli-new)
-   - [mcscript compile](#cli-compile)
-   - [mcscript watch](#cli-watch)
-   - [mcscript add](#cli-add)
-3. [file system](#files)
-   - [file setup](#files)
-   - [Dateien erweitern](#extend)
-   - [Globale Dateien](#global)
-4. [Syntax](#syntax)
-   - [Command Grouping](#groups)
-   - [Functions](#functions)
-   - [Variables](#vars)
-   - [Boolean Variablen](#boolean)
-   - [Constants](#consts)
-   - [If Statements](#if)
-   - [Operators](#operators)
-   - [Switches](#switch)
-   - [For loop](#for)
-   - [Raycasting](#raycast)
-   - [while loops](#while)
-   - [do-while loops](#dowhile)
-   - [forEach loops](#foreach)
-   - [Modals](#modals)
-   - [JavaScript Modals](#modaljs)
-   - [System Modals](#systemModals)
-   - [Error handling and debugging](#debugging)
-5. [IDEs and Syntax Highlighting](#ide)
-   <a id="install"></a>
+- [Minecraft Script Next Documentation](#minecraft-script-next-documentation)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+    - [1.1 Installation of Node.js](#11-installation-of-nodejs)
+    - [1.2 Installation of Minecraft Script](#12-installation-of-minecraft-script)
+  - [CLI Commands](#cli-commands)
+    - [2.1 mcscript new](#21-mcscript-new)
+    - [2.2 mcscript compile](#22-mcscript-compile)
+    - [2.3 mcscript watch](#23-mcscript-watch)
+    - [2.4 mcscript add \[url or package\]](#24-mcscript-add-url-or-package)
+    - [2.5 Dev: mcscript modals](#25-dev-mcscript-modals)
+  - [3) File system](#3-file-system)
+    - [3.1 File setup](#31-file-setup)
+    - [3.2 Extend Files](#32-extend-files)
+    - [3.3 Global Files](#33-global-files)
+  - [Minecraft Script Syntax](#minecraft-script-syntax)
+    - [4.1 Command Grouping / Wrapping](#41-command-grouping--wrapping)
+    - [4.2 Functions](#42-functions)
+    - [4.3 Variables](#43-variables)
+    - [4.4 Boolean Variables (Tags)](#44-boolean-variables-tags)
+    - [4.5 Constants](#45-constants)
+      - [Maps](#maps)
+      - [Arrays](#arrays)
+    - [4.6 If/Else Statements](#46-ifelse-statements)
+    - [4.7 Logical operators](#47-logical-operators)
+    - [4.8 Switch-Cases](#48-switch-cases)
+    - [4.9 For-Loops](#49-for-loops)
+    - [4.10 Raycasting](#410-raycasting)
+    - [4.11 while loops](#411-while-loops)
+    - [4.12 do-while-Loops](#412-do-while-loops)
+    - [4.13 forEach-Loop](#413-foreach-loop)
+    - [4.14 Modals](#414-modals)
+    - [4.15 JavaScript Modals](#415-javascript-modals)
+    - [4.16 System Modals](#416-system-modals)
+    - [4.17 Error handling and Debugging](#417-error-handling-and-debugging)
+  - [IDEs and Syntax Highlighting](#ides-and-syntax-highlighting)
+  - [Now there´s nothing left than: **Happy Developing**](#now-theres-nothing-left-than-happy-developing)
 
 ## Installation
 
